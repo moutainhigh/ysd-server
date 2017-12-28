@@ -1,0 +1,53 @@
+body{
+	background: #fff;
+}
+#content .guide_bg{
+	position: absolute;
+	top:0;
+	height:804px;
+	left:50%;
+	transform: translate(-50%,0);
+}
+#content .step{
+	width:1200px;
+	margin:0 auto;
+	margin-top: 754px;
+	margin-bottom: 100px;
+	font-size: 18px;
+}
+#content .step li{
+	height:440px;
+	margin:0 20px 40px 0;
+	overflow: hidden;
+}
+#content .step li .introduce,li .img{
+	float: left;
+	width:50%;
+}
+#content .step li .introduce{
+	margin-top:100px;
+}
+#content .step li .word_1{
+	color:#ef3e44;
+}
+#content .step li .word_2{
+	color:#333;
+	margin:30px 0 40px 0;
+	line-height: 2;
+}
+#content .step .right_{
+	margin-left: 90px;
+}
+#content .step .right_img{
+	margin-left: 160px;
+}
+#content .step li .introduce a{
+	display: block;
+	height: 36px;
+	width: 118px;
+	line-height: 36px;
+	text-align: center;
+	background: #ef3e44;
+	color: #fff;
+	border-radius: 5px;
+}

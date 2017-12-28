@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AccountBank">
+	<!-- 查询银行卡账号列表 -->
+	<select id="getAccountBankList" resultType="com.qmd.mode.user.AccountBank"
+		parameterType="integer">
+		select
+		a.*,
+		l.name
+		from fy_account_bank a left join fy_listing l on a.bank_id = l.key_value where user_id =#{userId} and l.parent_id=25;
+	</select>
+	
+	
+	<select id="getAccountBank" resultType="com.qmd.mode.user.AccountBank"
+		parameterType="integer">
+		select
+		a.*,
+		l.name
+		from fy_account_bank a left join fy_listing l on a.bank_id = l.key_value where a.id =#{id} and l.parent_id=25;
+	</select>
+	
+	
+	
+	<select id="queryListByMap" resultType="com.qmd.mode.user.AccountBank" parameterType="java.util.Map">
+		select 
+			t.*,l.name ,u.username,u.real_name
+		from
+		fy_account_bank t 
+			left join fy_listing l on t.bank_id = l.key_value
+			left join fy_user u on t.user_id = u.id
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="baseList" resultType="com.qmd.mode.user.AccountBank" parameterType="java.util.Map">
+		select 
+			t.*,l.name ,u.username,u.real_name
+		from
+		fy_account_bank t 
+			left join fy_listing l on t.bank_id = l.key_value
+			left join fy_user u on t.user_id = u.id
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_account_bank t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<update id="update" parameterType="com.qmd.mode.user.AccountBank" >
+		update fy_account_bank set
+			<if test ="account != null and account != ''">account=#{account},</if>
+			<if test ="bankId != null and bankId != ''">bank_id=#{bankId},</if>
+			<if test ="branch != null and branch != ''">branch=#{branch},</if>
+			<if test ="status != null and status != ''">status=#{status},</if>
+			<if test ="phone != null and phone != ''">phone=#{phone},</if>
+			modify_date=#{modifyDate}		
+			where 
+			id = #{id}
+	</update>
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="agencyId != null">and t.agency_id = #{agencyId} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+	
+</mapper>

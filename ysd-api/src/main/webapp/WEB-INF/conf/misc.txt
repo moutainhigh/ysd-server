@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?> <request><accId>422426197211294318</accId><accName>tangfeng</accName><cardNo>3209801542511106598</cardNo><exCode>CZBK_UNPY_BIND1</exCode><merId>1000000503</merId><notifyURL>http://192.168.0.54/notify_url.php</notifyURL><orderNo>E20150519100</orderNo><timestamp>1453443810</timestamp><tranDateTime>20160122142330</tranDateTime></request>

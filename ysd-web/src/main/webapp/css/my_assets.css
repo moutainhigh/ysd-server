@@ -1,0 +1,182 @@
+
+/*内容区*/
+#main .content .content{
+    width: 936px;
+}
+#main .content .assets {
+    font-size: 14px;
+    /*margin-bottom: 108px;*/
+}
+#main .content .assets .assets_top {
+    background-color: #fff;
+    height: 310px;
+    margin-bottom: 35px;
+    padding-top: 12px;
+}
+#main .content .assets .assets_bottom {
+    background-color: #fff;
+    height: 543px;
+    margin-bottom: 74px;
+}
+#main .content .assets .assets_top .assets_top_msg table {
+    font-family: "Microsoft YaHei", serif, sans-serif;
+    width: 894px;
+    margin:0 auto;
+    font-size: 18px;
+    color: #333;
+    border-bottom:1px dashed #b4b4b4;
+}
+#main .content .assets .assets_top .assets_top_msg table.personal td {
+    font-family: "Microsoft YaHei", serif, sans-serif;
+}
+#main .content .assets .assets_top .assets_top_msg table.personal td.center {
+    text-align: center;
+}
+#main .content .assets .assets_top .assets_top_msg table.personal tr:first-child td {
+    vertical-align: bottom;
+}
+#main .content .assets .assets_top .assets_top_msg table.personal tr:last-child td {
+    vertical-align: baseline;
+    padding-bottom: 10px;
+}
+.rule_detail {
+    width: 403px;
+    height: 107px;
+    background: url(../img/angle_2.png) no-repeat;
+    position: absolute;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 17px;
+    line-height: 26px;
+    text-align: left;
+    display: none;
+}
+#main .content .assets .assets_top .assets_top_msg table.person_detail tr td i.extra {
+	display: inline-block;
+    width: 17px;
+    height: 17px;
+    background: url(../img/question.png);
+    vertical-align: sub;
+    margin-left: 5px;
+    cursor: pointer;
+}
+#main .content .assets .assets_top .assets_top_msg table.personal tr td.font14 {
+    font-size: 14px;
+}
+#main .content .assets .assets_top .assets_top_msg table.person_detail {
+    margin-top: 47px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    font-size: 14px;
+    height: 68px;
+    position: relative;
+}
+#main .content .assets .assets_top .assets_top_msg table.person_detail tr:first-child {
+    font-weight: 700;
+    /*font-family: Microsoft YaHei, serif, sans-serif;*/
+}
+#main .content .assets .assets_top .assets_top_msg .option div {
+    float: right;
+    display: inline-block;
+    width: 86px;
+    height: 26px;
+    border:1px solid #ef3e44;
+    border-radius: 5px;
+    margin-right: 45px;
+    text-align: center;
+    line-height: 26px;
+    color: #ef3e44;
+    margin-top: 33px;
+    cursor: pointer;
+}
+#main .content .assets .assets_top .assets_top_msg .option div a{
+    width:100%;
+    display:inline-block;
+}
+#main .content .assets .assets_top .assets_top_msg .option div.current {
+    background-color: #ef3e44;
+}
+#main .content .assets .assets_top .assets_top_msg .option div.current a{
+    color: #ffffff;
+}
+#main .content .assets .assets_bottom {
+    padding-top: 22px;
+    font-size: 14px;
+
+}
+#main .content .assets .assets_bottom .nav {
+    font-size: 14px;
+    border-bottom: 1px solid #e5e5e5;
+    margin: 0 32px;
+    margin-bottom: 10px;
+    height: 40px;
+}
+#main .content .assets .assets_bottom .nav > div{
+    display: inline-block;
+    width: 173px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-weight:700;
+    cursor: pointer;
+    *float:left;
+}
+#main .content .assets .assets_bottom .nav > div.current {
+    border-bottom: 2px solid #ef3e44;
+}
+#main .content .assets .assets_bottom .nav > div a{
+	display:inline-block;
+	width:100%;
+}
+#main .content .assets .assets_bottom table {
+    width: 936px;
+    margin:0 auto;
+    text-align: center;
+    vertical-align: middle;
+    border-spacing: 0;
+    margin-bottom: 26px;
+    *margin-bottom:0;
+}
+#main .content .assets .assets_bottom table th.one {
+    width: 142px;
+}
+#main .content .assets .assets_bottom table th.two {
+    width: 220px;
+}
+#main .content .assets .assets_bottom table th.three {
+    width: 88px;
+}
+#main .content .assets .assets_bottom table th.four {
+    width: 220px;
+}
+#main .content .assets .assets_bottom table th.five {
+    width: 86px;
+}
+#main .content .assets .assets_bottom table th.six {
+    width: 164px;
+}
+#main .content .assets .assets_bottom table.record td.font_yel a{
+    color: #ff9000;
+}
+#main .content .assets .assets_bottom table th{
+    border-bottom:1px solid #ef3e44;
+    height: 40px;
+    font-weight: normal;
+}
+#main .content .assets .assets_bottom table td {
+    font-family: 'Microsoft YaHei', serif, sans-serif, monospace;
+    height: 60px;
+    border-bottom:1px dashed #b3b3b3;
+}
+#main .content .assets .assets_bottom table td a{
+	color:#ff9000;
+}
+ul.mpage {
+    margin-top: 16px;
+    padding-bottom:20px;
+    *margin-top:0;
+    *padding-top:16px;
+}

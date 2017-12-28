@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BorrowRepaymentDetail">
+	
+	<select id="queryBorrowRepList" resultType ="com.qmd.mode.borrow.BorrowRepaymentDetail" parameterType = "java.lang.Integer">
+		select *
+		from
+		fy_borrow_repayment_detail 
+		 where borrow_id= #{id}  order by order_num asc
+	</select>
+	
+		<select id="queryBorrowRepaymentDetail" resultType ="com.qmd.mode.borrow.BorrowRepaymentDetail" parameterType = "java.util.Map">
+		select *
+		from
+		fy_borrow_repayment_detail 
+		where 
+			 borrow_id= #{borrowId}
+			<if test="id!=null">
+				and id = #{id}
+			</if>
+			<if test="status!=null">
+				and status= #{status}
+			</if>
+			<if test="orderNum!=null">
+				and order_num = #{orderNum}
+			</if>	
+	</select>
+	<select id="select" resultType ="com.qmd.mode.borrow.BorrowRepaymentDetail" parameterType = "java.lang.Integer">
+	select * from fy_borrow_repayment_detail where id = #{id}
+	</select>
+	
+	<update id="update" parameterType="com.qmd.mode.borrow.BorrowRepaymentDetail" >
+	 update fy_borrow_repayment_detail set
+	 status =#{status},
+	 repayment_yestime = #{repaymentYestime},
+	 <if test="borrowId!=null and borrowId!=null">
+	 	capital = #{capital},
+	 </if>
+	 <if test="borrowId!=null and borrowId!=null">
+	 	interest = #{interest},
+	 </if>
+	 <if test="borrowId!=null and borrowId!=null">
+	 	repayment_Account = #{repaymentAccount},
+	 </if>
+	 repayment_yesaccount = #{repaymentYesaccount}
+	 where id = #{id}
+	 
+	</update>
+	<insert id="insert" parameterType="com.qmd.mode.borrow.BorrowRepaymentDetail" >
+		insert into 
+		fy_borrow_repayment_detail（
+				status,
+				webstatus,
+				order_num,
+				borrow_id,
+				repayment_time,
+				repayment_yestime,
+				repayment_account,
+				repayment_yesaccount,
+				late_days,
+				late_interest,
+				interest,
+				capital,
+				forfeit,
+				reminder_fee,
+				add_time,
+				operator_id,
+				create_date,
+				modify_date
+				)values
+			(	#{status},
+				#{webstatus},
+				#{orderNum},
+				#{borrowId},
+				#{repaymentTime},
+				#{repaymentYestime},
+				#{repaymentAccount},
+				#{repaymentYesaccount},
+				#{lateDays},
+				#{lateInterest},
+				#{interest},
+				#{capital},
+				#{forfeit},
+				#{reminderFee},
+				#{addTime},
+				#{operatorId},
+				#{createDate},
+				#{modifyDate}
+			)
+				
+			
+	
+	</insert>
+	<!-- 查询投资人还款明细 -->
+	<select id="getBorrowRepaymentDetailList" resultType ="com.qmd.mode.borrow.BorrowTemp" parameterType = "java.util.Map">
+		select distinct 
+			q1.id as id,
+			q1.borrow_id as borrowId,
+			q2.user_id as userId,
+			q1.status as status,
+			q2.name as title,
+			q1.repayment_time as repaymentDate,
+			q4.username as name,
+			q1.order_num as orderNum,
+			q2.time_limit as allNum,
+			q1.repayment_account as repaymentAccount,
+			q1.capital as capitalAccount,
+			q1.interest as interestAccount,
+			q1.late_interest as lateInterest,
+			q1.late_days as lateDays
+		from 
+			fy_borrow_repayment_detail q1 
+			left join fy_borrow_detail q3 on q1.borrow_id = q3.borrow_id 
+			left join fy_borrow q2 on q3.borrow_id = q2.id
+			left join fy_user q4 on q2.user_id = q4.id
+		where
+			q3.user_id = #{userId} and q1.status = #{status}  
+			<if test="minDate!=null and maxDate!=null">
+				and q1.repayment_time between #{minDate} and #{maxDate}
+			</if>
+			<if test="borrowId!=null and borrowId!=null">
+				and q1.borrow_id = #{borrowId}
+			</if>
+		order by q1.repayment_time 
+		<if test = "status == 0">
+			asc
+		</if>
+		<if test = "status == 1">
+			desc
+		</if>
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	<!-- 查询投资人还款明细 记录数 -->
+	<select id="queryUncollectedDetailList" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*) 
+		from 
+			fy_borrow_repayment_detail q1 left join fy_borrow_detail q2 on q1.borrow_id = q2.borrow_id
+		where
+			q2.user_id = #{userId} and q1.status = #{status}
+		<if test="minDate!=null and maxDate!=null">
+			and q1.repayment_time between #{minDate} and #{maxDate}
+		</if>
+	</select>
+	
+	<!-- 查询借款人还款明细 -->
+	<select id="getBorrowHkmxList" resultType ="com.qmd.mode.borrow.BorrowTemp" parameterType = "java.util.Map">
+		select distinct  
+			q1.id as id,
+			q1.borrow_id as borrowId,
+			q2.user_id as userId,
+			q1.status as status,
+			q2.name as title,
+			q1.repayment_time as repaymentDate,
+			q3.username as name,
+			q1.order_num as orderNum,
+			q2.time_limit as allNum,
+			q1.repayment_account as repaymentAccount,
+			q1.capital as capitalAccount,
+			q1.interest as interestAccount,
+			q1.late_interest as lateInterest,
+			q1.late_days as lateDays,
+			q2.divides as divides,
+			q1.repayment_date_int as repaymentDateInt,
+			q2.final_repay_date as finalRepayDate,
+			q2.deposit_money as depositMoney
+		from 
+			fy_borrow_repayment_detail q1 
+			left join fy_borrow q2 on q1.borrow_id = q2.id
+			left join fy_user q3 on q2.user_id = q3.id
+		where
+			q2.user_id = #{userId} and q1.status = #{status}  
+			
+			<if test="borrowId!=null and borrowId!=''">
+				and q1.borrow_id = #{borrowId}
+			</if>
+			
+			<if test="minDate!=null and maxDate!=null">
+				and q1.repayment_time between #{minDate} and #{maxDate}
+			</if>
+			<if test="keywords!=null and keywords!=''">
+				and q2.name like CONCAT('%',#{keywords},'%') 
+			</if>
+			
+		order by q1.repayment_time 
+		<if test = "status == 0">
+			asc 
+		</if>
+		<if test = "status == 1">
+			desc
+		</if>
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	<!-- 查询借款人还款明细 记录数 -->
+	<select id="queryHkmxList" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*)
+		from 
+			fy_borrow_repayment_detail q1 
+			left join fy_borrow q2 on q1.borrow_id = q2.id
+		where
+			q2.user_id = #{userId} and q1.status = #{status}
+			<if test="borrowId!=null and borrowId!=''">
+				and q1.borrow_id = #{borrowId}
+			</if>
+		<if test="minDate!=null and maxDate!=null">
+			and q1.repayment_time between #{minDate} and #{maxDate}
+		</if>
+		<if test="keywords!=null and keywords!=''">
+			and q2.name like CONCAT('%',#{keywords},'%') 
+		</if>
+	</select>
+	
+	<select id="queryBorrowRepaymentDetailList" resultType ="com.qmd.mode.borrow.BorrowRepaymentDetail" parameterType = "java.util.Map">
+		select r.*
+		from
+		fy_borrow_repayment_detail r
+		left join fy_borrow b on r.borrow_id = b.id
+		where 
+			b.user_id = #{userId}
+			<if test="borrowId!=null">
+				and r.borrow_id= #{borrowId}
+			</if>
+			<if test="status!=null">
+				and r.status= #{status}
+			</if>
+			<if test="orderBy!=null">
+				order by ${orderBy}
+			</if>
+			<if test="limitSize!=null">
+				limit #{limitSize}
+			</if>
+	</select>
+	
+	<select id="getForUpdate" resultType="com.qmd.mode.borrow.BorrowRepaymentDetail" parameterType="java.lang.Integer">
+		select * from fy_borrow_repayment_detail where id = #{id} for update
+	</select>
+	
+	<select id="queryRepaymentNotCount" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*) 
+		from 
+			fy_borrow_repayment_detail q1 
+		where
+			q1.borrow_id =#{borrowId} 
+			and q1.status = #{status}
+			<![CDATA[and q1.order_num < #{orderNum}]]>
+	</select>
+	
+</mapper>

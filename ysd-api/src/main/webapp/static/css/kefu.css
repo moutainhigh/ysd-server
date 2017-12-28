@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*黄色皮肤1*/
+html{-webkit-text-size-adjust:none;}/*修正谷歌最小字号bug*/
+*html .lrkf{position:absolute;}		/*修正IE6bug的，IE6不支持固定定位，这一句必须要。*/
+.lrkf{width:146px;}					/*必须有一个合适的宽度，否则获取不到正确的宽度*/
+.lrkfshow { right:0;}				/*这个不要动*/
+.lrkf .lrkf a{}
+.lrkf a:hover{color:#FF6600;}
+.lrkf .lrkf_header{ height:37px; background:url(../img/brd.gif) no-repeat 0 0;}
+.lrkf .lrkf_box{ }
+.lrkf .lrkf_header,.lrkf .lrkf_con,.lrkf .lrkf_tool a{}
+.lrkf .lrkf_header,.lrkf .lrkf_con{ margin-top:0;}
+.lrkf .lrkf_con{background:url(../img/brd.gif) repeat-y right top; padding:6px 12px;border:solid 1px #ff6600;}
+.lrkf .lrkf_foot{height:0px;background:url(../img/brd.gif) no-repeat -146px bottom;}
+.lrkf .lrkf_btn{ width:31px; height:139px; text-indent:-9999px; padding:0; left:-31px;top:50px;
+background:url(../img/ico.png) no-repeat 0 -388px;color:#fff;}
+.lrkf .lrkf_btn:hover{color:#fff;}
+.lrkfshow .lrkf_btn{background:url(../img/ico.png) no-repeat -32px -388px;}

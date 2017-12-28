@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Payment">
+
+	<!-- 根据标识Key 获取子级列表 -->
+	<select id="getPaymentConfigList" resultType ="com.qmd.mode.payment.RechargeConfig" >
+		select * from fy_recharge_config where is_enabled=1 order by order_list asc
+	</select>
+
+	<select id="getPaymentConfig" resultType ="com.qmd.mode.payment.RechargeConfig"  parameterType = "integer" >
+		select * from fy_recharge_config where id = #{_parameter}
+	</select>
+	
+	<select id="getLastPaymentSn" resultType ="com.qmd.mode.user.UserAccountRecharge">
+		select * from fy_user_account_recharge where id = (select max(id) from fy_user_account_recharge  order by create_date desc)
+	</select>
+	
+	<!-- 添加充值记录 -->
+	<insert id="insert" parameterType="com.qmd.mode.user.UserAccountRecharge" useGeneratedKeys="true" keyProperty="id" >
+		insert into 
+		fy_user_account_recharge 
+			(create_date,
+			 modify_date,
+			 trade_no,
+			 user_id,
+			 status,
+			 money,
+			 bank_name,
+			 recharge_interface_id,
+			 returned,
+			 type,
+			 remark,
+			 fee,
+			 reward,
+			 ip_user,
+			 off_line_account_id)
+		values 
+			(#{createDate},
+			#{modifyDate},
+			#{tradeNo},
+			#{userId},
+			#{status},
+			#{money},
+			#{bankName},
+			#{rechargeInterfaceId},
+			#{returned},
+			#{type},
+			#{remark},
+			#{fee},
+			#{reward},
+			#{ipUser},
+			#{offLineAccountId});
+	</insert>
+	
+	<!-- 修改充值状态 status =  0：失败;1:成功 -->
+	<update id="update" parameterType="java.util.Map">
+		update fy_user_account_recharge set
+			modify_date = #{modifyDate},
+			status=#{status},
+			returned = #{returned},
+			recharge_date = now()
+		where
+			trade_no = #{tradeNo}
+	</update>
+	
+	<!-- 修改充值记录支付方式 -->
+	<update id="updateRechargeId" parameterType="java.util.Map">
+		update fy_user_account_recharge set
+			modify_date = #{modifyDate},
+			recharge_interface_id=#{rechargeId}
+		where
+			trade_no = #{tradeNo}
+	</update>
+	
+	<!-- 根据充值编号查询充值记录 -->
+	<select id="getUserAccountRechargeByTradeNo" resultType ="com.qmd.mode.user.UserAccountRecharge" parameterType = "string" >
+		select * from fy_user_account_recharge where trade_no = #{_parameter}
+	</select>
+	
+</mapper>

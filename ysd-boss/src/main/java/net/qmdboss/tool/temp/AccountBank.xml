@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AccountBank">
+
+	<resultMap type="net.qmdboss.entity.AccountBank"	id="simpleAccountBank">
+			<result column="id"	property="id"/>
+			<result column="create_date"	property="createDate"/>
+			<result column="modify_date"	property="modifyDate"/>
+			<result column="user_id"	property="userId"/>
+			<result column="account"	property="account"/>
+			<result column="bank_id"	property="bankId"/>
+			<result column="branch"	property="branch"/>
+			<result column="province"	property="province"/>
+			<result column="city"	property="city"/>
+			<result column="area"	property="area"/>
+			<result column="add_ip"	property="addIp"/>
+			<result column="status"	property="status"/>
+			<result column="trade_no"	property="tradeNo"/>
+			<result column="agency_id"	property="agencyId"/>
+	</resultMap> 
+	<select id="queryById" resultMap ="simpleAccountBank" parameterType = "java.lang.Integer">
+		select t.* from fy_account_bank t  where t.id=#{id}
+	</select>
+
+	<select id="get" resultMap ="simpleAccountBank" parameterType = "java.lang.Integer">
+		select t.* from fy_account_bank t where t.id=#{id}
+	</select>
+
+	<select id="load" resultMap ="simpleAccountBank" parameterType = "java.lang.Integer">
+		select t.* from fy_account_bank t where t.id=#{id}
+	</select>
+
+	<select id="getForUpdate" resultMap ="simpleAccountBank" parameterType = "java.lang.Integer">
+		select t.* from fy_account_bank t where t.id=#{id} for update
+	</select>
+
+	<select id="getAllList" resultMap ="simpleAccountBank">
+		select t.* from fy_account_bank t ORDER BY id asc
+	</select>
+
+	<delete id="delete"  parameterType = "java.lang.Integer">
+		delete from fy_account_bank where id=#{id}
+	</delete>
+
+	<select id="queryListByObject" resultMap="simpleAccountBank" parameterType="net.qmdboss.entity.AccountBank">
+		select t.* from fy_account_bank t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryListByMap" resultMap="simpleAccountBank" parameterType="java.util.Map">
+		select t.* from fy_account_bank t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="getTotalCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_account_bank t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			<if test="account != null">and t.account = #{account} </if>
+			<if test="bankId != null">and t.bank_id = #{bankId} </if>
+			<if test="branch != null">and t.branch = #{branch} </if>
+			<if test="province != null">and t.province = #{province} </if>
+			<if test="city != null">and t.city = #{city} </if>
+			<if test="area != null">and t.area = #{area} </if>
+			<if test="addIp != null">and t.add_ip = #{addIp} </if>
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="tradeNo != null">and t.trade_no = #{tradeNo} </if>
+			<if test="agencyId != null">and t.agency_id = #{agencyId} </if>
+			<if test="startDate != null">
+				<![CDATA[ and t.create_date >= #{startDate}]]>
+			 </if>
+			<if test="endDate != null">
+				<![CDATA[ and t.create_date <=  #{endDate}]]>
+			 </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "net.qmdboss.entity.AccountBank" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_account_bank(
+			<if test="modifyDate != null">modify_date, </if>
+			<if test="userId != null">user_id, </if>
+			<if test="account != null">account, </if>
+			<if test="bankId != null">bank_id, </if>
+			<if test="branch != null">branch, </if>
+			<if test="province != null">province, </if>
+			<if test="city != null">city, </if>
+			<if test="area != null">area, </if>
+			<if test="addIp != null">add_ip, </if>
+			<if test="status != null">status, </if>
+			<if test="tradeNo != null">trade_no, </if>
+			<if test="agencyId != null">agency_id, </if>
+			<if test="phone != null">phone, </if>
+			create_date
+		)values(
+			<if test="modifyDate != null">#{ modifyDate}, </if>
+			<if test="userId != null">#{ userId}, </if>
+			<if test="account != null">#{ account}, </if>
+			<if test="bankId != null">#{ bankId}, </if>
+			<if test="branch != null">#{ branch}, </if>
+			<if test="province != null">#{ province}, </if>
+			<if test="city != null">#{ city}, </if>
+			<if test="area != null">#{ area}, </if>
+			<if test="addIp != null">#{ addIp}, </if>
+			<if test="status != null">#{ status}, </if>
+			<if test="tradeNo != null">#{ tradeNo}, </if>
+			<if test="agencyId != null">#{ agencyId}, </if>
+			<if test="phone != null">#{ phone}, </if>
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="net.qmdboss.entity.AccountBank" >
+		update
+			fy_account_bank
+		<set>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="account != null">account = #{account},</if>
+			<if test="bankId != null">bank_id = #{bankId},</if>
+			<if test="branch != null">branch = #{branch},</if>
+			<if test="province != null">province = #{province},</if>
+			<if test="city != null">city = #{city},</if>
+			<if test="area != null">area = #{area},</if>
+			<if test="addIp != null">add_ip = #{addIp},</if>
+			<if test="status != null">status = #{status},</if>
+			<if test="tradeNo != null">trade_no = #{tradeNo},</if>
+			<if test="agencyId != null">agency_id = #{agencyId},</if>
+			<if test="phone != null">phone = #{phone},</if>
+				modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+</mapper>
+

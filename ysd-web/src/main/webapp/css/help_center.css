@@ -1,0 +1,107 @@
+.content {
+    width: 1200px;
+    margin:0 auto;
+    background: #f2f2f2;
+    margin-top: 38px;
+}
+.content .help_center {
+    /* background-color: #fff;
+    width: 895px;
+    margin-left: 35px;
+    padding: 0 65px;
+    box-sizing: border-box;
+    height: 600px;
+    *width:805px; */
+    background-color: #fff;
+    width: 1000px;
+    margin-left: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+   height:600px;
+}
+.content .help_center .help_center_title {
+    background-color: #fff;
+    font-size: 24px;
+    color: #ef3e44;
+    text-align: center;
+    margin-top: 18px;
+    line-height:68px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.content .help_center_content > div {
+    display: inline-block;
+    width: 45%;
+    float:left;
+    *float:left;
+}
+.content .help_center_content > div:nth-child(2) {
+    margin-left: -5px;
+}
+/*.content .help_center_content .help_center_content_left .box {
+    background: url("../img/help_02.png") no-repeat;
+    background-position: 61px 47px;
+    margin-bottom: 66px;
+    *background-position:61px 35px;
+}*/
+.content .help_center_content .help_center_content_left {
+	margin-left: 8%;
+}
+.content .help_center_content .help_center_content_left .box .box_title {
+    font-size: 18px;
+    color: #333333;
+    padding-left: 38px;
+    margin-top: 24px;
+    height: 31px;
+}
+.content .help_center_content .help_center_content_left .box .hr div {
+    width: 35%;
+    *float:left;
+}
+.content .help_center_content .help_center_content_left .box {
+    margin-bottom: 60px;
+}
+.content .help_center_content .help_center_content_left .box .hr .hr_left {
+    border:1px solid #ef3e44;
+    *height: 1px;
+}
+.content .help_center_content .help_center_content_left .box .account_option {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.content .help_center_content .help_center_content_left .box .account_option > span {
+    font-size: 14px;
+    color: #333333;
+    margin-right: 24px;
+}
+.content .help_center_content .help_center_content_left .box .account_option > span:hover {
+    color: #ff9000;
+    border-bottom: 1px solid #ff9000;
+    cursor: pointer;
+}
+.content .help_center_content .help_center_content_left .box .account_option > span:hover a{
+    color: #ff9000;
+}
+.content .help_center_content .help_center_content_left .box .account {
+    background: url("../img/help_01.png") no-repeat;
+}
+.content .help_center_content > div:last-child {
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+.content .help_center_content .help_center_content_left .box > .investment {
+    background: url("../img/help_10.png") no-repeat;
+}
+.content .help_center_content .help_center_content_left .box > .benefit {
+    background: url("../img/help_15.png") no-repeat;
+}
+.content .help_center_content .help_center_content_left .box > .product {
+    background: url("../img/help_03.png") no-repeat;
+}
+.content .help_center_content .help_center_content_left .box > .income {
+    background: url("../img/help_07.png") no-repeat;
+}
+.content .help_center_content .help_center_content_left .box > .noun {
+    background: url("../img/help_18.png") no-repeat;
+}

@@ -1,0 +1,55 @@
+/* Author: QQ:86509874, swdai.com/ *//* reset */
+
+.creditad{width:980px;margin-top:8px;}
+
+/* slide */
+.slide{height:300px}
+.slideItem{top:278px;}
+.creditl{float:left;width:616px;border:#DCDFE4 solid 1px;}
+.creditl h1,.creditr h3,.succeed h1,.money h1,.rbordert h3{height:30px;line-height:30px;padding-left:8px;background:url(../img/x-tab.jpg) repeat-x;border-bottom:#DCDFE4 solid 1px;color:#737272}
+.cmaino{margin:12px 10px 0 10px;padding-left:4px;overflow:hidden;_padding-bottom:10px;padding-bottom:10px;}
+.cmaino img{float:left;padding:1px;}
+.creditl .comabm{border-bottom:#DCDFE4 solid 1px;padding:20px 0 30px 0}
+.creditl ul{float:left}
+.cmaino .cmaniul{margin:4px 10px 0 0;width:400px;}
+.cmaino .cmaniul h2 a,.subiao h2 a{font-weight:700;color:#41619e;}
+.subiao{margin:4px 10px 0 0;}
+
+.sprite_a{background: url(../img/sprite_a.png) no-repeat  left top ;}
+.asAccountBtn {background-position: 0 -354px;border: 0 none;display: block;float: left;height: 27px;line-height: 27px;margin-top: 5px;text-align: center;width: 97px;}
+.creditli{margin-top:10px;}
+.credityi{padding-top:20px;}
+.creditr{width:352px;float:left;margin-left:10px;}
+.credswyi{text-indent:2em;padding:10px 5px;border-bottom:#DCDFE4 dotted 1px;}
+.credyiul{margin-top:16px;margin-left:30px;padding-bottom:12px;}
+.fieldset{width:100%;border:0;color:#333;}
+.fieldset td ,.fiejiek td{padding-bottom: 7px;line-height:24px;}
+.fieldset .label,.fiejiek .label{text-align: right;width: 15%;}
+.fieldset input.contact {float: left;height: 21px;line-height: 21px;}
+.fieldset input,.fiejiek input{border: 1px solid #7E9DB9;height:20px;line-height:20px;padding-left:2px;color:#333;}
+.submit{background:url(../img/submit.jpg) no-repeat;width:78px;height:28px;line-height:30px;border:0;color:#fff;cursor:pointer;margin-top:12px;}
+.fieldset input.sex{margin-right: 2px;border:0}
+/*money*/
+.money{float:left;border:#DCDFE4 solid 1px;width:978px;margin-bottom:10px;}
+/*succeed*/
+.succeed{float:left;width:690px;border:#DCDFE4 solid 1px;}
+.succeedimg{float: right;margin-top:12px;*margin-top:-20px;padding-right: 8px;}
+.succeedr{width:278px;float:left;margin-left:10px;}
+.moneytab{width:392px;float:left;margin-left:12px;}
+.moneytab .edit-nav {background: url("../img/tag_bg.jpg") repeat-x  left bottom;overflow: hidden;padding-top: 10px;}
+.edit-nav li {float:left;display: block;}
+.edit-nav li a {display: block;height: 27px;line-height: 27px;text-align: center;width:89px;color:#333333;}
+.edit-nav li a.current {width:89px;background: url("../img/bg-icon1.gif") no-repeat  0 -163px ;color: #227bcd;font-weight: 700;text-decoration: none;margin-top:12px;*margin-top:0}
+.data1,.data2{height:146px;color:#333333;border-left:#DCDFE4 solid 1px;border-right:#DCDFE4 solid 1px;border-bottom:#DCDFE4 solid 1px;padding-bottom:15px;background:url(../img/xx_03.jpg) right bottom no-repeat;padding-top:22px;margin-bottom:10px;*margin-bottom:0;}
+.data1 li,.data2 li{background:url(../img/dot.gif) 4% 50% no-repeat;padding-left:24px;line-height:22px;}
+.tab-con{height:100%}
+.moneyr{width:544px;float:right;margin:10px 10px 10px 0;border:#DCDFE4 solid 1px;background:url(../img/yisubject_bg.gif) right bottom no-repeat;}
+.moneycon{background:url(../img/san.png) 1% 50% no-repeat;padding-left:18px;height:28px;line-height:28px;border-bottom:#DCDFE4 solid 1px;color:#737272}
+.moneyul{margin:10px 0 0 10px;}
+.moneyli{padding-left:12px;}
+.introduce{border:#DCDFE4 solid 1px;overflow:hidden;margin-bottom:10px;}
+.intimg{float:left;padding:10px;}
+.intrm{float:left;width:530px;margin-top:10px;margin-right:32px;}
+.intrr{float:left;padding-left:32px;margin-top:10px;width:260px;}
+.intrr li{float:left;margin-right:12px;margin-bottom:8px;}
+.succeedrtop{margin-top:10px;}

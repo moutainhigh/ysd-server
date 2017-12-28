@@ -1,0 +1,1 @@
+ALTER TABLE fy_user add bank_cust_no varchar(32) COMMENT '注册后渤海银行返回的客户号' default NULL;

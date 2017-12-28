@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="User">
+	<select id="selectByMap" resultType="com.qmd.mode.user.User"
+		parameterType="java.util.Map">
+		select
+		u.*,
+		i.private_name privateName,
+		a.total,
+		a.able_money,
+		a.unable_money,
+		a.collection,
+		a.continue_total,
+		a.award_money,
+		a.taste_money,
+		a.investor_collection_capital,
+		a.investor_collection_interest,
+		a.borrower_collection_capital,
+		a.borrower_collection_interest
+		from fy_user u 
+		left join fy_user_account a on u.id = a.user_id
+		left join fy_user_info i on u.id = i.user_id
+		where 1 = 1
+		<if test ="id != null "> and u.id = #{id}</if>
+		<if test="username != null "> and u.username = #{username}</if> 
+		<if test="password != null ">and u.password = #{password}</if> 
+		<if test="email != null ">and u.email = #{email}</if> 
+		<if test="phone != null">and u.phone = #{phone}</if>
+		<if test="cardId != null">and u.card_id = #{cardId}</if>
+		<if test="realStatus != null">and u.real_status = #{realStatus}</if>
+		<if test="typeid != null ">and u.type_id = #{typeid}</if> 
+		<if test="emailStatus != null ">and u.email_status = #{emailStatus}</if> 
+		<if test="emailFreq != null ">and u.email_freq = #{emailFreq}</if> 
+		<if test="typeId != null ">and u.type_id = #{typeId}</if>
+
+	</select>
+	
+	<select id="getById" resultType ="com.qmd.mode.user.User" parameterType = "java.lang.Integer">
+		select u.*
+		from fy_user u
+		where u.id = #{id}
+	</select>
+	
+	<select id="queryUser" resultType="com.qmd.mode.user.User" parameterType="java.util.Map">
+		select
+		*
+		from fy_user limit #{pager.thisSize},#{pager.pageSize}
+	</select>
+	<select id="queryListByMap" resultType="com.qmd.mode.user.User" parameterType="java.util.Map">
+		select t.* from fy_user t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	
+	<select id="queryCount" resultType="integer">
+		select
+		count(*)
+		from fy_user
+	</select>
+	
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="typeId != null">and t.type_id = #{typeId} </if>
+			<if test="memberType != null">and t.member_type = #{memberType} </if>
+			<if test="username != null">and t.username = #{username} </if>
+			<if test="password != null">and t.password = #{password} </if>
+			<if test="addIp != null">and t.add_ip = #{addIp} </if>
+			<if test="address != null">and t.address = #{address} </if>
+			<if test="birthday != null">and t.birthday = #{birthday} </if>
+			<if test="cardId != null">and t.card_id = #{cardId} </if>
+			<if test="cardPic1 != null">and t.card_pic1 = #{cardPic1} </if>
+			<if test="cardPic2 != null">and t.card_pic2 = #{cardPic2} </if>
+			<if test="cardType != null">and t.card_type = #{cardType} </if>
+			<if test="province != null">and t.province = #{province} </if>
+			<if test="city != null">and t.city = #{city} </if>
+			<if test="area != null">and t.area = #{area} </if>
+			<if test="areaStore != null">and t.area_store = #{areaStore} </if>
+			<if test="email != null">and t.email = #{email} </if>
+			<if test="emailCertificationKey != null">and t.email_certification_key = #{emailCertificationKey} </if>
+			<if test="emailStatus != null">and t.email_status = #{emailStatus} </if>
+			<if test="isEnabled != null">and t.is_enabled = #{isEnabled} </if>
+			<if test="isLock != null">and t.is_lock = #{isLock} </if>
+			<if test="loginFailureCount != null">and t.login_failure_count = #{loginFailureCount} </if>
+			<if test="lockedDate != null">and t.locked_date = #{lockedDate} </if>
+			<if test="lastIp != null">and t.last_ip = #{lastIp} </if>
+			<if test="lastTime != null">and t.last_time = #{lastTime} </if>
+			<if test="loginTime != null">and t.login_time = #{loginTime} </if>
+			<if test="passwordRecoverKey != null">and t.password_recover_key = #{passwordRecoverKey} </if>
+			<if test="payPassword != null">and t.pay_password = #{payPassword} </if>
+			<if test="payPasswordRecoverKey != null">and t.pay_password_recover_key = #{payPasswordRecoverKey} </if>
+			<if test="phone != null">and t.phone = #{phone} </if>
+			<if test="phoneStatus != null">and t.phone_status = #{phoneStatus} </if>
+			<if test="realName != null">and t.real_name = #{realName} </if>
+			<if test="realStatus != null">and t.real_status = #{realStatus} </if>
+			<if test="sceneStatus != null">and t.scene_status = #{sceneStatus} </if>
+			<if test="sex != null">and t.sex = #{sex} </if>
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="randomNum != null">and t.random_num = #{randomNum} </if>
+			<if test="autoTenderStatus != null">and t.auto_tender_status = #{autoTenderStatus} </if>
+			<if test="autoTenderDate != null">and t.auto_tender_date = #{autoTenderDate} </if>
+			<if test="autoTenderTimes != null">and t.auto_tender_times = #{autoTenderTimes} </if>
+			<if test="autoTenderRule != null">and t.auto_tender_rule = #{autoTenderRule} </if>
+			<if test="autoTenderMoneyTop != null">and t.auto_tender_money_top = #{autoTenderMoneyTop} </if>
+			<if test="autoTenderMoneyLeave != null">and t.auto_tender_money_leave = #{autoTenderMoneyLeave} </if>
+			<if test="autoTenderRateBegin != null">and t.auto_tender_rate_begin = #{autoTenderRateBegin} </if>
+			<if test="autoTenderBorrowType != null">and t.auto_tender_borrow_type = #{autoTenderBorrowType} </if>
+			<if test="tgNo != null">and t.tg_no = #{tgNo} </if>
+			<if test="tgOneLevelUserId != null">and t.tg_one_level_user_id = #{tgOneLevelUserId} </if>
+			<if test="tgStatus != null">and s.tg_status = #{tgStatus}</if>
+			<if test="sumTenderMoney != null">and t.sum_tender_money = #{sumTenderMoney}</if>
+			<if test="emailFreq != null">and t.email_freq = #{emailFreq}</if>
+			
+		</where> 
+	</sql>
+	
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+	
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+	
+	
+	<!-- 用户登录成功修改用户信息 -->
+	<update id="updateUserByLoginSuccess" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			login_time=#{loginTime},
+			last_time=#{lastTime},
+			last_ip=#{lastIp},
+			modify_date=now(),
+			login_failure_count=#{loginFailureCount},
+			is_lock=#{isLock},
+			locked_date=#{lockedDate}
+			<if test ="tgNo != null and tgNo != ''">,tg_no=#{tgNo}</if>
+		where 
+			id = #{id}
+	</update>
+	
+	<!--用户注册 -->
+	<insert id="addUser" parameterType="com.qmd.mode.user.User" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user
+			(create_date,
+			modify_date,
+			type_id,
+			member_type,
+			random_num,
+			username,
+			real_name,
+			password,
+			email,
+			is_enabled,
+			is_lock,
+			login_failure_count,
+			status,
+			real_status,
+			email_certification_key,
+			email_status,
+			phone_status,
+			scene_status,
+			add_ip,
+			last_time,
+			last_ip,
+			login_time,
+			auto_tender_rate_end,
+			auto_tender_reward_end,
+			auto_tender_limit_end,
+			auto_tender_date,
+			auto_tender_modify_date,
+			tg_one_level_user_id,
+			place_childer_id,
+			source_from
+			<if test="phone != null and phone !=''">,phone</if>
+			<if test="autoTenderBorrowType != null and autoTenderBorrowType !=''">,auto_tender_borrow_type</if>
+			<if test="phoneCode != null and phoneCode !=''">,phone_code</if>
+			<if test ="tgNo != null and tgNo != ''">,tg_no</if>
+		) 
+		values
+			(now(),
+			now(),
+			#{typeId},
+			#{memberType},
+			#{randomNum},
+			#{username},
+			#{realName},
+			#{password},
+			#{email},
+			#{isEnabled},
+			#{isLock},
+			0,
+			#{status},
+			#{realStatus},
+			#{emailCertificationKey},
+			#{emailStatus},
+			#{phoneStatus},
+			#{sceneStatus},
+			#{addIp},
+			#{lastTime,jdbcType=TIMESTAMP},
+			#{lastIp},
+			#{loginTime},
+			100,
+			100,
+			3,
+			now(),
+			now(),
+			#{tgOneLevelUserId},
+			#{placeChilderId},
+			0
+			<if test="phone != null and phone !=''">,#{phone}</if>
+			<if test="autoTenderBorrowType != null and autoTenderBorrowType !=''">,#{autoTenderBorrowType}</if>
+			<if test="phoneCode != null and phoneCode !=''">,#{phoneCode}</if>
+			<if test="tgNo != null and tgNo !=''">,#{tgNo}</if>
+			);
+	</insert>
+	
+	<update id="update" parameterType="com.qmd.mode.user.User">
+		update fy_user set
+			modify_date=now(),
+			login_failure_count=#{loginFailureCount},
+			is_lock=#{isLock},
+			<if test="tgNo != null and tgNo !=''">tg_no = #{tgNo},</if>
+			<if test="tgOneLevelUserId != null and tgOneLevelUserId !=''">tg_one_level_user_id = #{tgOneLevelUserId},</if>
+			<if test="tgStatus != null and tgStatus !=''">tg_status = #{tgStatus},</if>
+			<if test="sumTenderMoney != null and sumTenderMoney !=''">sum_tender_money = #{sumTenderMoney},</if>
+			<if test="phone != null and phone !=''">phone = #{phone},</if>
+			<if test="phoneStatus != null and phoneStatus !=''">phone_status = #{phoneStatus},</if>
+			<if test="realStatus != null and realStatus !=''">real_status = #{realStatus},</if>
+			<if test="tasteFlag != null and tasteFlag !=''">taste_flag = #{tasteFlag},</if>
+			<if test="phoneCode != null and phoneCode !=''">phone_code = #{phoneCode},</if>
+			locked_date=#{lockedDate}
+		where 
+			id=#{id}
+	</update>
+	
+	
+	<!-- 个人资料信息修改 -->
+	<update id="updateProfile" parameterType="com.qmd.mode.user.User">
+		update fy_user set
+			modify_date=now(),
+			real_name=#{realName},
+			<if test="phone != null and phone !=''">phone = #{phone},</if>
+			<if test="sex != null and sex !=''">sex = #{sex},</if>
+			<if test="birthday != null and birthday !=''">birthday = #{birthday},</if>
+			<if test="province != null and province !=''">province = #{province},</if>
+			<if test="city != null and city !=''">city = #{city},</if>
+			<if test="area != null and area !=''">area = #{area},</if>
+			<if test="areaStore != null and areaStore !=''">area_store = #{areaStore},</if>
+			<if test="address != null and address !=''">address = #{address},</if>
+		where 
+			id=#{id}
+	</update>
+	<!-- 上传头像 -->
+	<update id="updateLitpic" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			modify_date=now(),
+			litpic=#{litpic}
+		where 
+			id = #{id}
+	</update>
+	
+	<!-- 个人账户 实名认证 -->
+	<update id="updateRealName" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			modify_date=#{modifyDate},
+			real_name=#{realName},
+			card_type=#{cardType},
+			phone=#{phone},
+			sex=#{sex},
+			birthday=#{birthday},
+			province=#{province},
+			city=#{city},
+			area=#{area},
+			area_store=#{areaStore},
+			card_id=#{cardId},
+			card_pic1=#{cardPic1},
+			card_pic2=#{cardPic2},
+			scene_status=#{sceneStatus},
+			<if test ="payPassword != null and payPassword != ''">pay_password=#{payPassword},</if>
+			<if test ="tgNo != null and tgNo != ''">tg_no=#{tgNo},</if>
+			real_status=#{realStatus}
+		where 
+			id = #{id}
+	</update>
+	<!-- 邮件认证 -->
+	<update id="updateEmail" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			modify_date=now(),
+			email=#{email},
+			email_certification_key=#{emailCertificationKey},
+			password_recover_key=#{passwordRecoverKey},
+			pay_password_recover_key = #{payPasswordRecoverKey},
+			email_status=#{emailStatus}
+			<if test ="emailFreq != null and emailFreq != ''">,email_freq=#{emailFreq}</if>
+		where 
+			id = #{id}
+	</update>
+	
+	<!-- 手机认证 -->
+	<update id="updatePhone" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			modify_date=now(),
+			phone=#{phone},
+			phone_status=#{phoneStatus}
+		where 
+			id = #{id}
+	</update>
+		
+	<!-- 企业资料认证 -->
+	<update id="updateAvatar" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			<if test ="realName != null and realName != ''">real_name=#{realName},</if>
+			<if test ="sex != null and sex != ''">sex=#{sex},</if>
+			<if test ="cardId != null and cardId != ''">card_id=#{cardId},</if>
+			<if test ="cardPic1 != null and cardPic1 != ''">card_pic1=#{cardPic1},</if>
+			<if test ="cardPic2 != null and cardPic2 != ''">card_pic2=#{cardPic2},</if>
+			modify_date=now()
+		where 
+			id = #{id}
+	</update>
+	<!-- 修改借款人 -->
+	<update id="updateTypeid" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			modify_date=#{modifyDate},
+			type_id=#{typeId}
+			<if test ="emailFreq != null and emailFreq != ''">,email_freq=#{emailFreq}</if>
+		where 
+			id = #{id}
+	</update>
+	
+	
+	
+	<!-- 修改用户密码 包括支付密码 -->
+	<update id="updatePassword" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			modify_date=now(),
+			password=#{password},
+			pay_password=#{payPassword},
+			password_recover_key=#{passwordRecoverKey},
+			pay_password_recover_key=#{payPasswordRecoverKey}
+		where 
+			id = #{id}
+	</update>
+	
+	
+	<select id="queryTenderAutoRank"  parameterType="integer" resultType="integer">
+		select
+			count(1)
+		from fy_user u,fy_user t
+		where 
+			u.type_id = 0 
+			AND u.auto_tender_status = 1 
+			<![CDATA[ AND u.auto_tender_date <=t.auto_tender_date]]>
+			AND t.id =#{id}
+	</select>
+	
+	<!-- 修改会员自动投标 -->
+	<update id="updateTenderAuto" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+			<if test ="autoTenderStatus != null">
+			auto_tender_status=#{autoTenderStatus},
+			</if>
+			<if test ="autoTenderRule != null">
+			auto_tender_rule=#{autoTenderRule},
+			</if>
+			<if test ="autoTenderMoneyTop != null">
+			auto_tender_money_top=#{autoTenderMoneyTop},
+			</if>
+			<if test ="autoTenderMoneyLeave != null">
+			auto_tender_money_leave=#{autoTenderMoneyLeave},
+			</if>
+			<if test ="autoTenderRateBegin != null">
+			auto_tender_rate_begin=#{autoTenderRateBegin},
+			</if>
+			<if test ="autoTenderRateEnd != null">
+			auto_tender_rate_end=#{autoTenderRateEnd},
+			</if>
+			<if test ="autoTenderLimitBegin != null">
+			auto_tender_limit_begin=#{autoTenderLimitBegin},
+			</if>
+			<if test ="autoTenderLimitEnd != null">
+			auto_tender_limit_end=#{autoTenderLimitEnd},
+			</if>
+			<if test ="autoTenderRewardBegin != null">
+			auto_tender_reward_begin=#{autoTenderRewardBegin},
+			</if>
+			<if test ="autoTenderRewardEnd != null">
+			auto_tender_reward_end=#{autoTenderRewardEnd},
+			</if>
+			<if test ="autoTenderBorrowType != null">
+			auto_tender_borrow_type=#{autoTenderBorrowType},
+			</if>
+			<if test ="autoTenderDate != null">
+				auto_tender_date=now(),
+			</if>
+			<if test ="autoTenderRepayWay != null">
+			auto_tender_repay_way=#{autoTenderRepayWay},
+			</if>
+			auto_tender_modify_date =now()
+		where 
+			id = #{id}
+	</update>
+	
+	
+	<!-- 添加银行账户 -->
+	<insert id="addAccountBank" parameterType="com.qmd.mode.user.AccountBank" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_account_bank 
+			(create_date,modify_date,user_id,account,bank_id,branch,province,city,area,add_ip,status,bind_id,phone)
+		values
+			(now(),now(),#{userId},#{account},#{bankId},#{branch},#{province},#{city},#{area},#{addIp},#{status},#{bindId},#{phone});	
+	</insert>
+	
+	<!-- 修改银行账户 -->
+	<update id="updateAccountBank" parameterType="com.qmd.mode.user.AccountBank" >
+		update fy_account_bank set
+			<if test="account !=null and account !='' ">account=#{account},</if>
+			<if test="bankId !=null and bankId !='' ">bank_id=#{bankId},</if> 
+			<if test="branch !=null and branch !='' ">branch=#{branch},</if>
+			<if test="province !=null and province !='' ">province=#{province},</if> 
+			<if test="city !=null and city !='' ">city=#{city},</if>
+			<if test="area !=null and area !='' ">area=#{area},</if>
+			<if test="addIp !=null and addIp !='' ">add_ip=#{addIp},</if>
+			<if test="status !=null ">status=#{status},</if>
+			<if test="bindId !=null and bindId !='' ">bind_id=#{bindId},</if>
+			<if test="phone !=null and phone !='' ">phone=#{phone},</if>
+			modify_date=now()
+		where 
+			id = #{id}
+	</update>
+	
+	<!-- 删除银行账户 -->
+	<delete id="deleteAccountBank"  parameterType="integer">
+		delete from fy_account_bank where id=#{id}
+	</delete>
+	
+	
+	<!-- 获取银行账户列表 -->
+	<select id="queryAccountBank" resultType="com.qmd.mode.user.AccountBank" parameterType="integer">
+		select
+		*
+		from fy_account_bank where user_id=#{userId}
+	</select>
+	
+	<!-- 查询管理员 客服 -->
+	<select id="getKefuAdminList" resultType="com.qmd.mode.admin.Admin">
+		select q1.id,q1.name,q2.name as role_name from fy_admin_role q3 
+		left join fy_admin q1 on q1.id = q3.admin_set_id 
+		left join fy_role q2 on q3.role_set_id = q2.id 
+		where q2.name like '%客服%'
+		order by q3.admin_set_id desc
+	</select>
+	
+	
+	
+	<select id="queryByRanking" resultType="com.qmd.mode.user.User"  parameterType="java.util.Map">
+		select
+			a.investor_collection_capital as investorCollectionCapital,
+			u.username as username
+		from
+			fy_user_account a,
+			fy_user u
+		where a.user_id = u.id
+			and u.type_id=0
+		order by 
+			a.investor_collection_capital desc,
+			a.id
+		limit #{limitSize}
+	</select>
+	
+	<select id="querySpreadListByMap" resultType="com.qmd.mode.user.User" parameterType="java.util.Map">
+		SELECT t.*,
+		(select sum(uad.money) from fy_user_award_detail uad where uad.relate_to = t.id and uad.relate_key = 'user_id' and uad.type = 'account_type_award') as sumTgMoney,
+		(select sum(uad.money) from fy_user_award_detail uad where uad.relate_to = t.id and uad.relate_key = 'user_id' and uad.type = 'money_log_friend_name_email_tender_award') as sumRegisterMoney,
+  		(SELECT MIN(fbd.id) FROM fy_borrow_detail fbd LEFT JOIN fy_borrow fb ON fb.id = fbd.borrow_id WHERE fb.type !=20 AND fb.type !=10 AND fbd.user_id = t.id ) as mbdid
+		FROM fy_user t 
+		<include refid="querySpreadWhere"/>
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	<select id="querySpreadCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_user t 
+		<include refid="querySpreadWhere"/>
+	</select>
+	
+	<sql id="querySpreadWhere">
+		<where>
+			<if test="username != null">and t.username = #{username} </if>
+			<if test="tgOneLevelUserId != null">and t.tg_one_level_user_id = #{tgOneLevelUserId} </if>
+		</where> 
+	</sql>
+	<!-- 保存手机验证码 -->
+	<update id="updatePhoneCode" parameterType="com.qmd.mode.user.User" >
+		update fy_user set
+		<if test="modifyDate != null">modify_date=#{modifyDate},</if>
+		<if test="phoneCode != null">phone_code=#{phoneCode}</if>
+		where 
+			id = #{id}
+	</update>
+	
+	
+	
+	<!-- 新版-我的好友 -->
+	
+	<select id="queryMyFriendsCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_user u 
+		<include refid="queryAwardWhere"/>
+	</select>
+	
+	<select id="queryMyFriendsListByMap" resultType="com.qmd.util.bean.UserAward" parameterType="java.util.Map">
+		SELECT 
+		  u.id,
+		  u.`username`,
+		  u.`create_date` as createDate,
+		  u.`real_status` as realStatus,
+		  u.`email_status` as emailStatus,
+		  c.bdSumMoney,
+		  d.uadSumMoney
+		FROM
+		  fy_user u 
+		  LEFT JOIN (SELECT bd.`user_id` AS bdUserId, SUM(bd.`account`) AS bdSumMoney  FROM fy_borrow_detail bd GROUP BY bd.`user_id`) c ON c.bdUserId = u.id 
+		  LEFT JOIN (SELECT uad.relate_to AS uadRelateTo,SUM(uad.money) AS uadSumMoney FROM fy_user_award_detail uad WHERE uad.`type`='tui_detail_award' GROUP BY uad.relate_to ) d ON d.uadRelateTo = u.id 
+		<include refid="queryAwardWhere"/>
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	
+	<sql id="queryAwardWhere">
+		<where>
+			<if test="tgOneLevelUserId != null">and u.tg_one_level_user_id = #{tgOneLevelUserId} </if>
+		</where> 
+	</sql>
+</mapper>

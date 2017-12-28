@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PhoneLimit">
+ 
+	<select id="queryById" resultType ="com.qmd.mode.phone.PhoneLimit" parameterType = "java.lang.Integer">
+		select t.* from fy_phone_limit t  where t.id=#{id}
+	</select>
+
+	<select id="getById" resultType ="com.qmd.mode.phone.PhoneLimit" parameterType = "java.lang.Integer">
+		select t.* from fy_phone_limit t where t.id=#{id}
+	</select>
+
+	<select id="load" resultType ="com.qmd.mode.phone.PhoneLimit" parameterType = "java.lang.Integer">
+		select t.* from fy_phone_limit t where t.id=#{id}
+	</select>
+
+	<select id="getForUpdate" resultType ="com.qmd.mode.phone.PhoneLimit" parameterType = "java.lang.Integer">
+		select t.* from fy_phone_limit t where t.id=#{id} for update
+	</select>
+
+	<select id="getAllList" resultType ="com.qmd.mode.phone.PhoneLimit">
+		select t.* from fy_phone_limit t ORDER BY id asc
+	</select>
+
+	<delete id="delete"  parameterType = "java.lang.Integer">
+		delete from fy_phone_limit where id=#{id}
+	</delete>
+
+	<select id="queryListByObject" resultType="com.qmd.mode.phone.PhoneLimit" parameterType="com.qmd.mode.phone.PhoneLimit">
+		select t.* from fy_phone_limit t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.phone.PhoneLimit" parameterType="java.util.Map">
+		select t.* from fy_phone_limit t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_phone_limit t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="ip != null">and t.ip = #{ip} </if>
+			<if test="phone != null">and t.phone = #{phone} </if>
+			<if test="sendNumber != null">and t.send_number = #{sendNumber} </if>
+			<if test="activityId != null">and t.activity_id = #{activityId} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="startDate != null">
+				<![CDATA[ and t.create_date >= #{startDate}]]>
+			 </if>
+			<if test="endDate != null">
+				<![CDATA[ and t.create_date <=  #{endDate}]]>
+			 </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.phone.PhoneLimit" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_phone_limit(
+			<if test="ip != null">ip, </if>
+			<if test="phone != null">phone, </if>
+			<if test="sendNumber != null">send_number, </if>
+			<if test="activityId != null">activity_id, </if>
+			create_date
+		)values(
+			<if test="ip != null">#{ ip}, </if>
+			<if test="phone != null">#{ phone}, </if>
+			<if test="sendNumber != null">#{ sendNumber}, </if>
+			<if test="activityId != null">#{ activityId}, </if>
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.phone.PhoneLimit" >
+		update
+			fy_phone_limit
+		<set>
+			<if test="ip != null">ip = #{ip}</if>
+			<if test="phone != null">,phone = #{phone}</if>
+			<if test="sendNumber != null">,send_number = #{sendNumber}</if>
+			<if test="activityId != null">,activity_id = #{activityId}</if>
+			<if test="createDate != null">,create_date = #{createDate}</if>
+		</set>
+		where id = #{id}
+	</update>
+</mapper>
+

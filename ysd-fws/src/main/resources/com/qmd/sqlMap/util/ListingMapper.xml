@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Listing">
+
+	<!-- 根据标识Key 获取子级列表 -->
+	<select id="getChildListingBySignList" resultType ="com.qmd.mode.util.Listing"  parameterType = "string" >
+		select * from fy_listing where is_enabled=1 and parent_id =(select id from fy_listing where sign = #{sign} ) order by order_list asc
+	</select>
+	
+	<!--  根据父级sign 和子级keyValue查询子级name -->
+	<select id="findChildListingByKeyValue" resultType="string" parameterType="java.util.Map">
+		select name from fy_listing where key_value=#{keyValue} and is_enabled=1 and parent_id = (select id from fy_listing where sign=#{sign})	
+	</select>
+	
+	<!-- 查询首页图片滚动 -->
+	<select id="findScrollpicList" resultType="com.qmd.mode.util.Scrollpic" >
+		select * from fy_scrollpic where is_visible = 1 order by order_list asc
+	</select>
+	<!-- 根据ID查询Listing对象 -->
+	<select id="getListing" resultType ="com.qmd.mode.util.Listing" parameterType = "java.lang.Integer">
+		select * from fy_listing where id=#{id}
+	</select>
+	<!-- 根据map查询Listing对象 -->
+	<select id="getObjecListing" resultType ="com.qmd.mode.util.Listing" parameterType = "java.util.Map">
+		select * from fy_listing where 1 = 1
+		<if test="listingId != null "> and id = #{listingId} </if> 
+		<if test="sign != null "> and sign like '%${sign}%'</if> 
+		<if test="description != null "> and description = #{description} </if> 
+		<if test="keyValue != null "> and key_value = #{keyValue} </if> 
+		<if test="name != null "> and name = #{name} </if>
+	</select>
+	
+	
+	<!-- 根据sign 查询key_value对象 -->
+	<select id="getKeyValue" resultType ="string" parameterType = "string">
+		select key_value from fy_listing where sign = #{sign}
+	</select>
+	
+	<!-- 查询基本参数配置 -->
+	<select id="getSetting" resultType ="com.qmd.mode.util.Setting">
+		select * from fy_setting where id = 1
+	</select>
+		
+	
+	
+	
+</mapper>

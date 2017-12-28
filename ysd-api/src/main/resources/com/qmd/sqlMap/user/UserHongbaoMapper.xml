@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserHongbao">
+
+	<select id="getById" resultType ="com.qmd.mode.user.UserHongbao" parameterType = "java.lang.Integer">
+		select t.* from fy_user_hongbao t where t.id=#{id}
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.user.UserHongbao" parameterType="java.util.Map">
+		select t.* from fy_user_hongbao t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_user_hongbao t 
+		<include refid="queryWhere"/>
+	</select>
+	<!--@author:zdl 查询用户红包列表 -->
+	<select id="queryHBListByMap" resultType="net.qmdboss.beans.UserHongbao" parameterType="java.util.Map">
+		select t.* from fy_user_hongbao t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	<!--@author:zdl 用户未读红包个数 -->
+	<select id="queryCountNotLookHB" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select count(*) from fy_user_hongbao t where  t.is_looked = 0 and status = 0 and t.user_id = #{userId} 
+	</select>
+	<!--@author:zdl 更新用户未读红包为已读 -->
+	<update id="updateHBIsLooked" parameterType="java.lang.Integer" >
+		update fy_user_hongbao set is_looked = 1 ,modify_date = now() where is_looked = 0 and status = 0 and user_id = #{userId}
+	</update>
+	<!--@author:zdl 保存新红包  -->
+	<insert id="saveNewHongbao" parameterType = "net.qmdboss.beans.UserHongbao" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_hongbao(
+			user_id,
+			hb_no,
+			name,
+			money,
+			used_money,
+			status,
+			start_time,
+			end_time,
+			source,
+			source_string,
+			source_user_id,
+			source_borrow_id,
+			used_borrow_id,
+			exp_date,
+			limit_start,
+			limit_end,
+			is_pc,
+			is_app,
+			is_hfive,
+			invest_full_momey,
+			is_looked,
+			create_date, 
+			modify_date
+		)values(
+			#{userId},
+			#{hbNo},
+			#{name},
+			#{money},
+			#{usedMoney},
+			#{status},
+			#{startTime},
+			#{endTime},
+			#{source},
+			#{sourceString},
+			#{sourceUserId},
+			#{sourceBorrowId},
+			#{usedBorrowId},
+			#{expDate},
+			#{limitStart},
+			#{limitEnd},
+			#{isPc},
+			#{isApp},
+			#{isHfive},
+			#{investFullMomey},
+			#{isLooked},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			<if test="hbNo != null">and t.hb_no = #{hbNo} </if>
+			<if test="name != null">and t.name = #{name} </if>
+			<if test="money != null">and t.money = #{money} </if>
+			<if test="usedMoney != null">and t.used_money = #{usedMoney} </if>
+			
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="source != null">and t.source = #{source} </if>
+			<if test="sourceUserId != null">and t.source_user_id = #{sourceUserId} </if>
+			<if test="sourceBorrowId != null">and t.source_borrow_id = #{sourceBorrowId} </if>
+			<if test="usedBorrowId != null">and t.used_borrow_id = #{usedBorrowId} </if>
+			
+			<if test="startTime != null">
+				<![CDATA[and  t.start_time > #{startTime} ]]>
+			</if>
+			
+			<if test="endTime != null">
+				<![CDATA[and  t.end_time <= #{endTime} ]]>
+			</if>
+			<if test="idArray != null">
+				and t.id in 
+				<foreach item="item" index="index" collection="idArray"
+	      			open="(" separator="," close=")">
+	       	 		#{item}
+	  			</foreach>
+  			</if>
+  			
+  			<if test="isApp != null">and t.is_app = #{isApp} </if>
+  			
+  			<if test="limitStart != null">
+				<![CDATA[and  t.limit_start <= #{limitStart} ]]>
+			</if>
+			
+			<if test="limitEnd != null">
+				<![CDATA[and  t.limit_end >= #{limitEnd} ]]>
+			</if>
+			
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.user.UserHongbao" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_hongbao(
+			user_id,
+			hb_no,
+			name,
+			money,
+			used_money,
+			status,
+			start_time,
+			end_time,
+			source,
+			source_string,
+			source_user_id,
+			source_borrow_id,
+			used_borrow_id,
+			exp_date,
+			limit_start,
+			limit_end,
+			is_pc,
+			is_app,
+			is_hfive,
+			create_date, 
+			modify_date
+		)values(
+			#{userId},
+			#{hbNo},
+			#{name},
+			#{money},
+			#{usedMoney},
+			#{status},
+			#{startTime},
+			#{endTime},
+			#{source},
+			#{sourceString},
+			#{sourceUserId},
+			#{sourceBorrowId},
+			#{usedBorrowId},
+			#{expDate},
+			#{limitStart},
+			#{limitEnd},
+			#{isPc},
+			#{isApp},
+			#{isHfive},
+			now(),
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.user.UserHongbao" >
+		update
+			fy_user_hongbao
+		<set>
+			<if test ="usedMoney != null">used_money = #{usedMoney},</if>
+			<if test ="status != null">status = #{status},</if>
+			<if test ="usedBorrowId != null">used_borrow_id = #{usedBorrowId},</if>
+			modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+	
+	<select id="selectSumMoney" resultType ="java.math.BigDecimal" parameterType = "java.util.Map">
+		select
+			  IFNULL(sum(t.money),0)
+		from 
+			fy_user_hongbao t 
+	   <include refid="queryWhere"/>
+	</select>
+	
+	<select id="getSumHbInvestFullMomey" resultType ="java.math.BigDecimal" parameterType = "java.util.Map">
+		select
+			  IFNULL(sum(t.invest_full_momey),0)
+		from 
+			fy_user_hongbao t 
+	   <include refid="queryWhere"/>
+	</select>
+	
+	
+	
+	<!--qiu  查询用户红包列表-->
+	<select id="queryHbListByMapNew" resultType="net.qmdboss.beans.UserHongbao" parameterType="java.util.Map">
+		select t.* from fy_user_hongbao t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	
+	<!--qiu  查询id=1-->
+	<select id="getNewHbById" resultType ="net.qmdboss.beans.UserHongbao" parameterType = "java.lang.Integer">
+		select t.* from fy_user_hongbao t where t.id=#{id}
+	</select>
+	
+	<!-- qiu -->
+	<update id="updateNewHongbao" parameterType="net.qmdboss.beans.UserHongbao" >
+		update
+			fy_user_hongbao
+		<set>
+			<if test ="usedMoney != null">used_money = #{usedMoney},</if>
+			<if test ="status != null">status = #{status},</if>
+			<if test ="usedBorrowId != null">used_borrow_id = #{usedBorrowId},</if>
+			modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+		
+</mapper>
+

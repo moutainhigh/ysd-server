@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Article">
+
+	<!-- 根据标识Sign 获取子级列表 -->
+	<select id="getChildArticleCategoryByIdList" resultType ="com.qmd.mode.article.ArticleCategory" parameterType = "integer" >
+		select 
+			* 
+		from 
+			fy_article_category 
+		where 
+			is_enabled=1 
+			and parent_id =#{id,jdbcType=INTEGER}
+			order by order_list asc
+	</select> 
+	
+	<!-- 根据标识Sign 获取分类 -->
+	<select id="getArticleCategory" resultType ="com.qmd.mode.article.ArticleCategory" parameterType = "java.util.Map" >
+		select * from fy_article_category where 1=1
+		<if test="sign != null">
+			and sign=#{sign}
+		</if>
+		<if test="id != null">
+			and id=#{id}
+		</if>
+			order by order_list asc
+	</select> 
+	
+	<!--  根据子级ID查询文章内容 -->
+	<select id="getArticleByArticleCategoryId" resultType="com.qmd.mode.article.Article" parameterType="java.util.Map">
+		select * from fy_article 
+		where is_publication = 1
+		<if test="articleCategoryId != null">
+			and article_category_id=#{articleCategoryId}
+		</if>
+		<if test="id != null">
+			and id=#{id}
+		</if>
+		<if test="max != null">
+			limit 0,#{max}
+		</if>
+	</select>
+	
+	
+	<!--  根据sign 查询文章列表 -->
+	<select id="getArticleBySign" resultType="com.qmd.mode.article.Article" parameterType="java.util.Map">
+		select 
+			* 
+		from fy_article a1
+			left join fy_article_category a2 on a1.article_category_id = a2.id
+		where 
+			a1.is_publication = 1
+		<if test="sign != null">
+			and a2.sign=#{sign}
+		</if>
+		<if test="isRecommend != null">
+			and a1.is_recommend = #{isRecommend} 
+		</if>
+			order by a1.is_top desc,a1.order_list asc, a1.modify_date desc
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	
+	<!--  根据sign 查询文章数目-->
+	<select id="getArticleBySignCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_article a1
+			left join fy_article_category a2 on a1.article_category_id = a2.id
+		where a1.is_publication = 1 and a2.sign=#{sign}
+	</select>
+	
+	<!--  根据sign(复数个) 查询文章列表 -->
+	<select id="getArticleBySignMany" resultType="com.qmd.mode.article.Article" parameterType="java.util.Map">
+		select 
+			* 
+		from fy_article a1
+			left join fy_article_category a2 on a1.article_category_id = a2.id
+		where a1.is_publication = 1 and
+			<foreach item="item" index="index" collection="signs" open="(" separator="OR" close=")">
+                a2.sign = #{item}
+           	</foreach>
+			order by a1.is_top desc,a1.order_list asc, a1.modify_date desc
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	
+	<!--  根据sign(复数个) 查询文章数目-->
+	<select id="getArticleBySignManyCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_article a1
+			left join fy_article_category a2 on a1.article_category_id = a2.id
+		where a1.is_publication = 1 and
+			<foreach item="item" index="index" collection="signs" open="(" separator="OR" close=")">
+                a2.sign = #{item}
+           	</foreach>
+	</select>
+	
+	
+	<!-- 修改浏览量 -->
+	<update id="update" parameterType="com.qmd.mode.article.Article"  >
+		update fy_article set hits = #{hits} where id = #{id}
+	</update>
+	
+	
+	
+		<!-- 服务商消息 列表 -->
+	<select id="getAgencyMessage" resultType ="com.qmd.mode.article.Article" parameterType="java.util.Map" >
+		select 
+			a1.* ,
+			a2.view_status
+		from fy_article a1
+			left join fy_agency_message a2 on  a1.id = a2.article_id 
+		where a2.agency_id = #{agencyId} 
+			and a2.agency_type = #{agencyType} 
+			<if test="articleId != null">
+			and a2.article_id = #{articleId} 
+			</if>
+			<if test="viewStatus != null">
+				and a2.view_status = #{viewStatus}
+			</if>
+			and a2.is_enable =1
+			and a1.is_publication =1
+			order by a1.is_top desc,a1.order_list asc, a1.modify_date desc
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select> 
+	
+	
+	<!--  服务商消息数目-->
+	<select id="getAgencyMessageCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_article a1
+			left join fy_agency_message a2 on  a1.id = a2.article_id 
+		where a2.agency_id = #{agencyId} 
+			and a2.agency_type = #{agencyType} 
+			and a2.article_id = #{articleId} 
+			<if test="viewStatus != null">
+				and a2.view_status = #{viewStatus}
+			</if>
+			and a2.is_enable =1
+			and a1.is_publication =1
+	</select>
+	
+	
+	
+</mapper>

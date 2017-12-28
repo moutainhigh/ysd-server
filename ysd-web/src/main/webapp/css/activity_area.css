@@ -1,0 +1,85 @@
+#header {
+  	background-color: #ffffff;
+}
+.contentbg{
+	height:30px;
+	background: url(../img/contentbg.png) repeat-x;
+	width:100%;
+	position:absolute;
+}
+#content {
+	width: 1200px;
+	background-color: #f2f2f2;
+	margin: 0 auto;
+}
+#content .tips {
+	height: 73px;
+	line-height: 73px;
+	box-sizing: border-box;
+	border-bottom: 2px solid #e5e5e5;
+	margin-bottom: 36px;
+}
+#content .tips span {
+	display: inline-block;
+	width: 136px;
+	height: 73px;
+	box-sizing: border-box;
+	font-size: 18px;
+	margin-right: 38px;
+	text-align: center;
+}
+#content .tips span.current {
+	border-bottom: 2px solid #ef3e44;
+}
+#content .activity div{
+	display: inline-block;
+	box-sizing: border-box;
+}
+#content .activity > a {
+	display: inline-block;
+	background-color: #fff;
+	width: 874px;
+	height: 351px;
+	padding: 25px 27px;
+	box-shadow:0 0 3px #ccc inset, 0 0 0 #ccc inset, 0 0 3px #ccc inset, none,0 0 3px #ccc inset, none;
+	box-sizing: border-box;
+}
+#content .activity > a img {
+	width: 820px;
+	height: 300px;
+}
+#content .activity {
+	margin-bottom:57px;
+}
+#content .activity div.details {
+	width: 326px;
+	height: 351px;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+#content .activity div span {
+	display: block;
+	text-align:center;
+}
+#content .activity div span.name {
+	margin-top: 84px;
+	font-size: 18px;
+}
+#content .activity div span.date {
+	font-size: 14px;
+	margin-top: 48px;
+	color: #666666;
+}
+#content .activity div span.detail {
+	margin-top: 48px;
+	width: 114px;
+	height: 32px;
+	border: 1px solid #ef3e44;
+	border-radius: 8px;
+	text-align: center;
+	line-height: 32px;
+	margin-left: 129px;
+	color: #ef3e44;
+}
+
+

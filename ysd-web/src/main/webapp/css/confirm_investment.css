@@ -1,0 +1,482 @@
+.content{
+	height:30px;
+	background: url(../img/contentbg.png) repeat-x;
+	width:100%;
+}
+.content1 {
+    width: 1198px;
+    height: 359px;
+    background-color: #fff;
+    margin:0 auto;
+    margin-top: 8px;
+    font-size: 18px;
+    border: 1px solid #e5e5e5;
+}
+.content1 .title {
+    height: 61px;
+    line-height: 61px;
+    box-sizing: border-box;
+    padding-left: 28px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.content1 .detail {
+    width: 992px;
+    height: 192px;
+    background-color: #fff;
+    margin:0 auto;
+    font-size: 18px;
+    box-sizing: border-box;
+    border-bottom: 1px dashed #e5e5e5;
+}
+.content1 .detail table {
+    width: 992px;
+    height: 182px;
+    text-align: center;
+    color: #333;font-size: 24px;
+}
+.content1 .detail table tr td {
+    box-sizing: border-box;
+}
+.content1 .detail table tr .font_red {
+    color: #ef3e44;
+}
+.content1 .detail table tr .font30 {
+   font-size: 30px;
+}
+.content1 .detail table .tr_1 td {
+    padding-top: 40px;
+}
+.content1 .detail table .tr_2 td {
+    padding-bottom: 40px;
+    color: #666666;
+    font-size: 18px;
+}
+
+.content1 .detail table tr .td_1 {
+	width: 27%;
+}
+.content1 .detail table tr .td_2 {
+	width: 25%;
+}
+.content1 .detail table tr .td_3 {
+	width: 25%;
+}
+.content1 .detail table tr .td_4 {
+	width: 22%;
+}
+.content1 .payment_date {
+    height: 104px;
+    line-height: 104px;
+    box-sizing: border-box;
+    padding-left: 117px;
+    color: #999;
+}
+.content1 .payment_date span{
+    color: #333;
+}
+.content2 {
+    width: 1198px;
+    background-color: #fff;
+    margin:0 auto;
+    margin-top: 36px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    border: 1px solid #e5e5e5;
+}
+.content2 .title {
+    font-size: 18px;
+    height: 61px;
+    line-height: 61px;
+    box-sizing: border-box;
+    padding-left: 28px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.content2 > .title > span {
+    padding-left: 15px;
+    font-size: 14px;
+    color: #ff9000;
+}
+.content2 .red_bag {
+    padding:11px 68px;
+    border: 1px solid #e5e5e5;
+    height: 487px;
+    overflow-y: auto;
+}
+.content2 .unReg{
+	display: none;
+	background:url(../img/unredbag.png) no-repeat center 30px;
+	height: 300px;
+}
+.content2 .red_bag .red_bag_warp {
+    display: inline-block;
+    width: 317px;
+    height: 216px;
+    margin-top: 20px;
+    margin-left: 17px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.content2 .red_bag .hover  {
+    box-shadow:0 0 10px  #ccc;
+    position: relative;
+}
+.content2 .red_bag .selected  {
+    box-shadow:0 0 10px  #ccc;
+    position: relative;
+}
+.content2 .red_bag .hover .select {
+    width: 46px;
+    height: 47px;
+    position: absolute;
+    left: 261px;
+    top: 21px;
+    display: inline-block;
+    background: url("../img/unselect.png") no-repeat;
+}
+.content2 .red_bag .selected .select{
+    width: 46px;
+    height: 47px;
+    position: absolute;
+    left: 261px;
+    top: 21px;
+    display: inline-block;
+    background: url("../img/selected.png") no-repeat;
+}
+.content2 .red_bag .red_bag_warp .redbag_model {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 272px;
+    height: 180px;
+    background: url("../img/rbg.png");
+    margin-left: 24px;
+    margin-top: 37px;
+    cursor: pointer;
+}
+.content2 .red_bag .red_bag_warp img {
+    left: 261px;
+    top: 20px;
+    z-index: 99;
+
+}
+.content2 .red_bag .red_bag_warp .redbag_model .title {
+    width: 249px;
+    margin: 0 auto;
+    border-bottom: 2px solid #ffffff;
+    font-size: 18px;
+    color: #fff000;
+    box-sizing: border-box;
+    padding-left: 6px;
+}
+.content2 .red_bag .red_bag_warp .redbag_model .title .redbag_value {
+    font-size: 36px;
+}
+.content2 .red_bag .red_bag_warp .redbag_model .title .redbag_name {
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: 8px;
+    vertical-align: super;
+}
+.content2 .red_bag .red_bag_warp .redbag_model .use_detail {
+    box-sizing: border-box;
+    padding-left: 28px;
+    font-size: 14px;
+    color: #ffffff;
+}
+.content2 .red_bag .red_bag_warp .redbag_model .use_detail div {
+    margin-top: 9px;
+}
+.content2 .details {
+    width: 1090px;
+    height: 111px;
+    background-color: #fff;
+    margin:0 auto;
+    font-size: 18px;
+    box-sizing: border-box;
+    border-bottom: 1px dashed #e5e5e5;
+}
+.content2 .details > div span.left {
+    width:350px;
+    display:inline-block;
+    *float:left;
+}
+.content2 .details > div  {
+    margin-right: 120px;
+}
+.content2 .details > .left{
+    width: 540px;
+    display: inline-block;
+}
+.content2 .details > .left > div {
+    margin-top: 19px;
+}
+.content2 .details > .left > div > .left >strong {
+    color: #ef3e44;
+    font-weight: 500;
+}
+.content2 .details > .left > div > .right >strong {
+    color: #ff9000;
+    font-weight: 500
+}
+.content2 .details > .right {
+    display: inline-block;
+    float:right;
+}
+.content2 .details > .right a{
+	display:inline-block;
+	padding-top:46px;
+}
+.content2 .details > .right > a > div {
+    display: inline-block;
+    width: 118px;
+    height: 53px;
+    text-align: center;
+    line-height: 53px;
+    color: #ffffff;
+    margin-right: 15px;
+    border-radius: 10px;
+}
+.content2 .details > .right > a > div.recharge {
+    background-color: #ef3e44;
+}
+.content2 .details > .right >a > div.default {
+    background-color: #3e9aef;
+}
+.content2 .pay {
+    height: 424px;
+    box-sizing: border-box;
+}
+.content2 .pay > div.tips {
+    height: 27px;
+    line-height: 27px;
+    padding-left: 32px;
+    margin-top: 35px;
+    margin-left: 49px;
+    background: url(../img/wram_tips.png) no-repeat;
+}
+form {
+    margin-left: 56px;
+    margin-top: 39px;
+    font-size: 16px;
+    color: #333333;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.identify_img {
+	border-radius: 10px;
+	vertical-align: middle;
+	margin-left: 5px;
+	cursor: pointer;
+}
+form table tr td {
+	padding-top:18px;
+    padding-bottom: 18px;
+}
+form table tr:first-child td{
+	padding-top:0;
+}
+form table tr td:first-child {
+    height: 36px;
+    line-height: 36px;
+    text-align: right;
+}
+
+form table tr td input {
+    display: inline-block;
+    width: 266px;
+    height: 36px;
+    border: 1px solid #ef3e44;
+}
+form table tr:last-child td{
+    text-align: center;
+}
+form table tr:last-child td input {
+    width: 166px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 52px;
+    font-size: 18px;
+    font-family: "微软雅黑",serif,sans-serif;
+    margin-right: 56px;
+    cursor: pointer;
+}
+form table tr td .AllError{
+	display:block;
+	background:url(../img/tips.png) no-repeat;
+	margin-left:20px;
+	padding-left:24px;
+	height:18px;
+	line-height:18px;
+	visibility:hidden;
+}
+form.identify table tr td.get_inum span {
+    display: inline-block;
+    width: 115px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 38px;
+}
+.content2 .pay  .set_deal_pwd {
+    color: #ef3e44;
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    top: -261px;
+    left: 30px;
+    text-decoration: underline;
+}
+.errorMassage{
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display:none;
+}
+.errorMassage >div.errorMassage_bg{
+	position:absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../img/black_bg56.png) repeat-y;
+    z-index: 999;
+    top:0;
+    margin:0;
+    padding:0;
+	
+}
+.errorMassage>div{
+    position: relative;    
+    top: 50%;
+    width: 510px;
+    height: 270px;
+    padding:17px 0px;
+    box-sizing:border-box;
+    margin-left:40px;
+    margin: 0 auto;
+    margin-top: -231px;
+    z-index: 1000;
+}
+.errorMassage>div .errorMassageDiv_bg{
+	position:absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: #fff;
+    top:0;
+    margin:0;
+    padding:0;
+    z-index: -1;
+}
+.errorMassage>div .close {
+    width: 18px;
+    height: 18px;
+    background: url(../img/close.png) no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    position:relative;
+    z-index:1000;
+    margin-right:20px;
+}
+.errorMassage>div .error_hint{
+    box-sizing: border-box;
+    width:116px;
+    margin:30px auto 0;
+    background:url(../img/tips.png) no-repeat;
+    padding-left:24px;
+    font-size:18px;
+    line-height:18px;
+    
+}
+.errorMassage>div .error_hint a{
+    color:#ef3e44;
+}
+.errorMassage>div .input_tips{
+	font-size:16px;
+	text-align:center;
+	margin-top:20px;
+	color:#666;
+	width:510px;
+}
+.errorMassage>div a{
+	display:block;
+	background:#ef3e44;
+	color:#fff;
+	width:166px;
+	height:52px;
+	line-height:52px;
+	font-size:18px;
+	margin:40px auto 0;
+	border-radius:10px;
+	text-align:center;
+}
+.invest_success {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+ }
+.invest_success .shadow {
+	position:absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../img/black_bg56.png) repeat-y;
+    z-index: 999;
+    top:0;
+    margin:0;
+    padding:0;
+}
+.invest_success_wrap {
+	position: relative;
+ 	width: 510px;
+ 	height: 269px;
+ 	background-color: #fff;
+ 	z-index: 1000;
+ 	top: 50%;
+ 	left: 50%;
+ 	border-radius: 10px;
+ 	margin-top: -135px;
+ 	margin-left: -255px;
+}
+.invest_success .invest_success_wrap .close{
+ 	float: right;
+ 	margin-right: 26px;
+ 	margin-top: 13px; 
+ 	cursor: pointer;
+ 	visibility: hidden;
+}
+.invest_success .invest_success_wrap .tips {
+ 	height: 50px;
+ 	background: url("../img/recharge_success.png") no-repeat center;
+ 	margin: 14px 0 0 24px;
+}
+.invest_success .invest_success_wrap .hint {
+ 	text-align: center;
+ 	font-size:16px;
+ 	color: #666;
+ 	margin: 24px 0 0 36px;
+}
+.invest_success .invest_success_wrap button {
+ 	width: 166px;
+ 	height: 52px;
+ 	display: inline-block;
+ 	background-color: #ef3e44;
+ 	color: #fff;
+ 	text-align: center;
+ 	line-height: 52px;
+ 	font-size:18px;
+ 	margin: 0 auto;
+ 	margin-top: 36px;
+ 	margin-left: 174px;
+ 	border: none;
+ 	border-radius: 10px;
+ 	cursor: pointer;
+}

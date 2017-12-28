@@ -1,0 +1,47 @@
+.find{
+	width:1200px;
+	height:710px;
+	margin:30px auto 90px;
+	background:#fff;
+	border:1px solid #e5e5e5;
+	box-sizing:border-box;
+}
+.findCont{
+	padding-top:30px;
+	text-align:center;
+}
+.findCont img{
+	display: block;
+    width: 233px;
+    height: 179px;
+    margin: 85px auto 0;
+}
+.findCont>span{
+	display:block;
+	color:#ff9000;
+	font-size:30px;
+	line-height:30px;
+	margin-top:46px;
+}
+.findCont p{
+	font-size:24px;
+	color:#333;
+	line-height:24px;
+	margin-top:36px;
+}
+.findCont p span{
+	color:#ff9000;
+}
+.findCont .qybtn a{
+	display:block;
+	width:230px;
+	height:52px;
+	line-height:52px;
+	color:#fff;
+	background:#ef3e44;
+	text-align:center;
+	margin:53px auto 0;
+	border-radius:10px;
+	font-size:24px;
+	text-decoration:none;
+}

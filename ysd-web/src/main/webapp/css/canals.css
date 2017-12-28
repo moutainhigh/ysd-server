@@ -1,0 +1,668 @@
+.header {
+    width: 100%;
+    height: 90px;
+    background-color: #FFFFFF;
+}
+.header .header_wrap {
+    width: 1200px;
+    height: 90px;
+    margin:0 auto;
+}
+.header .header_wrap img {
+    vertical-align: middle;
+}
+.header .header_wrap .special {
+    display: inline-block;
+    font-size: 14px;
+    width: 250px;
+    height: 90px;
+    margin-left: 14px;
+    line-height: 90px;
+    font-family: "黑体", serif, sans-serif;
+    color: #666;
+    background: url("../img/new_bridge.png") center 56px no-repeat;
+}
+.header .header_wrap .special .left {
+    margin-right: 20px;
+}
+.activity {
+    width: 100%;
+    height: 448px;
+    background: url("../img/new_main7.png") center 0px no-repeat;
+}
+.activity_wrap {
+    width: 1200px;
+    height: 448px;
+    margin:0 auto;
+}
+.activity .register {
+    float: right;
+    background: #ffffff;
+    width: 310px;
+    height: 360px;
+    margin-top: 22px;
+}
+.activity .register form {
+    width: 280px;
+    margin-left: 22px;
+    font-size: 12px;
+    padding-top: 10px;
+    color: #999;
+}
+.activity .register form table tr input {
+    font-size: 12px;
+}
+.activity .register form table .invest_person {
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+}
+.activity .register form table .phone {
+    width: 260px;
+    height: 40px;
+    border-radius: 10px;
+    border:1px solid #999999;
+    box-sizing: border-box;
+    padding-left: 30px;
+    background: url("../img/black_phone.png") 8px 6px no-repeat;
+}
+.activity .register form table .message input {
+    width: 124px;
+    height: 40px;
+    border-radius: 10px;
+    border:1px solid #999999;
+    box-sizing: border-box;
+    padding-left: 13px;
+}
+.activity .register form table .message button {
+    width: 108px;
+    height: 37px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    font-family: "Microsoft YaHei", serif, sans-serif, monospace;
+}
+.activity .register form table .message input#getcode_1 {
+    width: 108px;
+    height: 37px;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    cursor: pointer;
+    padding-left:0;
+    border: none;
+    font-family: "Microsoft YaHei", serif, sans-serif, monospace;
+}
+.activity .register form table .pwd input {
+    width: 260px;
+    height: 40px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 30px;
+    border:1px solid #999999;
+    background: url("../img/black_clock.png") 8px 6px no-repeat;
+}
+.activity .register form table .button input {
+    width: 260px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    cursor: pointer;
+}
+.activity .register form table .pic {
+    font-size: 12px;
+    color: rgba(51, 51, 51, 0.6);
+    text-align: center;
+}
+.activity .register form table .pic input {
+    margin-right: 10px;
+}
+.activity .register form table .pic span{
+    color: #3b63cd;
+}
+.activity .register form table tr td {
+    padding-bottom: 8px;
+}
+.activity .register form table tr.button td {
+    padding-bottom: 3px;
+}
+.activity .register form table tr.invest_person td {
+    padding-bottom: 3px;
+}
+.activity .register form table tr.error_hint td {
+	height: 0;
+	color: #ef3e44;
+	text-align: left;
+	padding-left: 15px;
+	box-sizing: border-box;
+	padding-bottom: 2px;
+	font-size: 12px;
+}
+.security {
+    width: 100%;
+    height: 150px;
+    background-color: #ffffff;
+    margin-top: -43px;
+}
+.security .security_wrap {
+    width: 1200px;
+    height: 150px;
+    margin: 0 auto;
+    padding:20px 130px;
+    box-sizing: border-box;
+}
+.security .security_wrap .box {
+    display: inline-block;
+    width: 300px;
+    height: 110px;
+    box-sizing: border-box;
+    padding-left: 128px;
+    padding-top: 35px;
+}
+.security .security_wrap .box .top{
+    font-size: 16px;
+    color: #333;
+}
+.security .security_wrap .box .bottom{
+    font-size: 12px;
+    color: #787878;
+}
+.security .security_wrap .guoyou {
+    background: url("../img/new_security.png") no-repeat;
+}
+.security .security_wrap .hefa {
+    background: url("../img/new_equail.png") no-repeat;
+}
+.security .security_wrap .fengkong {
+    background: url("../img/new_deal.png") no-repeat;
+}
+.content {
+    width: 100%;
+    height: auto;
+    background: url(../img/conbg.png) center top repeat-y;
+
+}
+.content img.new_5 {
+    position: fixed;
+    bottom: 100px;
+    right: 0;
+    z-index: 200;
+    cursor: pointer;
+   /* right: 8%;
+    top: 852px;
+    z-index: 200;*/
+}
+.content .content_wrap {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+.content .content_wrap .new_p {
+    position: absolute;
+    top: -49px;
+    left: -14px;
+}
+.content .content_wrap .new_person {
+    width: 1200px;
+    height: 265px;
+    background: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top:73px;
+    margin-bottom: 49px;
+    box-sizing: border-box;
+}
+.content .content_wrap .new_person > .top {
+    width: 1200px;
+    height: 95px;
+    line-height: 95px;
+    border-bottom: 3px dashed #e5e5e5;
+}
+.content .content_wrap .new_person > .top .name {
+    display: inline-block;
+    color: #333;
+    font-size: 18px;
+    margin-right: 55px;
+    margin-left: 225px;
+}
+.content .content_wrap .new_person > .top .redbag {
+    display: inline-block;
+    color: #ef3e44;
+    font-size: 18px;
+}
+.content .content_wrap .new_person > .top .redbag span {
+    font-size:24px;
+    font-family: "黑体", serif, sans-serif;
+}
+.content .content_wrap .new_person > .top a{
+    display: inline-block;
+    width: 136px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    float: right;
+    border-radius: 10px;
+    margin-right: 50px;
+    margin-top: 27px;
+}
+.content .content_wrap .new_person > .bottom > .top {
+    padding-top: 34px;
+}
+.content .content_wrap .new_person > .bottom > .top .temp1 {
+    color: #333;
+    font-size: 18px;
+    margin-right: 55px;
+    margin-left: 225px;
+}
+.content .content_wrap .new_person > .bottom > .top .temp2 {
+    color: #787878;
+    font-size: 16px;
+}
+.content .content_wrap .new_person > .bottom > .detail {
+    padding-top: 31px;
+}
+
+.content .content_wrap .new_person > .bottom > .detail .name {
+    color: #666;
+    font-size: 18px;
+    margin-right: 20px;
+    display: inline-block;
+}
+.content .content_wrap .new_person > .bottom > .detail .first {
+    margin-left: 225px;
+    margin-right: 161px;
+}
+.content .content_wrap .new_person > .bottom > .detail .second {
+    margin-right: 93px;
+}
+.content .content_wrap .new_person > .bottom > .detail .name span {
+    font-size: 30px;
+    color: #333333;
+    font-family: "黑体", serif, sans-serif;
+}
+.content .content_wrap .new_person > .bottom > .detail .name span.rate {
+    color: #ef3e44;
+}
+.content .content_wrap .new_person > .bottom > .detail a{
+    display: inline-block;
+    width: 136px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    float: right;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+.content .content_wrap .new_m {
+    position: absolute;
+    top: 289px;
+    left: -14px;
+}
+.content .content_wrap .more {
+    width: 1200px;
+    height: 697px;
+    background: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top:73px;
+    margin-bottom: 49px;
+    box-sizing: border-box;
+}
+.content .content_wrap .more > div {
+    height: 155px;
+    padding-top: 38px;
+    box-sizing: border-box;
+    border-bottom: 3px dashed #e5e5e5;
+}
+.content .content_wrap .more > div > .top {
+    margin-bottom: 15px;
+}
+.content .content_wrap .more > div > .top .temp1 {
+    color: #333;
+    font-size: 18px;
+    margin-left: 225px;
+}
+.content .content_wrap .more > div.changqi {
+    height: 155px;
+    border: none;
+}
+.content .content_wrap .more > div .name {
+    color: #666;
+    font-size: 18px;
+    margin-right: 20px;
+    display: inline-block;
+}
+.content .content_wrap .more > div .first {
+    margin-left: 225px;
+    margin-right: 155px;
+}
+.content .content_wrap .more > div .right_less {
+    margin-left: 225px;
+    margin-right: 140px;
+}
+.content .content_wrap .more > div .second {
+    margin-right: 93px;
+}
+.content .content_wrap .more > div .panfeng {
+    margin-right: 78px;
+}
+
+.content .content_wrap .more > div .name span {
+    font-size: 30px;
+    color: #333333;
+    font-family: "黑体", serif, sans-serif;
+}
+.content .content_wrap .more > div .name span.rate {
+    color: #ef3e44;
+}
+.content .content_wrap .more > div a{
+    display: inline-block;
+    width: 136px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    float: right;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+.content .content_wrap .honner {
+    width: 1200px;
+    height: 683px;
+    background-color: #FFFFFF;
+    padding-top: 25px;
+    box-sizing: border-box;
+    margin-bottom: 39px;
+    display: none;
+}
+.content .content_wrap .honner .name{
+    font-size:18px;
+    color: #333333;
+    margin-left: 15px;
+}
+.content .content_wrap .honner img {
+    margin:14px;
+    margin-bottom: 20px;
+}
+.partner {
+    width: 100%;
+    background: #FFFFFF;
+    padding-bottom: 10px;
+}
+.partner .partner_wrap {
+    width: 1200px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin:0 auto;
+    box-sizing: border-box;
+}
+.partner .partner_wrap .pat {
+	width:795px;
+}
+.partner .partner_wrap .name{
+    font-size:18px;
+    color: #333333;
+    margin-left: 15px;
+}
+.partner .partner_wrap img {
+    margin: 10px 8px;
+}
+.alert {
+    width: 100%;
+    height: 100%;
+    z-index: 201;
+    top:0;
+    left:0;
+    position: absolute;
+}
+.alert .alert_wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.alert .shadow {
+    width: 100%;
+    height: 3381px;
+    position: absolute;
+    top:0;
+    left:0;
+    background: url(../img/newblack_bg.png) repeat;
+}
+.alert .alert_content {
+    width: 766px;
+    height: 390px;
+    position: fixed;
+    left:50%;
+    top: 50%;
+    margin-left: -384px;
+    margin-top:-235px;
+    background-color: #FFFFFF;
+}
+.alert .alert_content .close{
+    display: inline-block;
+    width: 18px;
+    height: 17px;
+    margin: 15px;
+    background: url(../img/new_close.png) no-repeat;
+    cursor: pointer;
+}
+.alert .alert_content img {
+    margin-top: -320px;
+    /* margin-left: 31px;
+    margin-right: 31px;
+    float: left; */
+    vertical-align: middle;
+}
+.alert .alert_content .register {
+  /*  float: right;*/
+   /* background: #ffffff;
+    width: 397px;
+    height: 487px;
+    margin-top: 62px;*/
+    display: inline-block;
+}
+.alert .alert_content .register form {
+    width: 280px;
+    margin:0 auto;
+    font-size: 16px;
+    padding-top: 10px;
+    color: #999;
+}
+.alert .alert_content .register form table tr input {
+    font-size: 12px;
+}
+.alert .alert_content .register form table .invest_person {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+}
+.alert .alert_content .register form table .phone {
+    width: 280px;
+    height: 40px;
+    border-radius: 10px;
+    border:1px solid #999999;
+    box-sizing: border-box;
+    padding-left: 46px;
+    background: url("../img/black_phone.png") 15px 11px no-repeat;
+}
+.alert .alert_content .register form table .message input {
+    width: 144px;
+    height: 40px;
+    border-radius: 10px;
+    border:1px solid #999999;
+    box-sizing: border-box;
+    padding-left: 13px;
+}
+.alert .alert_content .register form table .message button {
+    width: 125px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    font-family: "Microsoft YaHei", serif, sans-serif, monospace;
+}
+.alert .alert_content .register form table .message input#getcode_2 {
+    width: 125px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    font-family: "Microsoft YaHei", serif, sans-serif, monospace;
+}
+.alert .alert_content .register form table .pwd input {
+    width: 280px;
+    height: 40px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 46px;
+    border:1px solid #999999;
+    background: url("../img/black_clock.png") 15px 11px no-repeat;
+}
+.alert .alert_content .register form table .button input {
+    width: 280px;
+    height: 42px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    cursor: pointer;
+}
+.alert .alert_content .register form table .pic {
+    font-size: 12px;
+    color: rgba(51, 51, 51, 0.6);
+    text-align: center;
+}
+.alert .alert_content .register form table .pic input {
+    margin-right: 10px;
+}
+.alert .alert_content .register form table .pic span{
+    color: #3b63cd;
+}
+.alert .alert_content .register form table tr td {
+    padding-bottom: 10px;
+}
+.alert .alert_content .register form table tr.error_hint td {
+    padding-bottom: 3px;
+    padding-left: 15px;
+}
+.alert .alert_content .register form table tr.invest_person td {
+    padding-bottom: 3px;
+}
+.alert .alert_content .register form table tr.button td {
+    padding-bottom: 3px;
+}
+.alert .alert_content .register .if {
+    text-align: center;
+    margin-top: -9px;
+    font-size: 12px;
+    color: rgba(102, 102, 102, 0.6);
+}
+.alert .alert_content .register .if a {
+    font-size: 14px;
+    color: #ef3e44;
+    text-decoration: underline;
+}
+
+/*合作伙伴*/
+
+.wrap_1 {
+    margin-top: 25px;
+    width: 100%;
+    padding: 20px 0;
+    background: #fff;
+}
+
+.wrap_1 .wrapArea {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.wrap_1 .wrapArea .partner {
+    width: 795px;
+    display: inline-block;
+    *float:left;
+}
+
+.wrap_1 .wrapArea .partner h3 {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ef3e44;
+    margin-bottom: 20px;
+}
+
+.wrap_1 .wrapArea .partner .partnerList li {
+    float: left;
+    padding: 0 10px 10px 0;
+}
+.wrap_1 .wrapArea .partner .partnerList li img {
+	/* border: 1px solid #ccc; */
+}
+
+
+/*乐商贷手机客户端下载*/
+
+.wrap_1 .wrapArea .downlaod {
+    width: 355px;
+    height:227px;
+    display: inline-block;
+    float: right;
+}
+.wrap_1 .wrapArea .downlaod > img {
+	width: 355px;
+    height: 145px;
+}
+.wrap_1 .wrapArea .downlaod h3 {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ef3e44;
+    margin-bottom: 20px;
+}
+.wrap_1 .wrapArea .downlaod img{
+    *float:left;
+}
+.wrap_1 .wrapArea .ios {
+    display: inline-block;
+    position: relative;
+    bottom: 35px;
+    width: 86px;
+    height: 65px;
+    background: url("../img/ios.png") no-repeat 0 0;
+    margin-left: 20px;
+    border-right: 1px solid #ddd;
+    cursor: pointer;
+    *float:left;
+    *margin-top:80px;
+}
+
+.wrap_1 .wrapArea .android {
+    display: inline-block;
+    position: relative;
+    bottom: 35px;
+    width: 86px;
+    height: 65px;
+    background: url("../img/android.png") no-repeat 0 0;
+    cursor: pointer;
+    *float:left;
+    *margin-top:80px;
+}
+

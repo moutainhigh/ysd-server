@@ -1,0 +1,24 @@
+/* Author: QQ:86509874, swdai.com/ *//* reset */
+.dewap{width:980px;margin:0 auto;clear:both;overflow:hidden;}
+.mtt{padding-top:6px;*padding-top:44px;margin-bottom:12px;}
+.deleft{width:180px;border:1px solid #ccc;float:left;}
+.deleftbar{margin-top:6px;}
+.deleftbar h2{line-height:22px;height:22px;background:url(../img/ic_arr_hil.gif) no-repeat 0 50%;font-weight:700;margin-left:40px;padding-left:12px;}
+.deleftul{width:170px}
+.deleftul li{overflow:hidden;background:url(../img/dot.gif) 30% 50% no-repeat;border-top:1px dotted #ccc;height:24px;line-height:24px;padding-left:58px;}
+.deleftbul li a{display:block;}
+.deleftbul li a:hover,.derightul li a:hover{color:#36c}
+.deright{float:left;width:786px;margin-left:10px;}
+.derightul{padding:5px;border:1px solid #ccc;margin-top:10px;}
+.derightp{border:1px solid #ccc;height:26px;line-height:26px;background:#fbfbfb;padding-left:10px;}
+.derightul li{overflow:hidden;background:url(../img/dot.gif) 0 50% no-repeat;height:24px;line-height:24px;padding-left:12px;}
+.derighttitle{font-weight:700;font:18px \5fae\8f6f\96c5\9ed1,\9ed1\4f53;padding:30px 0;border-bottom:1px solid #ebebeb;text-align:center;}
+.derightcon{padding:14px 8px 10px 8px;text-indent:2em;}
+
+
+
+
+
+
+
+

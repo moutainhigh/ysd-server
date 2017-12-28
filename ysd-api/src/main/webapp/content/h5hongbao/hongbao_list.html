@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>红包</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link type="text/css" href="${base}/h5/assets/css/amazeui.min.css" rel="stylesheet" media="screen" />
+    <!-- <link type="text/css" href="assets/css/app.css" rel="stylesheet" media="screen" /> -->
+    <link type="text/css" href="${base}/h5/assets/css/base.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/style.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/invest_list.css" rel="stylesheet" media="screen" />
+
+    <!--    以下JS 必须在先加载，这里会阻塞页面，待优化-->
+    <script src="${base}/h5/mobile_js/jquery.min.js"></script>
+    <script src="${base}/h5/mobile_js/amazeui.min.js"></script>
+    <script src="${base}/h5/mobile_js/qmd.js"></script>
+    <script>var CACHE_TIME = 2016060610111;</script>
+    <style>
+    .am-list>li{
+      border:0;
+      margin:0.5em 0 1em;
+      padding:0.5em;
+      height:6em;
+      border:1px solid #e6e6e6;
+      background: #fff;
+    }
+    </style>
+</head>
+<body class="bgc5 money">
+<!--在这里编写你的代码-->
+<header data-am-widget="header" class="am-header am-header-default bgc h40 lh40">
+    <div class="am-header-left am-header-nav">
+      <a href="#left-link">
+            <i class="am-icon-angle-left am-icon-fw" style="font-size:1.5em;"></i>
+        </a>
+    </div>
+    <h1 class="am-header-title">
+        <ul style="overflow:hidden;">
+          <li class="fl w50"><a href="hongbao_list.html?0" class="color bgc2" style="border-radius:5px 0 0 5px;">红包</a></li>
+          <li class="fl w50"><a href="jiangli.html" style="border-radius:0 5px 5px 0;">奖励</a></li>
+        </ul>
+    </h1>
+    <div class="am-header-right am-header-nav">
+      <a href="#right-link">
+          <i class=""></i>
+      </a>
+    </div>
+</header><!-- header end-->
+<!--content-->
+<div data-am-widget="tabs" class="am-tabs am-tabs-default am-no-layout" style="margin:0;">
+  <ul class="am-tabs-nav am-cf h40 lh40 bgc2" style="">
+    <li id="hb_li_0" class="" onclick="window.location.href='hongbao_list.html?0'"><a href="#">未使用</a></li>
+    <li id="hb_li_1" class="" onclick="window.location.href='hongbao_list.html?1'"><a href="">已使用</a></li>
+    <li id="hb_li_2" class="" onclick="window.location.href='hongbao_list.html?2'"><a href="">已失效</a></li>
+ </ul>
+</div>
+<script src="/h5/mobile_js/handlebars.min.js"></script>
+<script src="/h5/mobile_js/handlebarsHelper.js"></script>
+<script src="/h5/mobile_js/eventsList.js"></script>
+<div class="page">
+    <div id="wrapper" data-am-widget="list_news"
+         class="am-list-news am-list-news-default" style="top:85px;bottom:0;">
+        <div class="am-list-news-bd">
+            <div class="pull-action loading" id="pull-down">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-down-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="am-list" id="events-list" style="padding:0 0.6em;">
+                <li class="am-list-item-desced">
+                    <div class="am-list-item-text">
+                        正在加载内容...
+                    </div>
+                </li>
+            </ul>
+            <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-up-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+	   {{#each this}}
+      <li class="am-g am-list-item-dated" style="position: relative;">
+          <div class="tubiao" style="width:3em;height:3.7em;background:url(/h5/mobile_img/a{{status}}.png) no-repeat;background-size:contain;position: absolute;top:0;right:0;"></div>
+          <div class="fl" style="width:30%;height:5em;line-height:7.5em;padding-left:1.2em;background:url(/h5/mobile_img/hb.png) no-repeat;background-size:contain;color:#fffba5;"><span style="font-size:2em;">{{money}}</span>元</div>
+          <div class="fl color4" style="width:70%;height:5em;">
+              <p class="f12" style="line-height:1.8em;">{{sourceString}}{{sourceStringMore}}</p>
+              <p class="color5">项目期限：{{limitStart}}天 - {{limitEnd}}天</p>
+              <p class="color5">有效期至：{{prettifyDate endTime}}</p>
+          </div>
+      </li>
+    {{/each}}
+</script>
+
+<script>
+if(location.search.slice(1)=='')
+	var flag=0;
+else
+	var flag=location.search.slice(1);
+	
+	$("#hb_li_"+flag).addClass("am-active");
+      var app = new EventsList(null, {
+          api: qmd.base+'/rest/hbList',
+	      list: 'userHongbaoItem',
+          params: {
+          	  status:flag,
+              pageNumber:1,
+              token:GetCookie('cookieUsertoken'),
+              pageSize:10,
+              totalCount:0,
+              pageCount:0
+          }
+      });
+      app.init();
+</script>
+
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/public/AmazeUI-2.4.2/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+</body>
+</html>

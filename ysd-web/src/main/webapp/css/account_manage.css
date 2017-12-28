@@ -1,0 +1,41 @@
+#main .content {
+    height: 641px;
+    background-color: #fff;
+    margin-bottom: 354px;
+    padding-left: 110px;
+    padding-top: 76px;
+    box-sizing: border-box;
+    *width:840px;
+}
+#main .content .title {
+    font-size: 18px;
+    margin-bottom: 30px;
+
+}
+#main .content .account {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+#main .content .login {
+    font-size: 14px;
+    margin-bottom: 60px;
+    color: #666666;
+}
+#main .content .deal {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: #666666;
+}
+#main .content .modify {
+    width: 66px;
+    height: 38px;
+    font-size: 18px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 10px;
+    position: relative;
+    top: -24px;
+    left: 104px;
+}

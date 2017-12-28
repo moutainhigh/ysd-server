@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>待回款</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link type="text/css" href="${base}/h5/assets/css/amazeui.min.css" rel="stylesheet" media="screen" />
+    <!-- <link type="text/css" href="assets/css/app.css" rel="stylesheet" media="screen" /> -->
+    <link type="text/css" href="${base}/h5/assets/css/base.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/style.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/invest_list.css" rel="stylesheet" media="screen" />
+   
+
+    <!--    以下JS 必须在先加载，这里会阻塞页面，待优化-->
+    <script src="${base}/h5/mobile_js/jquery.min.js"></script>
+    <script src="${base}/h5/mobile_js/amazeui.min.js"></script>
+    <script src="${base}/h5/mobile_js/qmd.js"></script>
+    <script>var CACHE_TIME = 2016060610111;</script>
+    <style>
+    .am-header-title li a{display: block;margin-top: 5px;height:30px;line-height:30px;border: 1px solid #fff;}
+    .am-list-news-default .am-list-date {color:#000;font-size:1em;}
+    .am-list-news .am-list-item-hd{padding:0.2em;}
+    .am-list-news-bd{padding:0 10px;}
+    .am-list>li {
+      border: 0;
+      border-bottom: 1px solid #e1e0e0;
+      margin-bottom: 0px;
+      padding: 0.25em 0;
+    }
+    </style>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<header data-am-widget="header" class="am-header am-header-default bgc h40 lh40 am-no-layout">
+    <div class="am-header-left am-header-nav">
+      <a href="#left-link" onclick="goCenter()">
+            <i class="am-icon-angle-left am-icon-fw" style="font-size:1.5em;"></i>
+        </a>
+    </div>
+    <h1 class="am-header-title">
+        <ul style="overflow:hidden;">
+          <li class="fl w50"><a href="#" class="color bgc2" style="border-radius:5px 0 0 5px;">待回款</a></li>
+          <li class="fl w50"><a href="${base}/h5/content/h5user/returnedMoney.html" style="border-radius:0 5px 5px 0;">已回款</a></li>
+        </ul>
+    </h1>
+    <div class="am-header-right am-header-nav">
+      <a href="#right-link">
+      </a>
+    </div>
+</header>
+<!--content-->
+<div class="am-list-news-hd am-cf" style="padding:0.3em 10px;background-color:#f2f2f2;">
+    <h2 style="font-size: 0.85em; font-weight: normal;">项目/回款时间</h2>
+    <span class="am-list-news-more am-fr">回款金额/回款至 </span>
+</div>
+<script src="/h5/mobile_js/handlebars.min.js"></script>
+<script src="/h5/mobile_js/handlebarsHelper.js"></script>
+<script src="/h5/mobile_js/eventsList.js"></script>
+<div class="page">
+    <div id="wrapper" data-am-widget="list_news" class="am-list-news am-list-news-default" style="top:74px;bottom:0;">
+        <div class="am-list-news-bd bgc2">
+            <div class="pull-action loading" id="pull-down">
+                <span class="am-icon-arrow-down pull-label"
+                    id="pull-down-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="am-list" id="events-list">
+                <li class="am-list-item-desced">
+                    <div class="am-list-item-text">
+                        正在加载内容...
+                    </div>
+                </li>
+            </ul>
+            <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-up-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+    {{#each this}}
+    <li class="am-g am-list-item-dated bgc2">
+      <div class="am-list-item-hd ">
+          <p style="font-size:0.85em;">{{borrowName}}</p>
+          <p style="font-size:0.75em;color:#999;">{{formatDate repaymentDate}}</p>
+      </div>
+      <div class="am-list-date" style="top:0px;padding:0.2em;">
+        <p class="color">{{waitTotal}}</p>
+        <p class="tar f75 color5">+{{waitInterest}}</p>
+      </div>
+  </li>
+    {{/each}}
+</script>
+<script>
+   
+    var app = new EventsList(null, {
+        api: qmd.base+'/rest/hkmx',
+//                api: "/borrow",
+        list: 'userRepaymentList',
+        params: {
+            pageNumber: 1,
+            pageSize: 10,
+            status: 0,
+            token:GetCookie('cookieUsertoken'),
+            totalCount:0,
+            pageCount:0
+        }
+    });
+    app.init();
+    
+   function goCenter(){
+   window.location.href =qmd.base+"/userCenter/index.do";
+   }
+</script>
+
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/public/AmazeUI-2.4.2/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+</body>
+</html>

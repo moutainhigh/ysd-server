@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AccountCash">
+	<!-- 插入提现信息值 -->
+	<insert id="save" parameterType="com.qmd.mode.user.AccountCash" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_account_cash(
+								user_id,
+								status,
+								account,
+								bank,
+								branch,
+								total,
+								credited,
+								fee,
+								addip,
+								create_date,
+								able_cash_money,
+								free_cash_money,
+								trade_no
+							) values (
+								#{userId},
+								#{status},
+								#{account},
+								#{bank},
+								#{branch},
+								#{total},
+								#{credited},
+								#{fee},
+								#{addip},
+								#{createDate},
+								#{ableCashMoney},
+								#{freeCashMoney},
+								#{tradeNo}
+							)
+	</insert>
+	<!-- 查询提现记录数量 -->
+		<select id="queryAccountCashListCount" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+		count(*) 
+		from 
+		fy_account_cash a
+		where a.user_id =#{userId}
+		<include refid="queryBy"/>
+	</select>
+	
+	<!-- 查询提现记录集合 -->
+	<select id="queryAccountCashList" resultType ="com.qmd.mode.user.AccountCash" parameterType = "java.util.Map">
+		select a.*, 
+		(select l.name from fy_listing l where a.bank =l.key_value) name
+		from fy_account_cash a where a.user_id =#{userId}
+		<include refid="queryBy"/>
+		order by a.create_date desc
+		limit #{start},#{end}
+	</select>
+	<sql id="queryBy">
+		<if test="cashStatus!=null ">
+	    	and a.status = #{cashStatus}
+		</if>
+		<if test="minDate!=null and maxDate!=null">
+	    	and (a.create_date between #{minDate} and #{maxDate})
+		</if>
+		<if test="cashStatusArray != null">
+			and status in 
+			<foreach item="item" index="index" collection="cashStatusArray"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+		</if>
+		
+	</sql>
+	
+	<!-- 按状态查询所以提现记录集合 -->
+	<select id="accountCashList" resultType ="com.qmd.mode.user.AccountCash" parameterType = "java.util.Map">
+		select * from fy_account_cash  where user_id = #{userId}
+		<include refid="queryBy_cash"/>
+	</select>
+	<sql id="queryBy_cash">
+			<if test="array != null">
+			and status in 
+			<foreach item="item" index="index" collection="array"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+		</if>
+		<if test="beginDate!=null and endDate!=null">
+	    	and (create_date between #{beginDate} and #{endDate})
+		</if>
+		<if test="firstDate!=null and lastDate!=null">
+	    	and (modify_date between #{firstDate} and #{lastDate})
+		</if>
+		<if test="backDate!=null" >
+	    	and (create_date &lt; #{backDate})
+		</if>
+	</sql>
+	<select id="get" resultType="com.qmd.mode.user.AccountCash" parameterType="java.lang.Integer">
+	select * from fy_account_cash where id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.qmd.mode.user.AccountCash">
+		update  fy_account_cash  
+		set
+		 user_id = #{userId}
+		<if test ="status != null and status != ''"> ,status = #{status}</if>
+		<if test ="account != null and account != ''"> ,account = #{account}</if>
+		<if test ="bank != null and bank != ''"> ,bank = #{bank}</if>
+		<if test ="branch != null and branch != ''"> ,branch = #{branch}</if>
+		<if test ="total != null and total != ''"> ,total = #{total}</if>
+		<if test ="credited != null and credited != ''"> ,credited = #{credited}</if>
+		<if test ="fee != null and fee != ''"> ,fee = #{fee}</if>
+		<if test ="addip != null and addip != ''"> ,addip = #{addip}</if>
+		,modify_date = now()
+		 where id = #{id}
+	</update>
+	
+	<select id="baseList" resultType ="com.qmd.mode.user.AccountCash" parameterType = "java.util.Map">
+		select * from fy_account_cash a 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and a.id = #{id} </if>
+			<if test="userId != null and userId !=''">and a.user_id = #{userId} </if>
+			<if test ="status != null and status != ''"> and a.status = #{status}</if>
+			<if test="array != null">
+				and a.status in 
+				<foreach item="item" index="index" collection="array"
+	      			open="(" separator="," close=")">
+	       	 		#{item}
+	  			</foreach>
+			</if>
+		</where> 
+	</sql>
+	
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+	
+	<sql id="queryLimit">
+		<if test="limitSize != null">
+			limit #{limitSize}
+		</if>
+	</sql>
+</mapper>

@@ -1,0 +1,191 @@
+.content{
+	width:1200px;
+	height:983px;
+	margin:35px auto 12px;
+	background:#fff;
+	
+}
+.paymentTitle{
+	height:78px;
+	width:1084px;
+	margin:0 auto;
+	border-bottom:1px solid #e5e5e5;
+	line-height:80px;
+	color:#333;
+	font-size:20px;
+}
+.payMessage{
+	width:1084px;
+	height:98px;
+	box-sizing:border-box;
+	border:1px solid #ef3e44;
+	border-radius:10px;
+	margin:35px auto;
+	padding:10px 0;
+}
+.payMessage p{
+	font-size:18px;
+	display:inline-block;
+	width:35%;
+	padding-left:20px;
+	line-height:39px;
+	*float:left;
+	*display:block;
+}
+.payMessage p span{
+	color:#ef3e44;
+}
+.userMessage{}
+.userMessage .line{margin-bottom:20px;}
+.userMessage .line>span{
+	display:inline-block;
+	width:216px;
+	height:52px;
+	line-height:52px;
+	text-align:right;
+	font-size:18px;
+	*float:left;
+	*display:block;
+}
+.userMessage .line div{
+	border:1px solid #999;
+	height:50px;
+	display:inline-block;
+	padding-left:20px;
+	box-sizing:border-box;
+	border-radius:10px;
+	*float:left;
+	*display:block;
+}
+.userMessage .line div span{
+	line-height:50px;
+	margin-right:60px;
+	font-size:14px;
+	color:#999;
+}
+.userMessage .line div span span{
+	color:#ef3e44;
+	margin-right:0;
+}
+.userMessage .line p{
+	margin-left:230px;
+	font-size:14px;
+	line-height:14px;
+	color:#999;
+	margin-top:20px;
+}
+.userMessage .line input[type=text]{
+	border:1px solid #999;
+	width:380px;
+	height:50px;
+	line-height:50px;
+	border-radius:10px;
+	box-sizing:border-box;
+	padding-left:20px;
+	font-size:14px;
+}
+.userMessage .line label{
+	border:1px solid #999;
+	width:380px;
+	height:50px;
+	line-height:50px;
+	border-radius:10px;
+	box-sizing:border-box;
+	padding-left:20px;
+	display:inline-block;
+	font-size:14px;
+}
+.userMessage .line input.code{
+	width:220px;
+}
+.userMessage .line input[type=button]{
+	width:142px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	border:1px solid #ef3e44;
+	color:#ef3e44;
+	background:none;
+	border-radius:10px;
+	margin-left:10px;
+	padding-left:0;
+	font-size:18px;
+}
+.userMessage .line input.senderror{
+	border:1px solid #999;
+	color:#999;
+}
+.userMessage .line input[type=submit]{
+	width:142px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	border:1px solid #ef3e44;
+	color:#fff;
+	background:#ef3e44;
+	border-radius:10px;
+	padding-left:0;
+	font-size:18px;
+}
+.content .hint {
+    height: 173px;
+    box-sizing: border-box;
+    padding-top:21px;
+    padding-bottom:21px;
+    background-color: #fde8e8;
+    font-size: 14px;
+    margin-top: 45px;
+}
+.content .hint span {
+    display: inline-block;
+    height: 27px;
+    width: 101px;
+    background: url("../img/wram_tips.png") no-repeat;
+    margin-left: 68px;
+    padding-left: 47px;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.content .hint p{
+    font-size: 14px;
+    line-height:32px;
+    margin-left: 68px;
+}
+.buffer_bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(../img/black_bg56.png) repeat;
+	z-index: 9999;
+}
+
+.buffer_bg .buffer {
+	width:381px;
+	height: 192px;
+	background: #fff url(../img/buffer.gif) 83px 25px no-repeat;
+	position: fixed;
+	top: 50%;
+	left:50%;
+	border-radius: 10px;
+	margin-top: -96px;
+	margin-left: -190px;	
+}
+.buffer_bg .buffer .ing {
+	display: inline-block;
+	margin-left: 180px;
+	margin-top: 58px;
+	font-size: 20px;
+	color: #666;
+}
+.buffer_bg .buffer .bt {
+	margin-top: 46px;
+	text-align: center;
+	font-size:18px;
+	color: #666;
+}
+
+
+
+

@@ -1,0 +1,348 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>下拉刷新</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="${base}/public/img/wap/favicon.png">
+
+    <link type="text/css" href="${base}/h5/assets/css/amazeui.min.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="${base}/h5/assets/css/app.css" rel="stylesheet" media="screen" />
+    <link type="text/css" href="${base}/h5/assets/css/invest_list.css" rel="stylesheet" media="screen" />
+    
+    <link type="text/css" href="${base}/h5/assets/css/xsp_fonts.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/nav.css" rel="stylesheet" />
+
+    <!--    以下JS 必须在先加载，这里会阻塞页面，待优化-->
+    <script src="${base}/h5/mobile_js/jquery.min.js"></script>
+    <script src="${base}/h5/mobile_js/amazeui.min.js"></script>
+    <script src="${base}/h5/mobile_js/qmd.js"></script>
+    <script>var CACHE_TIME = 2016060610111;</script>
+
+</head>
+<body>
+<!--在这里编写你的代码-->
+<header id="page-header" data-am-widget="header" class="am-header am-header-default am-padding-0">
+    <div class="am-bgc-white menu">
+    
+<ul class="am-nav am-nav-pills am-nav-justify">
+    <li>
+        <a href="${base}/Welcome/index">
+            <i class="icon-home"></i>
+            <span class="fs12">首页</span>
+        </a>
+    </li>
+    <li>
+        <a href="${base}/User/login_register">
+            <i class="icon-register"></i>
+            <span class="fs12" >注册</span>
+        </a>
+    </li>
+    <li>
+        <a href="${base}/User/login_register">
+            <i class="icon-login"></i>
+            <span class="fs12">登录</span>
+        </a>
+    </li>
+    <li>
+        <a href="${base}/Invest/invest_list" class="focus">
+            <i class="icon-invest"></i>
+            <span class="fs12">投资</span>
+        </a>
+    </li>
+    <li>
+        <a href="${base}/More/index">
+            <i class="icon-more"></i>
+            <span class="fs12">更多</span>
+        </a>
+    </li>
+
+</ul>
+    </div>
+</header>
+<!--content-->
+
+<script src="/h5/mobile_js/handlebars.min.js"></script>
+<script src="/h5/mobile_js/radialIndicator.js"></script>
+
+<div class="page">
+    <div id="wrapper" data-am-widget="list_news"
+         class="am-list-news am-list-news-default">
+        <div class="am-list-news-bd">
+            <div class="pull-action loading" id="pull-down">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-down-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="am-list" id="events-list">
+                <li class="am-list-item-desced">
+                    <div class="am-list-item-text">
+                        正在加载内容...
+                    </div>
+                </li>
+            </ul>
+            <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-up-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+    {{#each this}}
+    <li class="am-list-item-desced" data-id="{{id}}">
+        <a href="#"onclick="goborrow({{id}})" class="am-list-item-hd am-text-ellipsis" style="font-size: 1.4rem;" ><span class="f14 link-text">{{name}}</span><span class="act_icon {{activity_mark}}"></span>
+        <div class="am-g">
+            <div class="am-u-sm-8">
+                <div style="width: 180px;" >
+                    <ul class="am-avg-sm-3 am-thumbnails am-cred am-invest-info">
+                        <li ><sanp class="fs25">{{apr}}</sanp>%</li>
+                        <li><sanp class="fs25">{{timeLimit}}</sanp>天</li>
+                        <li><sanp class="fs25">{{account}}</sanp>万</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="am-u-sm-4">
+                <div class="round am-xsp-round" data-value="{{invent_percent}}" >
+                    <div class="text"></div>
+                </div>
+            </div>
+
+            <div class="am-g fs12">
+                <span class="am-u-sm-8 am-fl">保障方法：本息保障</span>
+                <span class="am-u-sm-4 am-fr am-text-center">{{repayment_style}}</span>
+            </div>
+        </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script>
+    (function($) {
+        //当前加载页  用来控制全局的上拉加载  下拉刷新
+        var tag=1;
+        var EventsList = function(element, options) {
+            var $main = $('#wrapper');
+            var $list = $main.find('#events-list');
+            var $pullDown = $main.find('#pull-down');
+            var $pullDownLabel = $main.find('#pull-down-label');
+            var $pullUp = $main.find('#pull-up');
+            var topOffset = -$pullDown.outerHeight();
+
+            this.compiler = Handlebars.compile($('#tpi-list-item').html());
+            tag= options.params.pageNumber;
+            this.total = null;
+
+            this.getURL = function(params) {
+                var queries = ['callback=1'];
+                for (var key in  params) {
+                    if (key !== 'pageNumber') {
+                        queries.push(key + '=' + params[key]);
+                    }
+                }
+                queries.push('pageNumber=');
+                return options.api + '?' + queries.join('&');
+            };
+
+            this.renderList = function(type) {
+                var _this = this;
+                var $el = $pullDown;
+
+                if (type === 'load') {
+                    $el = $pullUp;
+                }
+
+/*                console.log("start");
+                console.log(this.URL + tag);*/
+
+                $.get(this.URL+tag).then(function(strdata) {
+
+	
+                    var data= $.parseJSON(strdata);
+/*                    console.log("data:");
+                    console.log(data);*/
+                    var datalist=data.borrowItemList;
+                    //替换掉默认的
+                    $(datalist).each(function(i,e){
+                        e.loan_amount=(e.loan_amount/10000);
+                        e.activity_mark=e.activity_mark ? e.activity_mark.toLowerCase() : '';
+                    });
+
+                    _this.total = data.pageBean.pageCount;  //设置统计总页数的参数
+                    tag =++data.pageBean.pageNumber; //请求成功了，pageNumber 自增 1
+
+
+                    var html = _this.compiler(datalist);
+               
+                    if (type === 'refresh') {
+                        $list.html(html);
+                        dispre();
+                    } else if (type === 'load') {
+                        $list.append(html);
+                        dispre();
+                    } else {
+                        $list.html(html);
+                        dispre();
+                    }
+
+                    // refresh iScroll
+                    setTimeout(function() {
+                        _this.iScroll.refresh();
+                    }, 100);
+                }, function() {
+                    console.log('Error...');
+                }).always(function() {
+                    _this.resetLoading($el);
+                    if (type !== 'load') {
+                        _this.iScroll.scrollTo(0, topOffset, 800, $.AMUI.iScroll.utils.circular);
+                    }
+                });
+            };
+
+            this.setLoading = function($el) {
+                $el.addClass('loading');
+            };
+
+            this.resetLoading = function($el) {
+                $el.removeClass('loading');
+            };
+
+            this.init = function() {
+                var myScroll = this.iScroll = new $.AMUI.iScroll('#wrapper', {
+                    click: true
+                });
+                // myScroll.scrollTo(0, topOffset);
+                var _this = this;
+                var pullFormTop = false;
+                var pullStart;
+
+                this.URL = this.getURL(options.params);
+                this.renderList();
+
+                myScroll.on('scrollStart', function() {
+                    if (this.y >= topOffset) {
+                        pullFormTop = true;
+                    }
+
+                    pullStart = this.y;
+                    // console.log(this);
+                });
+
+                myScroll.on('scrollEnd', function() {
+                    if (pullFormTop && this.directionY === -1) {
+                        _this.handlePullDown();
+                    }
+                    pullFormTop = false;
+
+                    // pull up to load more
+                    if (pullStart === this.y && (this.directionY === 1)) {
+                        _this.handlePullUp();
+                    }
+                });
+            };
+
+            this.handlePullDown = function() {
+                console.log('handle pull down');
+                //下拉刷新 先把  tag 的值设置为 1
+                tag=1;
+                this.setLoading($pullDown);
+                this.renderList( 'refresh');
+            };
+
+            this.handlePullUp = function() {
+//                console.log('handle pull up');
+/*                console.log(this.next);
+                console.log(this.total);*/
+            
+                if (tag < this.total) {
+                    this.setLoading($pullUp);
+                    this.renderList( 'load');
+                } else {
+                    XSP.dialog.toast("没有更多的数据了哦");
+                    // this.iScroll.scrollTo(0, topOffset);
+                }
+            }
+        };
+
+        //处理圆形统计图
+        function dispre() {
+            $('.round').each(function(i, item) {
+                item = $(item);
+                var value = item.attr('data-value'), color = '#ff4433';
+                if (value != 'done') {
+                    if (value == 100) {
+                        color = '#999999';
+                        item.find('.text').html('<span style="color:#999">满</span>');
+                    } else {
+                        item.find('.text').html('抢');
+                    }
+                    item.radialIndicator({
+                        radius: 22,
+                        barBgColor: '#f0dbe0',
+                        barColor: color,
+                        barWidth: 3,
+                        initValue: value,
+                        displayNumber: false
+                    });
+                    item.attr('data-value', 'done');
+                }
+            });
+        };
+
+
+        $(function() {
+            var app = new EventsList(null, {
+                api: 'http://192.168.0.116/rest/borrow',
+//                api: "/borrow",
+                params: {
+                    pageNumber: 1,
+                    pageSize: 8,
+                    count:0,
+                    total:0
+                }
+            });
+            app.init();
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, false);
+    })(window.jQuery);
+    
+   function goborrow(id){
+   window.location.href =qmd.base+"/borrow/detail.do?id="+id;
+   }
+</script>
+<footer class="am-footer am-footer-default">
+    <div class="am-icon-warp">
+        <ul class="am-avg-sm-3">
+
+        </ul>
+    </div>
+    <div class="am-footer-miscs ">
+        <p> 温州乐商投资有限公司</p>
+        <p>Copyright ©2015 浙ICP备17036398号</p>
+    </div>
+   
+</footer>
+
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/public/AmazeUI-2.4.2/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+</body>
+</html>

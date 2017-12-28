@@ -1,0 +1,68 @@
+.mlogin .mlogin_form input.msg_identify {
+    width: 210px;
+    height: 50px;
+    padding-left: 12px;
+    margin-top: 30px;
+    *width:198px;
+}
+.mlogin .mlogin_form > img {
+    position: relative;
+    top: -58px;
+    left: 14px;
+}
+.mlogin .mlogin_form input.pwd {
+    margin-top: 30px;
+    background: url("../img/login_pwd.png") no-repeat;
+    background-position: 12px 10px;
+    *width:302px;
+}
+.mlogin .mlogin_form input.check_pwd {
+    margin-top: 30px;
+    background: url("../img/login_pwd.png") no-repeat;
+    background-position: 12px 10px;
+    margin-bottom: 22px;
+    *width:302px;
+}
+.mlogin .mlogin_form .identify_img {
+    position: relative;
+    left: 14px;
+    top: 18px;
+    height: 50px;
+    width: 124px;
+    border-radius: 10px;
+    cursor: pointer;
+    top: 32px\0;
+}
+.mlogin .mlogin_form .msg_identify_img {
+    cursor: pointer;
+    position: relative;
+    left: 14px;
+    font-size: 16px;
+    top:12px\0;
+    text-align: center;
+    line-height: 52px;
+    background:#ef3e44;
+    display:inline-block;
+    height:52px;
+    width:128px;
+    border-radius:10px;
+    color:#fff;
+    width:120px\0;
+    *width:120px;
+    *top:-14px;
+}
+.mlogin .mlogin_form .getcode_disable{
+	background:#ccc;
+}
+.mlogin .mlogin_form .protocol {
+    width: 15px;
+    height: 15px;
+    margin-left: 100px;
+    padding-left: 0\0;
+}
+.mlogin .mlogin_form .read {
+    color: #ffffff;
+}
+.mlogin .mlogin_form .pro {
+    color: #3b63cd;
+}

@@ -1,0 +1,40 @@
+
+body{
+	background: #f7f7f7;
+}
+#header {
+	background: #fff;
+}
+.contentbg{
+	height:30px;
+	background: url(../img/contentbg.png) repeat-x;
+	width:100%;
+	position:absolute;
+}
+#content {
+	/* background: #f */ff;
+	width: 100%;
+	overflow-x: hidden;
+    width: 1200px;
+    height:auto;
+    margin: 45px auto;
+    /* box-sizing: border-box; */
+    /* border: 1px solid #ccc; */
+    /* -moz-box-shadow: 0 0 10px #ccc inset; */
+    /* -webkit-box-shadow: 0 0 10px #ccc inset; */
+    /* box-shadow: 0 0 10px #ccc inset; */
+}
+#content img.small {
+	width: 100%;
+	height:auto;
+	text-align:center;
+	vertical-align: middle;
+	margin:0 auto;
+}
+#content img.large {
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height:auto;
+}

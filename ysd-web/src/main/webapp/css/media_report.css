@@ -1,0 +1,107 @@
+.content {
+    width: 1200px;
+    margin:0 auto;
+    background: #f2f2f2;
+    margin-top: 38px;
+}
+.content .report {
+    background-color: #fff;
+    width: 1000px;
+    margin-left: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+}
+.content .report .report_title {
+    background-color: #fff;
+    font-size: 24px;
+    color: #ef3e44;
+    text-align: center;
+    margin-top: 18px;
+    line-height:68px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.content .report .report_wrap {
+    border-bottom: 1px dashed #e5e5e5;
+}
+.content .report .report_wrap img {
+    margin: 20px 0;
+}
+.content .report .report_wrap .report_font {
+    width: 715px;
+    padding: 15px 10px;
+}
+.content .report .report_wrap .report_font .report_content_title {
+    font-size: 16px;
+    color: #333;
+    padding-bottom: 10px;
+}
+.content .report .report_wrap .report_font .report_source span {
+    font-size: 14px;
+    color: #666;
+    margin-right: 20px;
+}
+.content .report .report_wrap .report_font .report_content {
+    font-size: 14px;
+    color: #666;
+    padding-top: 10px;
+}
+.content .report ul.page {
+    width: 365px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 92px;
+}
+.content .report ul.page li {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    font-size: 18px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    /*margin-left: -6px;*/
+}
+.content .report ul.page li:last-child {
+    width: 95px;
+}
+.content .report_detail_title{
+    font-size: 20px;
+    text-align: center;
+    margin-top:28px;
+    height:37px;
+    line-height: 37px;
+}
+.content .report_detail_time{
+    height:41px;
+    line-height: 41px;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    color:#666666;
+}
+.content .report_detail_wrap{
+    text-align: center;
+    padding-top: 18px;
+    padding-bottom: 180px;
+}
+.content .report_detail_wrap p, .content .report_detail_wrap a{
+    text-align: left;
+    font-size: 14px;
+    line-height: 25px;
+    margin-top: 14px;
+    color:#333;
+}
+.content .report_detail_wrap p:nth-child(1){
+    text-indent: 2em;
+}
+.content .report_detail_wrap a{
+    display:inline-block;
+    color:#4bacee;
+}
+.content .report_detail_wrap img{
+    margin:40px auto;
+}

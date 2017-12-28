@@ -1,0 +1,37 @@
+.am-navbar-default a{color:#c4bab8;}
+.am-navbar-default a.active{color:#ff7f00;}
+.am-header .am-header-title{font-size: 1.7rem;}
+.am-header .tell{width:1.5em;height:1em;display:inline-block;background:url(../../mobile_img/icon/tell.png) no-repeat;  background-size: 100%;  vertical-align: middle;}
+
+.am-accordion-default .am-active .am-accordion-title,.am-accordion-default .am-accordion-title:hover{color:#ff7f00;}
+.recharge .am-tabs-default .am-tabs-nav{background-color: #ff7f00;}
+.recharge .am-tabs-default .am-tabs-nav>.am-active a{background-color:#fff;color:#ff7f00;}
+.recharge .am-tabs-default .am-tabs-nav a{
+	background-color:#ff7f00;
+	color:#fff;
+	border:1px solid #fff;
+	height: 30px;
+	margin: 5px 0;
+	line-height: 30px;
+	font-size: 0.8em;
+}
+.money .am-header-title li a{display: block;margin-top: 5px;height:30px;line-height:30px;border: 1px solid #fff;}
+.money .am-tabs-default .am-tabs-nav>.am-active a { 
+ background-color: #fff;
+ color:#ff7f00;
+ border-bottom: 3px solid #ff7f00;
+} 
+.infoDetail{padding:10px;}
+.infoDetail h1{font-size: 1.3em;font-weight: normal;text-align: center;}
+.infoDetail .time{font-size: 0.85em;text-align: center;}
+.infoDetail .cont{text-indent: 2em;}
+
+
+
+
+
+
+
+
+
+

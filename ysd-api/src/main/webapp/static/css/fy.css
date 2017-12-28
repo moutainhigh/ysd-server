@@ -1,0 +1,19 @@
+.fy_btn{width:64px;height:28px;line-height:28px;text-align:center;color:#fff;font-size:14px;display:inline-block; text-decoration:none;}
+.fy_btn_blue{background:url(../img/f7.png) 0 0 no-repeat;}
+.fy_btn_gray{background:url(../img/f7_1.png) 0 0 no-repeat;}
+.fy_ul_1{padding:12px 15px 0 15px;}
+.fy_ul_1 li{border-bottom:1px solid #e5e5e5; padding-left:22px; height:35px; line-height:35px;}
+.fy_ul_2{background:url(../img/p3.png) 0 0 no-repeat; width:134px; height:136px; float:left;}
+.fy_ul_2 li{text-align:center;}
+.fy_span_1{display:inline-block; width:255px; color:#363636; font-size:16px;}
+.fy_span_1 span{color:#d14324;}
+.fy_span_2 a{color:#666; font-size:14px;}
+.fy_span_2 span{color:#666; font-size:14px; padding-right:1px;padding-left:1px;}
+.fy_span_3{color:#d14324; font-size:28px; margin-right:25px; position:relative;top:5px;}
+.fy_h3{color:#fff; font-size:18px; height:50px; line-height:50px; font-weight:normal; padding-left:22px; position:relative;}
+.fy_h3 a{position:absolute; right:20px;top:0px;color:#fff;}
+.fy_div_1{float:right;width:185px;margin-top:20px;}
+.fy_div_1 h3{border-bottom:1px solid #c1d3e6; color:#666666; font-size:14px; padding-bottom:5px;}
+.fy_div_2{background:url(../img/p4.png) 0 0 no-repeat; width:268px; height:269px; }
+.fy_div_3{float:left; background:url(../img/p2.png) 0 0 no-repeat; width:374px; height:122px; padding:15px 0 0 20px; margin-bottom:25px;}
+.fy_div_4{background:url(../img/p1.png) 0 0 no-repeat; width:553px; height:307px; clear:both;}

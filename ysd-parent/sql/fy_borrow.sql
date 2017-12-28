@@ -1,0 +1,1 @@
+ALTER TABLE fy_borrow add  cg_status char(1)   COMMENT '0未存管,1存管成功,2存管失败' default '0';

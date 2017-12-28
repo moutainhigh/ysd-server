@@ -1,0 +1,116 @@
+
+.red{
+	background:#ef3e44;
+}
+.blue{
+	background:#3e9aef;
+}
+.yellow{
+	background:#ff9000;
+}
+
+.find{
+	width:1200px;
+	height:710px;
+	margin:30px auto 90px;
+	background:#fff;
+	border:1px solid #e5e5e5;
+	box-sizing:border-box;
+}
+.success {
+	width:1200px;
+	height:573px;
+	margin:30px auto 90px;
+	background:#fff;
+	border:1px solid #e5e5e5;
+	box-sizing:border-box;
+	padding: 116px 28px;
+}
+.progress {
+	width:1200px;
+	height:573px;
+	margin:30px auto 90px;
+	background:#fff;
+	border:1px solid #e5e5e5;
+	box-sizing:border-box;
+}
+.progress .findCont {
+	padding-left:443px;
+	padding-top:200px;
+	background: url(../img/buffer1.gif) no-repeat 9px 9px;
+}
+.findCont{
+	padding-left:186px;
+	padding-top:30px;
+}
+.findCont img{
+	margin-bottom:42px;
+}
+.findCont p{
+	font-size:16px;
+	color:#333;
+	height:18px;
+	line-height:18px;
+	margin-bottom:28px;
+}
+.findCont p span{
+	color:#ef3e44;
+}
+.findCont .title{
+	height:50px;
+	line-height:50px;
+	background:url(../img/recharge_success1.png) no-repeat;
+	background-position:9px 9px;
+	padding-left:50px;
+	font-size:24px;
+	margin-bottom:24px;
+}
+.findCont .Terror{
+	height:50px;
+	line-height:50px;
+	background:url(../img/recharge_error.png) no-repeat;
+	background-position:9px 9px;
+	font-size:24px;
+	margin-bottom:24px;
+    padding-left: 50px;
+}
+.progress .findCont .Terror {
+	height:50px;
+	line-height:50px;
+	background:url(../img/recharge_error.png) no-repeat;
+	background-position:9px 9px;
+	font-size:24px;
+	margin-bottom:24px;
+	padding-left: 0;
+}
+.progress .findCont .Terror {
+	background: #fff;
+	font-size:18px;
+}
+.progress .findCont .Terror1 {
+	margin-top: 45px;
+	font-size:16px;
+}
+.findCont div{height:52px;}
+.findCont div a{
+	display:inline-block;
+	width:138px;
+	height:52px;
+	margin-right:20px;
+	line-height:52px;
+	font-size:18px;
+	color:#fff;
+	border-radius:10px;
+	text-align:center;
+	*float:left;
+}
+
+/*ǩԼ*/
+.qybtn a{
+	margin-right:120px;
+}
+/*����*/
+.operationCont{
+	padding-left:186px;
+	padding-top:82px;
+}

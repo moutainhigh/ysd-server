@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BorrowAccountDetail">
+
+	<select id="getById" resultType="com.qmd.mode.borrow.BorrowAccountDetail" parameterType = "java.lang.Integer">
+		select t.* from fy_borrow_account_detail t  where t.id=#{id}
+	</select>
+
+	<select id="getForUpdate" resultType="com.qmd.mode.borrow.BorrowAccountDetail" parameterType = "java.lang.Integer">
+		select t.* from fy_borrow_account_detail t where t.id=#{id} for update
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.borrow.BorrowAccountDetail" parameterType="java.util.Map">
+		select t.* from fy_borrow_account_detail t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_borrow_account_detail t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="borrowId != null">and t.borrow_id = #{borrowId} </if>
+			<if test="agencyId != null">and t.agency_id = #{agencyId} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			<if test="type != null">and t.type = #{type} </if>
+			<if test="money != null">and t.money = #{money} </if>
+			<if test="borrowTotal != null">and t.borrow_total = #{borrowTotal} </if>
+			<if test="borrowCapitalYes != null">and t.borrow_capital_yes = #{borrowCapitalYes} </if>
+			<if test="borrowInterestYes != null">and t.borrow_interest_yes = #{borrowInterestYes} </if>
+			<if test="borrowCapitalNo != null">and t.borrow_capital_no = #{borrowCapitalNo} </if>
+			<if test="borrowInterestNo != null">and t.borrow_interest_no = #{borrowInterestNo} </if>
+			<if test="startDate != null">
+				<![CDATA[ and t.create_date >= #{startDate}]]>
+			 </if>
+			<if test="endDate != null">
+				<![CDATA[ and t.create_date <=  #{endDate}]]>
+			 </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.borrow.BorrowAccountDetail" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_borrow_account_detail(
+			<if test="borrowId != null">borrow_id, </if>
+			<if test="agencyId != null">agency_id, </if>
+			<if test="userId != null">user_id, </if>
+			<if test="type != null">type, </if>
+			<if test="money != null">money, </if>
+			<if test="borrowTotal != null">borrow_total, </if>
+			<if test="borrowCapitalYes != null">borrow_capital_yes, </if>
+			<if test="borrowInterestYes != null">borrow_interest_yes, </if>
+			<if test="borrowCapitalNo != null">borrow_capital_no, </if>
+			<if test="borrowInterestNo != null">borrow_interest_no, </if>
+			create_date,
+			modify_date
+		)values(
+			<if test="borrowId != null">#{ borrowId}, </if>
+			<if test="agencyId != null">#{ agencyId}, </if>
+			<if test="userId != null">#{ userId}, </if>
+			<if test="type != null">#{ type}, </if>
+			<if test="money != null">#{ money}, </if>
+			<if test="borrowTotal != null">#{ borrowTotal}, </if>
+			<if test="borrowCapitalYes != null">#{ borrowCapitalYes}, </if>
+			<if test="borrowInterestYes != null">#{ borrowInterestYes}, </if>
+			<if test="borrowCapitalNo != null">#{ borrowCapitalNo}, </if>
+			<if test="borrowInterestNo != null">#{ borrowInterestNo}, </if>
+			now(),
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.borrow.BorrowAccountDetail" >
+		update
+			fy_borrow_account_detail
+		<set>
+			<if test="borrowId != null">borrow_id = #{borrowId},</if>
+			<if test="agencyId != null">agency_id = #{agencyId},</if>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="type != null">type = #{type},</if>
+			<if test="money != null">money = #{money},</if>
+			<if test="borrowTotal != null">borrow_total = #{borrowTotal},</if>
+			<if test="borrowCapitalYes != null">borrow_capital_yes = #{borrowCapitalYes},</if>
+			<if test="borrowInterestYes != null">borrow_interest_yes = #{borrowInterestYes},</if>
+			<if test="borrowCapitalNo != null">borrow_capital_no = #{borrowCapitalNo},</if>
+			<if test="borrowInterestNo != null">borrow_interest_no = #{borrowInterestNo},</if>
+				modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+</mapper>
+

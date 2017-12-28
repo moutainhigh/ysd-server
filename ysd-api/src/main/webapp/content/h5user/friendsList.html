@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>邀请好友</title>
+  <link rel="stylesheet" href="${base}/h5/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/h5/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/h5/assets/css/base.css">
+  <link rel="stylesheet" href="${base}/h5/assets/css/style.css">
+  <style>
+    .am-list-news-default .am-list-date {color:#000;font-size:1em;}
+    .am-list-news .am-list-item-hd{padding:0.2em;}
+  </style>
+</head>
+    <body class="bgc5">
+      <header data-am-widget="header" class="am-header am-header-default bgc h40 lh40">
+	      <div class="am-header-left am-header-nav">
+	      	<a href="#left-link">
+	          	<i class="am-icon-angle-left am-icon-fw" style="font-size:1.5em;"></i>
+	        </a>
+	      </div>
+	      <h1 class="am-header-title">
+	    	      邀请好友
+	      </h1>
+	      <div class="am-header-right am-header-nav"></div>
+	  </header><!-- header end-->
+    <div class="bgc2" style="padding:0 0.5em 2em;margin-bottom:1em;">
+      <h3 class="fwn" style="padding:0.5em 0 0.2em;">邀请好友奖励细则：</h3>
+      {{spreadTextarea}}
+    </div>
+
+
+<!--content-->
+<script src="${base}/h5/mobile_js/handlebars.min.js"></script>
+<script src="${base}/h5/mobile_js/handlebarsHelper.js"></script>
+<script src="${base}/h5/mobile_js/eventsList.js"></script>
+<div class="page">
+    <div id="wrapper" data-am-widget="list_news" class="am-list-news am-list-news-default" style="top:40px;bottom:0;">
+     <div class="color2" style="padding:0.5em;">我的好友</div>
+        <div class="am-list-news-bd">
+            <div class="pull-action loading" id="pull-down">
+                <span class="am-icon-arrow-down pull-label"
+                    id="pull-down-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="am-list" id="events-list">
+                <li class="am-list-item-desced">
+                    <div class="am-list-item-text">
+                    	    正在加载内容...
+                    </div>
+                </li>
+            </ul>
+            <!--
+    <div style="position: fixed;left: 0;  bottom: 0;  width: 100%;  z-index: 1010;">
+      <a class="am-btn am-btn-danger color1" href="#" target="_blank" style="display:block;">邀请好友一起理财</a>
+    </div>
+   -->
+    <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-up-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+    {{#each this}}
+    		<li class="am-g am-list-item-dated">
+                    <div class="am-list-item-hd ">
+                        <p>{{username}}</p>
+                        <p class="color9">{{prettifyDate createDate }}</p>
+                    </div>
+                    <div class="am-list-date" style="top:0px;padding:0.2em;">
+                      <p>投资奖励</p>
+                      <p class="tar color">{{bdSumMoney}}</p>
+                    </div>
+                </li>
+    {{/each}}
+
+
+</script>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_m"></div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_m.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<script>
+
+    var app = new EventsList(null, {
+        api: qmd.base+'/rest/friendsList',
+        list: 'friendList',
+        params: {
+            pageNumber: 1,
+            token:GetCookie('cookieUsertoken'),
+            pageSize: 10,
+            totalCount:0,
+            pageCount:0
+        }
+    });
+    app.init();
+    
+</script>
+
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/public/AmazeUI-2.4.2/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+</body>
+</html>

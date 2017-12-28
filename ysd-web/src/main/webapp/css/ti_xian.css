@@ -1,0 +1,289 @@
+#main .tixian {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding-left: 129px;
+    padding-top: 95px;
+    font-size: 16px;
+     padding-bottom: 80px;
+}
+#main .tixian .to_bankcard>span{
+    *float:left;
+}
+#main .tixian .to_bankcard .card_type {
+    display: inline-block;
+    vertical-align: top;
+    width: 258px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    *float:left;
+}
+.content .to_bankcard .card_type div.banks_bk {
+    height: 36px;
+    margin-left: 13px;
+    margin-top:13px;
+    margin-bottom:13px;
+    background: url("../img/banks.png") no-repeat;
+}
+.content .to_bankcard .card_type div.banks_ICBC{ background-position:0px 0px;}
+.content .to_bankcard .card_type div.banks_ABC{ background-position:0px -36px;}
+.content .to_bankcard .card_type div.banks_CCB{ background-position:0px -72px;}
+.content .to_bankcard .card_type div.banks_BOC{ background-position:0px -108px;}
+.content .to_bankcard .card_type div.banks_PSBC{ background-position:0px -144px;}
+.content .to_bankcard .card_type div.banks_PAB{ background-position:0px -216px;}
+.content .to_bankcard .card_type div.banks_BCOM{ background-position:0px -612px;}
+.content .to_bankcard .card_type div.banks_CIB{ background-position:0px -288px;}
+.content .to_bankcard .card_type div.banks_SPDB{ background-position:0px -324px;}
+.content .to_bankcard .card_type div.banks_CEB{ background-position:0px -360px;}
+.content .to_bankcard .card_type div.banks_CITIC{ background-position:0px -396px;}
+.content .to_bankcard .card_type div.banks_CMBC{ background-position:0px -468px;}
+.content .to_bankcard .card_type div.banks_GDB{ background-position:0px -504px;}
+.content .to_bankcard .card_type div.banks_CMB{ background-position:0px -540px;}
+
+#main .tixian .to_bankcard .card_type div.card_num {
+    height: 28px;
+    line-height: 28px;
+    background-color: #f5f5f5;
+    padding-left: 13px;
+    font-size: 14px;
+}
+#main .tixian .tixian_detail{
+    *clear:both;
+}
+#main .tixian .tixian_detail .tixian_available span {
+    color: #ef3e44;
+}
+#main .tixian .tixian_detail table {
+    margin-top: 55px;
+
+}
+#main .tixian .tixian_detail table tr > td {
+    padding-bottom: 21px;
+}
+#main .tixian .tixian_detail table tr > td:first-child {
+    text-align: right;
+}
+#main .tixian .tixian_detail table tr > td.input_tips{
+	text-align:left;
+	padding-left:106px;
+	height:20px;
+	line-height:20px;
+}
+#main .tixian .tixian_detail table tr > td.input_tips img{
+	position:relative;
+	top:3px;
+}
+#main .tixian .tixian_detail table tr.tixian_tr td input {
+    width: 266px;
+    height: 36px;
+    border:1px solid #ef3e44;
+    font-size: 14px;
+}
+#main .tixian .tixian_detail table tr.tixian_tr td{
+    font-size: 14px;
+    padding-left: 5px;
+}
+#main .tixian .tixian_detail table tr.tixian_tr td:first-child{
+    font-size: 18px;
+}
+#main .tixian .tixian_detail table tr.identify_tr td input.left {
+    width: 162px;
+    height: 36px;
+    border:1px solid #ef3e44;
+    font-size: 14px;
+}
+#main .tixian .tixian_detail table tr.identify_tr td input.right {
+    margin-left: 12px;
+    width: 152px;
+    height: 38px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-left: 0;
+}
+#main .tixian .tixian_detail table tr td.tixian_sub {
+    padding-top: 0;
+    padding-right: 456px
+}
+#main .tixian .tixian_detail table tr td input[type=submit]{
+    width: 166px;
+    height: 52px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-left: 0;
+}
+#main .tixian_success_wrap {
+    width: 100%;
+    height: 1547px;
+    background: url("../img/black_bg56.png");
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left:0;
+}
+#main .tixian_success {
+    position:relative;
+    left:50%;
+    width: 924px;
+    height: 556px;
+    padding: 17px 0;
+    margin-left: -330px;
+    margin-top: 258px;
+    background: #fff url("../img/recharge_success.png") no-repeat;
+    background-position: 440px 46px;
+}
+#main .tixian_success .close {
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+    background: url(../img/close.png) no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+#main .tixian_success .tips {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+#main .tixian_success .table_detail {
+    text-align: center;
+    width: 820px;
+    margin:0 auto;
+    font-size: 18px;
+    color: #666666;
+    border-spacing: 0;
+    border-collapse:collapse;
+}
+#main .tixian_success .table_detail td{
+    border:1px solid #e5e5e5;
+}
+#main .tixian_success .table_detail tr:first-child td{
+    height: 53px;
+}
+#main .tixian_success .table_detail tr:last-child td{
+    height: 88px;
+}
+#main .tixian_success .warm_tips {
+    height: 70px;
+    line-height: 70px;
+    margin-top: 30px;
+    padding-left: 110px;
+    background: #fde8e8 url("../img/wram_tips.png") no-repeat;
+    background-position: 67px 22px;
+}
+#main .tixian_success .warm_tips span {
+    font-size: 14px;
+}
+#main .tixian_success .options {
+    margin-left: 260px;
+    margin-top: 33px;
+}
+#main .tixian_success .options span {
+    display: inline-block;
+    width: 138px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+    border-radius: 10px;
+}
+#main .tixian_success .options span.back_account {
+    background-color: #ef3e44;
+    margin-right: 120px;
+}
+#main .tixian_success .options span.continue_tixian {
+    background-color: #3e9aef;
+}
+#main .recharge_uncard {
+    width: 100%;
+    height: 1547px;
+    background: url("../img/black_bg56.png");
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left:0;
+    display:none;
+}
+.recharge_uncard .uncard_content{
+    position:relative;
+    left:50%;
+    width: 510px;
+    height: 269px;
+    padding: 17px 20px;
+    margin-left: -136px;
+    margin-top: 258px;
+    background: #fff;
+    background-position: 236px 46px;
+    box-sizing:border-box;
+}
+#main .uncard_content .close {
+    width: 18px;
+    height: 18px;
+    background: url(../img/close.png) no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+#main .uncard_content .tips {
+    text-align: center;
+    margin-top: 10px;
+    font-size:18px;
+    line-height:24px;
+}
+#main .uncard_content .uncard_title {
+    margin-top: 40px;
+    background:url("../img/tips.png") no-repeat;
+    background-position:178px 4px;
+    
+}
+#main .uncard_content .uncard_cont{
+	font-size:16px;
+}
+#main .uncard_content .options {
+    margin-top: 40px;
+    text-align:center;
+}
+#main .uncard_content .options a {
+    display: block;
+    width: 138px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+    border-radius: 10px;
+    margin:0 auto;
+    background:#ef3e44;
+}
+.blank {
+	width: 1000px;
+	height: 120px;
+	background: #fff;
+	margin-bottom: 138px;
+}
+div.recharge_ts {
+    position: relative;
+    width: 1000px;
+    box-sizing: border-box;
+    background: #fde8e8;
+    padding-left: 68px;
+    padding-top: 22px;
+    font-size: 18px;
+    padding-bottom: 21px;
+}
+.recharge_ts .recharge_tb{
+	display:block;
+	float:left;
+	width:27px;
+	height:27px;
+	background:url(../img/wram_tips.png) no-repeat;
+	position:relative;
+	top:-2px;
+	margin-right:10px;
+}
+.recharge_ts span{
+	font-size:14px;
+}

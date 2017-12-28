@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserInfo">
+	
+	<!-- 注册添加用户详细信息 -->
+	<insert id="addUserInfo" parameterType="com.qmd.mode.user.UserInfo" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_info
+			(user_id,
+			create_date,
+			modify_date,
+			linkman,
+			private_phone,
+			others,
+			marry,
+			company_name,
+			company_office,
+			education_record,
+			registration,
+			tax_registration,
+			organization,
+			clsj,
+			yyqx_start,
+			yyqx_end,
+			address,
+			registered_capital,
+			private_charter_img,
+			private_tax_img,
+			private_organization_img,
+			add_ip,
+			private_name) 
+		values
+			(#{userId},
+			now(),
+			now(),
+			#{linkman},
+			#{privatePhone},
+			#{others},
+			#{marry},
+			#{companyName},
+			#{companyOffice},
+			#{educationRecord},
+			#{registration},
+			#{taxRegistration},
+			#{organization},
+			#{clsj},
+			#{yyqxStart},
+			#{yyqxEnd},
+			#{address},
+			#{registeredCapital},
+			#{privateCharterImg},
+			#{privateTaxImg},
+			#{privateOrganizationImg},
+			#{addIp},
+			#{privateName}
+			);
+	</insert>
+	
+	<!-- 根据用户ID查找用户详情 -->
+	<select id="findByUserId" resultType="com.qmd.mode.user.UserInfo"
+		parameterType="string">
+		select * from fy_user_info where user_id = #{userId}
+	</select>
+	
+	<select id="queryListByMap" resultType="com.qmd.mode.user.UserInfo" parameterType="java.util.Map">
+		select * from fy_user_info where user_id =#{userId}
+	</select>
+	
+	<update id="update" parameterType="com.qmd.mode.user.UserInfo" >
+		update fy_user_info set
+			<if test ="address != null and address != ''">address=#{address},</if>
+			<if test ="linkman != null and linkman != ''">linkman=#{linkman},</if>
+			<if test ="privatePhone != null and privatePhone != ''">private_phone=#{privatePhone},</if>
+			<if test ="others != null and others != ''">others=#{others},</if>		
+				
+			<if test ="marry != null and marry != ''">marry=#{marry},</if>
+			<if test ="companyName != null and companyName != ''">company_name=#{companyName},</if>
+			<if test ="companyOffice != null and companyOffice != ''">company_office=#{companyOffice},</if>
+			<if test ="educationRecord != null and educationRecord != ''">education_record=#{educationRecord},</if>
+			
+			<if test ="registration != null and registration != ''">registration=#{registration},</if>
+			<if test ="taxRegistration != null and taxRegistration != ''">tax_registration=#{taxRegistration},</if>
+			<if test ="organization != null and organization != ''">organization=#{organization},</if>
+			<if test ="clsj != null and clsj != ''">clsj=#{clsj},</if>
+			<if test ="yyqxStart != null and yyqxStart != ''">yyqx_start=#{yyqxStart},</if>
+			<if test ="yyqxEnd != null and yyqxEnd != ''">yyqx_end=#{yyqxEnd},</if>
+			<if test ="registeredCapital != null and registeredCapital != ''">registered_capital=#{registeredCapital},</if>
+			<if test ="privateCharterImg != null and privateCharterImg != ''">private_charter_img=#{privateCharterImg},</if>
+			<if test ="privateTaxImg != null and privateTaxImg != ''">private_tax_img=#{privateTaxImg},</if>
+			<if test ="privateOrganizationImg != null and privateOrganizationImg != ''">private_organization_img=#{privateOrganizationImg},</if>
+			modify_date=now()
+		where 
+			id = #{id}
+	</update>
+	
+	<update id="updateIdentify" parameterType="com.qmd.mode.user.UserInfo" >
+		update fy_user_info set
+			<if test ="identifyBirthday != null and identifyBirthday != ''">identify_birthday=#{identifyBirthday},</if>
+			<if test ="identifySex != null and identifySex != ''">identify_sex=#{identifySex},</if>
+			<if test ="identifyPhotoEncode != null and identifyPhotoEncode != ''">identify_photo_encode=#{identifyPhotoEncode},</if>
+			<if test ="identifyPhoto != null and identifyPhoto != ''">identify_photo=#{identifyPhoto},</if>
+			identify_date = now(),
+			update_time=now()
+		where 
+			id = #{id}
+	</update>
+	
+</mapper>

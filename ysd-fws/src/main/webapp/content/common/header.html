@@ -1,0 +1,256 @@
+<header style="background-color: #fff; height: 134px;">
+		<div class="ttpp">
+			<div class="toplinks">
+				<div class="fl">
+					<div style="line-height: 30px; height: 30px; color:#005916;">&nbsp;</div>
+				</div>
+           			<div class="ri wrap">
+						<div style="line-height: 30px; height: 30px;">
+							<font color="#ff6600">我就爱车欢迎您！</font> [ <a href="#" class="topbtn1" id="dldemo">请登录</a> | <a href="/user/reg.do">免费注册</a>] <a href="/user/login.do">我的我就爱车</a>
+						</div>
+					</div>	
+				</div>
+		</div>
+		<div class="topbar">
+			<div class="logo">
+				<a href="/"><img src="/static/images/logo.png" width="209"></a>
+			</div>
+			<div class="nav">
+				<div class="topnav">
+					<!---->
+					<div id="menu_bg">
+						<div class="imenu_bg">
+							<!-- 关于我们 -->
+							<div class="imenu" topnav="nav5" attr="t1">
+								<a href="/article/about_us/information_center_kaqu.htm" class="t1"></a>
+							</div>
+							<!-- 我要理财 -->
+							<div class="imenu" topnav="navzx" attr="t2">
+								<a href="/borrow/list.do" class="t2"></a>
+							</div>
+							<!-- 我要借款 -->
+                            <div class="imenu" topnav="navjk" attr="t3">
+								<a href="/article/expectBorrow.do" class="t3"></a>
+							</div>
+							<!-- 在线拍卖 -->
+							<div class="imenu" topnav="navpf" attr="t4">
+								<a href="/article/auctionOnline.do" class="t4"></a>
+							</div>
+							<!-- 趣币商城 -->
+                            <div class="imenu" topnav="navpf" attr="t5">
+								<a href="/article/insurance.do" class="t5"></a>
+							</div>
+							<!-- 帮助中心 -->
+							<div class="imenu" topnav="navwc" attr="t6">
+								<a href="/article/help/trade_description_kaqu.htm" class="t6"></a>
+							</div>
+							<!-- 机构服务 -->
+                            <div style=" float:left; width:2px; background-color:#efefef; margin-top:8px; height:15px; margin-right:5px;">&nbsp;</div>
+							<div class="imenu" topnav="navmc" attr="t7">
+								<a href="/article/agencyService.do" class="t7"></a>
+							</div>
+						</div>
+						<div class="submenu_bg">
+
+	<div id="t1" style="width: 390px;">
+		<ul class="li_content">
+			<span class="jiantou-top-topnav" style="left:35px;"></span>
+            <li><a href="/article/about_us/information_center_kaqu.htm" >资讯中心</a></li>
+            <li><a href="/article/about_us/model_kaqu.htm" >关于我就爱车</a></li>
+			<li><a href="/article/about_us/site_rules_kaqu.htm" >网站规则</a></li>
+			<li><a href="/article/about_us/risk_control_kaqu.htm" >安全风控</a></li>
+			<li><a href="/article/contact_us_content/190.htm" >联系我们</a></li>		</ul>
+	</div>
+	<div id="t2" style="width: 710px; margin-left: 0px;">
+		<ul class="li_content">
+			<span class="jiantou-top-topnav" style="left:135px;"></span>
+			<li><a href="/borrow/list.do?bnType=01" >不动产投资</a></li>
+			<li><a href="/borrow/list.do?bnType=02" >动产投资</a></li>
+			<li><a href="/borrow/list.do?bnType=03" >证券投资</a></li>
+			<li><a href="/borrow/list.do?bnType=04" >银行产品</a></li>
+			<li><a href="/borrow/list.do?bnType=05" >私募产品</a></li>
+			<li><a href="/borrow/list.do?bnType=06" >信托投资</a></li>
+			<li><a href="/borrow/list.do?bnType=07" >贵金属投资</a></li>
+			<li><a href="/borrow/list.do?bnType=08" >公益投资</a></li>
+			<li><a href="/borrow/list.do?bnType=09" >超级会员</a></li>		</ul>
+	</div>
+	<div id="t4" style="width: 230px; margin-left: 300px;">
+		<ul class="li_content">
+			<span class="jiantou-top-topnav" style="left:45px;"></span>
+             <li><a href="/article/auctionOnline.do" >专场拍卖</a></li>
+            <li><a href="/article/auctionOnline.do" >司法拍卖</a></li>
+            <li><a href="/article/auctionOnline.do" >精选拍卖</a></li>
+		</ul>
+	</div>
+	<div id="t6" style="width: 230px; margin-left: 500px;">
+		<ul class="li_content">
+			<span class="jiantou-top-topnav" style="left:45px;"></span>
+			<li><a href="/article/help/trade_description_kaqu.htm" >交易说明</a></li>
+			<li><a href="/article/help/laws_and_regulations_kaqu.htm" >法律法规</a></li> 
+			<li><a href="/article/help/faq_kaqu.htm" >常见问题</a></li>
+		</ul>
+	</div>
+</div>
+					</div>
+					<!---->
+				</div>
+			</div>
+		</div>
+	</header>    
+<div id="forlogin" style="display:none">
+    	<div class="loginbox">
+    		<div class="loginboxleft">
+    			<form name="loginform" id="loginform" class="loginform" action="/user/ajaxLogin.do" method="post">
+    				<table width="100%" style="table-layout: fixed;">
+						<tr>
+							<td class="label">账户:</td>
+							<td><input type="text" name="username_no"
+								id="username" class="inputxt user-icon-bg" 
+								/><div class="Validform_checktip" style="display:none;"></div></td>
+						</tr>
+						<tr>
+							<td class="label">密码:</td>
+							<td><input type="password" name="password_no" class="inputxt lock-icon-bg" id="password"
+								/><div class="Validform_checktip" style="display:none;"></div></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td style="width:265px;float:left;">
+								<a href="/user/lostpass.do?p=0" style="float:right;color:#ff6503;">忘记密码？</a>
+								<div class="Validform_checktip" style="display:none;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<input type="submit" value="登  录" class="metrobtn loginbtn" />
+								<span id="lgmsg" style="display:inline;"></span>
+							</td>
+						</tr>
+					</table>
+    				<input type="hidden" name="url" value="/index.do" />
+				    <input type="hidden" id="usernameajax" name="user.username" value="" />
+				    <input type="hidden" id="passwordajax" name="user.password" value="" />
+			    </form>
+    		</div>
+    		<div class="loginboxright">
+    			<p>还没有我就爱车账户？</p><br/>
+    			<div class="h-5"></div>
+    			<p><a href="/user/reg.do" class="metrobtn registernewbtn">注册新用户</a></p>
+    		</div>
+    	</div>
+    </div>
+    
+    <div id="loginView" style="display:none">
+       <div style="line-height: 30px; height: 30px;">
+        	<div class="t">欢迎&nbsp;&nbsp;</div>
+        	<div class="">
+        	<span  id="top_username"></span>
+       </div>
+        <a href="/userCenter/index.do">会员中心</a>
+        <a href="/userCenter/logout.do">退出登录</a>
+       </div>
+    </div>
+    
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		var $top_username=$("#top_username");
+	
+		$.flushHeaderInfo = function(){
+		  if(getCookie("cookieUsername") != null){
+			  $top_username.html(""+user_name+"");
+			  $('.ri').html($('#loginView').html());
+			}
+	 	};
+	 	
+	 	$.flushHeaderInfo();
+	
+		$('.loginbtn').click(function(){
+			var username = $('#username').val();
+			var password = $('#password').val();
+
+			$('#usernameajax').val(username);
+			$('#passwordajax').val(password);
+		})
+
+
+		$(".loginform").Validform({
+			tiptype: function (msg, o, cssctl) {
+				var objtip = $("#lgmsg");
+				cssctl(objtip, o.type);
+				objtip.text(msg);
+			},
+			ajaxPost:true,
+			callback:function(data){
+				if(data.status=="success"){
+					$('#lgmsg').html(data.message);
+					
+					$('#top_username').html(data.username);
+					$('#top_realname').html(data.realName);
+					$('#top_usermoney').html(data.ableMoney);
+					
+					$('.ri').html($('#loginView').html());
+					setTimeout(function(){
+						var list = art.dialog.list;
+						for (var i in list) {
+							list[i].close();
+						};
+					},1000);
+					setstat();
+				}
+				else if(data.status=="error"){
+					alert(data.message);
+				}
+			}
+		});
+
+		function loginformdialog(){
+			art.dialog({
+				lock: true,
+				background: '#ccc',
+				content: document.getElementById('forlogin'),
+				width: 700,
+				height: 264,
+				padding: 0,
+				title: '登录我就爱车'
+			});
+		}
+
+		$('#dldemo').click(function () {
+			art.dialog({
+				lock: true,
+				background: '#ccc',
+				content: document.getElementById('forlogin'),
+				width: 700,
+				height: 264,
+				padding: 0,
+				title: '登录我就爱车'
+			});
+		});
+		$('#dlfirst').click(function () {
+			art.dialog({
+				lock: true,
+				background: '#ccc',
+				content: document.getElementById('forlogin'),
+				width: 700,
+				height: 264,
+				padding: 0,
+				title: '请先登陆'
+			});
+		});
+
+		$('#celogin').click(function () {
+			art.dialog({
+				lock: true,
+				background: '#ccc',
+				content: document.getElementById('forlogin'),
+				width: 700,
+				height: 264,
+				padding: 0,
+				title: '登陆我就爱车'
+			});
+		});
+
+	});
+</script>

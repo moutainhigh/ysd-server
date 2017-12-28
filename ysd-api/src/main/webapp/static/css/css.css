@@ -1,0 +1,47 @@
+.back1{padding:8px 20px 10px 20px;}
+.back1 .enable{color:#FFF;}
+.back1 .enable .banfenshu,
+.back1 .enable .day,
+.back1 .enable .xiaoshu
+{background:url(../img/c9.png) 0 0 no-repeat;}
+.back1 .enable .money{color:#00479D;background:url(../img/c4.png) 0 0 no-repeat;}
+.back1 .enable .man{color:#00479D;background:url(../img/c6.png) 0 0 no-repeat;}
+.back1 .enable .btn_0{background:url(../img/c5.png) 0 0 no-repeat;}
+
+.back1 .enable:hover .banfenshu,
+.back1 .enable:hover .day,
+.back1 .enable:hover .xiaoshu
+{background:url(../img/c10.png) 0 0 no-repeat;}
+.back1 .enable:hover .money{color:#00479D;background:url(../img/c4_1.png) 0 0 no-repeat;}
+.back1 .enable:hover .man{color:#00479D;background:url(../img/c6_1.png) 0 0 no-repeat;}
+.back1 .enable:hover .btn_0{background:url(../img/c5_2.png) 0 0 no-repeat;}
+
+.back1 .disable{color:#666;}
+.back1 .disable .banfenshu,
+.back1 .disable .day,
+.back1 .disable .xiaoshu
+{background:none;}
+.back1 .disable .btn_0{background-image:url(../img/c5_1.png);}
+
+.lunbo{width:100%; height:450px;position:relative;}
+.slider{display:block;width:100%;height:450px;}
+.lunbo .shadow{position:absolute;top:0px;display:block;width:100%;height:10px;background:url(../img/shadow.png) repeat-x 0 0;z-index:9;}
+
+.footer{ width:100%; background:#4c5054; height:60px; line-height:60px; margin-top:30px;min-width:1000px;position:relative;}
+.footer_l{position:absolute;left:10px;top:6px;}
+.footer_c{width:100%;text-align:center;min-height:1000px;}
+.footer_r{position:absolute;top:0;right:10px;color:#c9c9c9; font-size:14px;}
+.icon{display:block;width:32px;height:24px;background:url(../img/d.png) 0 0 no-repeat;margin-top:12px;}
+.weibo{background-position:0 0;}
+.weixin{background-position:-32px 0;}
+.weibo:hover{background-position:0 -24px;}
+.weixin:hover{background-position:-32px -24px;}
+
+.m5 a:hover{color:#d14324;text-decoration:underline;}
+.m1 .m3{display:block;background:url(../img/b6.png) 0 0 no-repeat; width:5px;height:9px;margin-top:3px;}
+.m1 .m4{color:#666;padding-left:12px;margin:0}
+.m1 .m5{width:620px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;padding:0;margin:0;vertical-align:bottom;}
+.m1 .m6{color:#666;padding:0;margin:0;padding-right:10px;}
+.m1 .m7{display:block;background:url(../img/b7.png) 0 0 no-repeat; width:28px;height:13px;margin:2px 10px 0px 4px;}
+.m1 .m8{position:absolute;right:0;}
+.m1 li{display:inline;float:left;height:16px;}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BorrowRecharge">
+
+	<select id="getById" resultType ="com.qmd.mode.borrow.BorrowRecharge" parameterType = "java.lang.Integer">
+		select t.* from fy_borrow_recharge t where t.id=#{id}
+	</select>
+	
+	<select id="getForUpdate" resultType ="com.qmd.mode.borrow.BorrowRecharge" parameterType = "java.lang.Integer">
+		select t.* from fy_borrow_recharge t where t.id=#{id}
+	</select>
+	
+
+	<select id="queryListByMap" resultType="com.qmd.mode.borrow.BorrowRecharge" parameterType="java.util.Map">
+		select t.* 
+		,b.name as borrowName
+		,u.username
+		,u.real_name
+		from fy_borrow_recharge t 
+		left join fy_borrow b on b.id = t.borrow_id
+		left join fy_user u on u.id = b.user_id
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_borrow_recharge t 
+		left join fy_borrow b on b.id = t.borrow_id
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			<if test="agencyId != null">and t.agency_id = #{agencyId} </if>
+			<if test="borrowId != null">and t.borrow_id = #{borrowId} </if>
+			<if test="borrowRepaymentId != null">and t.borrow_repayment_id = #{borrowRepaymentId} </if>
+			<if test="endFlg != null">and t.end_flg = #{endFlg} </if>
+			<if test="money != null">and t.money = #{money} </if>
+			<if test="rechargeName != null">and t.recharge_name = #{rechargeName} </if>
+			<if test="rechargeDate != null">and t.recharge_date = #{rechargeDate} </if>
+			<if test="rechargeType != null">and t.recharge_type = #{rechargeType} </if>
+			<if test="rechargeAccount != null">and t.recharge_account = #{rechargeAccount} </if>
+			<if test="rechargeBank != null">and t.recharge_bank = #{rechargeBank} </if>
+			<if test="rechargeFile != null">and t.recharge_file = #{rechargeFile} </if>
+			<if test="verifyAdmin != null">and t.verify_admin = #{verifyAdmin} </if>
+			<if test="verifyTime != null">and t.verify_time = #{verifyTime} </if>
+			<if test="verifyRemark != null">and t.verify_remark = #{verifyRemark} </if>
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="arrayStatus != null">
+				and t.status in 
+				<foreach item="item" index="index" collection="arrayStatus"
+		   			open="(" separator="," close=")">
+		    	 		#{item}
+				</foreach>
+			</if>
+			
+			<if test="borrowName != null ">
+				<![CDATA[and b.name like '%${borrowName}%']]>
+			</if>
+			<if test="minDate != null">
+				<![CDATA[ and t.recharge_date >= #{minDate}]]>
+			</if>
+			<if test="maxDate != null">
+				<![CDATA[ and t.recharge_date <=  #{maxDate}]]>
+			</if>
+			
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.borrow.BorrowRecharge" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_borrow_recharge(
+			<if test="type != null">type,</if>
+			<if test="userId != null">user_id,</if>
+			<if test="agencyId != null">agency_id,</if>
+			<if test="borrowId != null">borrow_id,</if>
+			<if test="borrowRepaymentId != null">borrow_repayment_id, </if>
+			<if test="endFlg != null">end_flg, </if>
+			<if test="money != null">money,</if>
+			<if test="rechargeName != null">recharge_name,</if>
+			<if test="rechargeDate != null">recharge_date,</if>
+			<if test="rechargeType != null">recharge_type,</if>
+			<if test="rechargeAccount != null">recharge_account,</if>
+			<if test="rechargeBank != null">recharge_bank,</if>
+			<if test="rechargeFile != null">recharge_file,</if>
+			<if test="verifyAdmin != null">verify_admin,</if>
+			<if test="verifyTime != null">verify_time,</if>
+			<if test="verifyRemark != null">verify_remark,</if>
+			<if test="status != null">status,</if>
+			create_date,
+			modify_date
+		)values(
+			<if test="type != null">#{type},</if>
+			<if test="userId != null">#{userId},</if>
+			<if test="agencyId != null">#{agencyId},</if>
+			<if test="borrowId != null">#{borrowId},</if>
+			<if test="borrowRepaymentId != null">#{borrowRepaymentId},</if>
+			<if test="endFlg != null">#{endFlg},</if>
+			<if test="money != null">#{money},</if>
+			<if test="rechargeName != null">#{rechargeName},</if>
+			<if test="rechargeDate != null">#{rechargeDate},</if>
+			<if test="rechargeType != null">#{rechargeType},</if>
+			<if test="rechargeAccount != null">#{rechargeAccount},</if>
+			<if test="rechargeBank != null">#{rechargeBank},</if>
+			<if test="rechargeFile != null">#{rechargeFile},</if>
+			<if test="verifyAdmin != null">#{verifyAdmin},</if>
+			<if test="verifyTime != null">#{verifyTime},</if>
+			<if test="verifyRemark != null">#{verifyRemark},</if>
+			<if test="status != null">#{status},</if>
+			now(),
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.borrow.BorrowRecharge" >
+		update
+			fy_borrow_recharge
+		<set>
+			<if test="type != null">type = #{type},</if>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="agencyId != null">agency_id = #{agencyId},</if>
+			<if test="borrowId != null">borrow_id = #{borrowId},</if>
+			<if test="borrowRepaymentId != null">borrow_repayment_id = #{borrowRepaymentId},</if>
+			<if test="endFlg != null">end_flg = #{endFlg},</if>
+			<if test="money != null">money = #{money},</if>
+			<if test="rechargeName != null">recharge_name = #{rechargeName},</if>
+			<if test="rechargeDate != null">recharge_date = #{rechargeDate},</if>
+			<if test="rechargeType != null">recharge_type = #{rechargeType},</if>
+			<if test="rechargeAccount != null">recharge_account = #{rechargeAccount},</if>
+			<if test="rechargeBank != null">recharge_bank = #{rechargeBank},</if>
+			<if test="rechargeFile != null">recharge_file = #{rechargeFile},</if>
+			<if test="verifyAdmin != null">verify_admin = #{verifyAdmin},</if>
+			<if test="verifyTime != null">verify_time = #{verifyTime},</if>
+			<if test="verifyRemark != null">verify_remark = #{verifyRemark},</if>
+			<if test="status != null">status = #{status},</if>
+			modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+	
+</mapper>
+

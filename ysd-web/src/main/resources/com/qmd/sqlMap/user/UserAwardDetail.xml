@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserAwardDetail">
+
+	<select id="queryById" resultType ="com.qmd.mode.user.UserAwardDetail" parameterType = "java.lang.Integer">
+		select t.* from fy_user_award_detail t where t.id=#{id}
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.user.UserAwardDetail" parameterType="java.util.Map">
+		select t.*,s.name as typeName,u.username from fy_user_award_detail t 
+		left join fy_listing s on s.sign = t.type
+		left join fy_user u on u.id = t.relate_to
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_user_award_detail t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			<if test="type != null">and t.type = #{type} </if>
+			<if test="money != null">and t.money = #{money} </if>
+			<if test="awardMoney != null">and t.award_money = #{awardMoney} </if>
+			<if test="signFlg != null">and t.sign_flg = #{signFlg} </if>
+			<if test="remark != null">and t.remark = #{remark} </if>
+			<if test="userAccountDetailId != null">and t.user_account_detail_id = #{userAccountDetailId} </if>
+			<if test="relateTo != null">and t.relate_to = #{relateTo} </if>
+			<if test="relateKey != null">and t.relate_key is not null </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="reserve1 != null">and t.reserve1 = #{reserve1} </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.user.UserAwardDetail" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_award_detail(
+			<if test="userId != null">user_id, </if>
+			<if test="type != null">type, </if>
+			money, 
+			award_money, 
+			sign_flg,
+			<if test="remark != null">remark, </if>
+			<if test="userAccountDetailId != null">user_account_detail_id, </if>
+			<if test="relateTo != null">relate_to, </if>
+			<if test="relateKey != null">relate_key, </if>
+			<if test="reserve1 != null">reserve1, </if>
+			create_date, 
+			modify_date
+		)values(
+			<if test="userId != null">#{userId}, </if>
+			<if test="type != null">#{type}, </if>
+			#{money}, 
+			#{awardMoney},
+			#{signFlg},
+			<if test="remark != null">#{remark}, </if>
+			<if test="userAccountDetailId != null">#{userAccountDetailId}, </if>
+			<if test="relateTo != null">#{relateTo}, </if>
+			<if test="relateKey != null">#{relateKey}, </if>
+			<if test="reserve1 != null">#{reserve1}, </if>
+			now(),
+			now()
+		)
+	</insert>
+
+	<update id="updateObject" parameterType="com.qmd.mode.user.UserAwardDetail" >
+		update
+			fy_user_award_detail
+		<set>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="type != null">type = #{type},</if>
+			<if test="money != null">money = #{money},</if>
+			<if test="awardMoney != null">award_money = #{awardMoney},</if>
+			<if test="remark != null">remark = #{remark},</if>
+			<if test="userAccountDetailId != null">user_account_detail_id = #{userAccountDetailId},</if>
+			<if test="relateTo != null">relate_to = #{relateTo},</if>
+			<if test="relateKey != null">relate_key = #{relateKey},</if>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="modifyDate != null">modify_date = #{modifyDate},</if>
+			<if test="reserve1 != null">reserve1 = #{reserve1},</if>
+				modify_datetime = now()
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!--记录条数 qxw -->
+	<select id="queryCountHbDetailList" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(id) from fy_user_award_detail t where 1=1 
+		<if test="userId != null">and t.user_id = #{userId} </if>
+	
+		
+		<if test="keyHb == 1 ">and t.type !='tui_detail_award' and  t.type !='tui_detail_award_ht'</if>
+		<if test="keyHb == 2 ">
+				<if test="keyHbType == 1 ">and t.type ='tui_detail_award' </if>
+				<if test="keyHbType == 2 ">and t.type ='tui_detail_award_ht' </if>
+				<if test="keyHbType == 0 ">and t.type in('tui_detail_award_ht','tui_detail_award')</if>
+		</if>
+		
+		
+		
+	</select>
+	<!--分页 qxw-->
+	<select id="queryHbDetailList" resultType="com.qmd.mode.user.UserAwardDetail" parameterType="java.util.Map">
+		select t.* from fy_user_award_detail t  where 1=1
+		<if test="userId != null">and t.user_id = #{userId} </if>
+	 
+		<if test="keyHb == 1 ">and t.type !='tui_detail_award' and  t.type !='tui_detail_award_ht'</if>
+		<if test="keyHb == 2 ">
+				<if test="keyHbType == 1 ">and t.type ='tui_detail_award' </if>
+				<if test="keyHbType == 2 ">and t.type ='tui_detail_award_ht' </if>
+				<if test="keyHbType == 0 ">and t.type in('tui_detail_award_ht','tui_detail_award')</if>
+		</if>
+		
+		order by id desc
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+		
+	</select>
+</mapper>
+

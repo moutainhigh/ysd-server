@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Activity">
+
+	<select id="getById" resultType ="com.qmd.mode.activity.Activity" parameterType = "java.lang.Integer">
+		select t.* from fy_activity t where t.id=#{id}
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.activity.Activity" parameterType="java.util.Map">
+		select t.* from fy_activity t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_activity t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="title != null">and t.title = #{title} </if>
+			<if test="startTime != null">and t.start_time = #{startTime} </if>
+			<if test="endTime != null">and t.end_time = #{endTime} </if>
+			<if test="imgWeb != null">and t.img_web = #{imgWeb} </if>
+			<if test="imgApp != null">and t.img_app = #{imgApp} </if>
+			<if test="content != null">and t.content = #{content} </if>
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="orderList != null">and t.order_list = #{orderList} </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.activity.Activity" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_activity(
+			<if test="modifyDate != null">modify_date, </if>
+			<if test="title != null">title, </if>
+			<if test="startTime != null">start_time, </if>
+			<if test="endTime != null">end_time, </if>
+			<if test="imgWeb != null">img_web, </if>
+			<if test="imgApp != null">img_app, </if>
+			<if test="content != null">content, </if>
+			<if test="status != null">status, </if>
+			<if test="orderList != null">order_list, </if>
+			create_date
+		)values(
+			<if test="modifyDate != null">#{ modifyDate}, </if>
+			<if test="title != null">#{ title}, </if>
+			<if test="startTime != null">#{ startTime}, </if>
+			<if test="endTime != null">#{ endTime}, </if>
+			<if test="imgWeb != null">#{ imgWeb}, </if>
+			<if test="imgApp != null">#{ imgApp}, </if>
+			<if test="content != null">#{ content}, </if>
+			<if test="status != null">#{ status}, </if>
+			<if test="orderList != null">#{ orderList}, </if>
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.activity.Activity" >
+		update
+			fy_activity
+		<set>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="title != null">title = #{title},</if>
+			<if test="startTime != null">start_time = #{startTime},</if>
+			<if test="endTime != null">end_time = #{endTime},</if>
+			<if test="imgWeb != null">img_web = #{imgWeb},</if>
+			<if test="imgApp != null">img_app = #{imgApp},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="status != null">status = #{status},</if>
+			<if test="orderList != null">order_list = #{orderList},</if>
+				modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+</mapper>
+

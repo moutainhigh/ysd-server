@@ -1,0 +1,206 @@
+body {
+    background: url(../img/invest_phone_bg.png) no-repeat;
+    font-size: 26px;
+    overflow-x: hidden;
+    background-size:cover;
+}
+
+.header-tool .tel{line-height:normal}
+input[type="button"], input[type="submit"], input[type="reset"] {
+-webkit-appearance: none;
+}
+.header-tool .content-tool{
+    margin-left:10px;
+    width:730px;
+}
+#header , .header-tool{
+    display: none;
+}
+.content-wrap{
+    width:100%;
+    max-width:750px;
+}
+.content, .header-tool{
+    width:100%;
+}
+.content > div.img {
+    float: none;
+    width: 53.467%;
+    height: 237px;
+    margin:0 auto;
+    background: url(../img/invest_phone_children.png) no-repeat center;
+    background-size: 100%;
+    margin-top: 84px;
+ }
+.content .register {
+    float: none;
+    background: #FFFFFF;
+    border-radius: 10px;
+    width:87.333%;
+    height: 659px;
+    margin:0 auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left:73px;
+    padding-top: 48px;
+}
+.content .register form {
+    font-size: 26px;
+}
+.content .register form table .invest_person span {
+    color: #ef3e44;
+}
+.content .register form table .invest_person td {
+	padding-bottom: 20px;
+}
+.content .register form table .phone {
+    width: 512px;
+    height: 70px;
+    font-size: 24px;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding-left: 70px;
+    background: url(../img/invest_phone_phone.png) no-repeat 27px 12px;
+}
+.content .register form table .identify input {
+    width: 271px;
+    height: 70px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 24px;
+    padding-left: 27px;
+    border: 1px solid #666666;
+
+}
+
+.content .register form table .identify img {
+    width: 189px;
+    height: 70px;
+    vertical-align: middle;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.content .register form table .message input {
+    width: 271px;
+    height: 70px;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding-left: 27px;
+    border: 1px solid #666666;
+    border-radius: 10px;
+}
+.content .register form table .message a {
+	display:block;
+    width: 190px;
+    height: 60px;
+    line-height: 60px;
+    color: #FFFFFF;
+    font-size:28px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    border: none;
+}
+.content .register form table .pwd input {
+    width: 512px;
+    height: 70px;
+    box-sizing: border-box;
+    font-size: 23px;
+    border-radius: 10px;
+    border: 1px solid #666666;
+    padding-left: 70px;
+    background: url(../img/invest_phone_phone.png) no-repeat 27px 12px;
+}
+.content .register form table .button input {
+    width: 517px;
+    height: 86px;
+    line-height: 86px;
+    color: #FFFFFF;
+    font-size:36px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    cursor: pointer;
+}
+
+.content .feature {
+    margin-top: 59px;
+    margin-left: 67px;
+}
+.content .feature > div{
+    height: 88px;
+}
+
+.content .feature > div{
+    height: 88px;
+    margin-bottom: 70px;
+}
+.content .feature > div .img {
+    display: inline-block;
+    width: 88px;
+    height: 88px;
+}
+.content .feature > div .content {
+    display: inline-block;
+    width: 393px;
+    height: 88px;
+    color: #ffffff;
+    vertical-align: super;
+}
+.content .feature > div > div > .hr {
+    width: 353px;
+    height: 1px;
+    background: url(../img/invest_hr_phone_03.png) no-repeat;
+
+}
+.content .feature > div.left .img {
+    background: url("../img/invest_yun_phone.png") center;
+    background-size: contain;
+}
+
+.content .feature > div.right .img {
+    background: url("../img/invest_data_phone.png") center;
+    background-size: contain;
+}
+
+.content .feature > div.center .img {
+    background: url("../img/invest_ins_phone.png") center;
+    background-size: contain;
+}
+.content .feature > div > div.content .top {
+    margin-bottom: 12px;
+}
+.content .feature > div > div.content .bottom {
+    margin-top: 9px;
+}
+.content .feature > div > div.content img {
+    vertical-align: middle;
+}
+#footer {
+    display: none;
+}
+tr.input_hint td{
+	height: 30px;
+	color: #ef3e44;
+	font-size: 22px;
+	line-height: 31px;
+}
+tr.input_hint {
+	visibility: hidden;
+}
+tr.input_hint td.error {
+	/* visibile: visibility; */
+	background: #fff url("../img/tips.png") no-repeat 10px center;
+}
+tr.input_hint td label span{
+	background: #fff url("../img/tips.png") no-repeat 10px center;
+	display:inline-block;
+	height:20px;
+	width:35px;
+	position:relative;
+	top:1px;
+	*display:block;
+	*float:left;
+}

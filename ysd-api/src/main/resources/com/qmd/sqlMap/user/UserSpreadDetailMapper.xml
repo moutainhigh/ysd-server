@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserSpreadDetail">
+	
+	<insert id="baseInsert" parameterType="com.qmd.mode.user.UserSpreadDetail" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_spread_detail (
+				create_date,
+				modify_date,
+				tender_user_id,
+				tender_money,
+				tg_money,
+				status_code,
+				tg_user_id,
+				borrow_id,
+				remark
+			) values (
+				now(),
+				now(),
+				#{tenderUserId},
+				#{tenderMoney},
+				#{tgMoney},
+				#{statusCode},
+				#{tgUserId},
+				#{borrowId},
+				#{remark}
+			);
+	</insert>
+	
+	
+	<select id="baseLoad" resultType="com.qmd.mode.user.UserSpreadDetail" parameterType="java.lang.Integer">
+		select * from fy_user_spread_detail where id = #{id}
+	</select>
+	
+	<select id="queryListByMap" resultType="com.qmd.mode.user.UserSpreadDetail" parameterType="java.util.Map">
+		select 
+			t.*,
+			u.username
+		from
+		fy_user_spread_detail t
+		left join fy_user u on t.tender_user_id = u.id
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_user_spread_detail t 
+		left join fy_user u on t.tender_user_id = u.id
+		<include refid="queryWhere"/>
+	</select>
+			
+	<sql id="queryWhere">
+		<where> 
+			and t.tender_money > 0 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="tenderUserId != null and tenderUserId !=''">and t.tender_user_id = #{tenderUserId} </if>
+			<if test="statusCode != null and statusCode !=''">and t.status_code = #{statusCode} </if>
+			<if test="tgUserId != null and tgUserId !=''">and t.tg_user_id = #{tgUserId} </if>
+			<if test ="minDate != null and minDate != ''"> <![CDATA[ and t.create_date >= #{minDate} ]]> </if>
+			<if test ="maxDate != null and maxDate != ''"> <![CDATA[ and t.create_date <= #{maxDate} ]]> </if>
+			<if test ="username != null and username !=''"><![CDATA[and u.username like '%${username}%']]></if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+	
+	
+	<select id="sumMoney" resultType="java.math.BigDecimal" parameterType="com.qmd.mode.user.UserSpreadDetail">
+		select IFNULL(sum(tg_money),0) from fy_user_spread_detail t 
+		left join fy_user u on t.tender_user_id = u.id
+		<include refid="queryWhere"/>
+	</select>
+	
+	<!-- 推荐注册奖励 -->
+	<select id="registerSumMoney" resultType="java.math.BigDecimal" parameterType="com.qmd.mode.user.UserSpreadDetail">
+		select IFNULL(sum(t.money),0) from fy_user_award_detail t 
+		where t.relate_key = 'user_id' and t.type = 'money_log_friend_name_email_tender_award' and t.user_id = #{tgUserId}
+	</select>
+	
+	
+</mapper>

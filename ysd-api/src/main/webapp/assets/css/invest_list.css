@@ -1,0 +1,65 @@
+html,
+body,
+.page {
+    height: 100%;
+}
+
+#wrapper {
+    position: absolute;
+    top: 40px;
+    bottom: 50px;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    /* padding: 0 8px; */
+    background-color: #f8f8f8;
+}
+
+.am-list {
+    margin: 0;
+}
+
+.am-list > li {
+    background: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.pull-action {
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    color: #999;
+}
+
+.pull-action .am-icon-spin {
+    display: none;
+}
+
+.pull-action.loading .am-icon-spin {
+    display: block;
+}
+
+.pull-action.loading .pull-label {
+    display: none;
+}
+.am-thumbnails>li{
+    padding: 0;
+    text-align: center;
+}
+.am-invest-info{
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+.am-xsp-round{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+}
+.am-xsp-round .text{
+    color: #ff4433;
+    font-size: 22px;
+    line-height: 100%;
+    padding-bottom: 2px;
+}
