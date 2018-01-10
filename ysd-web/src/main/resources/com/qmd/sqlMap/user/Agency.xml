@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 保险服务商 -->
+<mapper namespace="Agency">
+	<!-- 条件：实名、启用 -->
+	<select id="getById" resultType ="com.qmd.mode.user.Agency" parameterType = "java.lang.Integer">
+		select a.*
+		from
+		fy_agency a left join fy_user u on a.userid = u.id 	and u.is_enabled = 1 and u.real_status = 1
+		where a.id =#{id}
+	</select>
+
+	<select id="baseList" resultType ="com.qmd.mode.user.Agency" parameterType = "java.util.Map">
+		select a.*,u.area_store as areaStore
+		from 
+			fy_agency a left join fy_user u on a.userid = u.id and u.real_status = 1 and u.is_enabled = 1
+		where 1=1
+		<include refid = "queryBy"/>
+		<if test="start != null and end != null">
+			limit #{start},#{end}
+		</if>
+	</select>
+	
+	<sql id="queryBy">
+		<if test = "userid != null">
+			and a.userid = #{userid}
+		</if>
+		<if test="keywords != null and keywords != '' ">
+			<![CDATA[and a.name like '%${keywords}%']]>
+		</if>
+		<if test="orderBy != null and orderBy != '' ">
+			order by ${orderBy}
+		</if>
+	</sql>
+	
+	<update id="baseUpdate" parameterType="com.qmd.mode.user.Agency" >
+		update 
+			fy_agency
+		set
+			<if test="img != null">img = #{img},</if>
+			<if test="logo != null">logo = #{logo},</if>
+			<if test="logo1 != null">logo1 = #{logo1},</if>
+			<if test="logo2 != null">logo2 = #{logo2},</if>
+			<if test="logo3 != null">logo3 = #{logo3},</if>
+			<if test="linkman != null">linkman = #{linkman},</if>
+			<if test="linkmanMobile != null">linkman_mobile = #{linkmanMobile},</if>
+			<if test="introduction != null">introduction = #{introduction},</if>
+			<if test="subpagePhone != null">subpage_phone = #{subpagePhone},</if>
+			<if test="subpageAddress != null">subpage_address = #{subpageAddress},</if>
+			modify_date = now()
+		where id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserAccount">
+	
+	  
+	<insert id="addUserAccount" parameterType="com.qmd.mode.user.UserAccount" useGeneratedKeys="true" keyProperty="id" >
+		insert into
+			fy_user_account 
+		(	
+			create_date,
+			modify_date,
+			user_id,
+			total,
+			able_money,
+			unable_money,
+			collection,
+			investor_collection_capital,
+			investor_collection_interest,
+			borrower_collection_capital,
+			borrower_collection_interest,
+			continue_total,
+			award_money,
+			taste_money
+		)
+		values (
+			now(),
+			now(),
+			#{userId},
+			#{total},
+			#{ableMoney},
+			#{unableMoney},
+			#{collection},
+			#{investorCollectionCapital},
+			#{investorCollectionInterest},
+			#{borrowerCollectionCapital},
+			#{borrowerCollectionInterest},
+			#{continueTotal},
+			#{awardMoney},
+			#{tasteMoney}
+		);
+	</insert>
+	<select id="getUserAccountByUserId" resultType="com.qmd.mode.user.UserAccount"
+		parameterType="java.lang.Integer">
+		select * from fy_user_account where user_id = #{userId}
+	</select>
+	
+	<select id="getForUpdate" resultType="com.qmd.mode.user.UserAccount" parameterType="java.lang.Integer">
+		select * from fy_user_account where id = #{id} for update
+	</select>
+	
+	<!-- 修改账户金额 -->
+	<update id="update" parameterType="com.qmd.mode.user.UserAccount">
+		update 
+		fy_user_account
+		set
+		 user_id = #{userId}
+		 ,total = #{total}
+		 ,able_money = #{ableMoney}
+		 ,unable_money = #{unableMoney}
+		 ,collection = #{collection}
+		 ,continue_total = #{continueTotal}
+		 ,investor_collection_capital = #{investorCollectionCapital}
+		 ,investor_collection_interest = #{investorCollectionInterest}
+		 ,borrower_collection_capital = #{borrowerCollectionCapital}
+		 ,borrower_collection_interest = #{borrowerCollectionInterest}
+		 ,continue_total = #{continueTotal}
+		  ,award_money = #{awardMoney}
+		  ,taste_money = #{tasteMoney}
+		,modify_date = now()
+		 where id = #{id}
+	</update>
+	
+	<update id="updateALL" parameterType="com.qmd.mode.user.UserAccount">
+		update 
+		fy_user_account
+		set
+		 user_id = #{userId}
+		 ,total = #{total}
+		 ,able_money = #{ableMoney}
+		 ,unable_money = #{unableMoney}
+		 ,collection = #{collection}
+		 ,continue_total = #{continueTotal}
+		 ,investor_collection_capital = #{investorCollectionCapital}
+		 ,investor_collection_interest = #{investorCollectionInterest}
+		 ,borrower_collection_capital = #{borrowerCollectionCapital}
+		 ,borrower_collection_interest = #{borrowerCollectionInterest}
+		 ,continue_total = #{continueTotal}
+		 ,award_money = #{awardMoney}
+		  ,taste_money = #{tasteMoney}
+		 ,modify_date = now()
+		 where id = #{id}
+	</update>
+	
+	<!-- 查询所有用户最新充值成功记录 -->
+	<select id="getAccountRechargeByNew" resultType="com.qmd.mode.user.UserAccountRecharge" parameterType="integer">
+		select 
+			u.username,
+			r.money,
+			r.modify_date 
+		from 
+			fy_user_account_recharge as r,
+			fy_user as u
+		where 
+			r.status = 1  
+			and
+			r.user_id=u.id
+		order by r.id desc
+		<if test="_parameter != null">
+			 limit 0,#{_parameter}
+		</if>
+	</select>
+	
+	<!-- 查询用户充值记录 -->
+	<select id="getAccountRechargeByUserId" resultType="com.qmd.mode.user.UserAccountRecharge" parameterType="java.util.Map">
+		select 
+			q1.*,
+			q2.name
+		from 
+			fy_user_account_recharge q1
+			left join fy_recharge_config q2 on q1.recharge_interface_id = q2.id
+		where
+			user_id = #{userId}
+			<if test="status!=null  and status!=''">
+				and q1.status = #{status}  
+			</if>
+			<if test="minDate!=null and maxDate!=null">
+				and q1.modify_date between #{minDate} and #{maxDate}
+			</if>
+		order by q1.id desc
+		<if test="max != null">
+		limit 0,#{max}
+		</if>
+		<if test="pager != null">
+		limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	
+	<!-- 用户充值总记录 -->
+	<select id="queryCountAccountRechargeByUserId" resultType="integer" parameterType="java.util.Map">
+		select
+			count(*) 
+			from fy_user_account_recharge
+		where 
+			user_id = #{userId}
+			<if test="status!=null and status!=''">
+				and status = #{status} 
+			</if>
+			<if test="minDate!=null and maxDate!=null">
+				and modify_date between #{minDate} and #{maxDate}
+			</if>
+	</select>
+	
+		
+	<!-- 查询用户资金记录 -->
+	<select id="getAccountDetailByUserId" resultType="com.qmd.mode.user.UserAccountDetail" parameterType="java.util.Map">
+		select 
+			* 
+			from 
+			fy_user_account_detail 
+		where 
+			user_id = #{userId}
+			<if test="minDate!=null">
+				and create_date <![CDATA[ >= ]]> #{minDate}
+			</if>
+			<if test="maxDate!=null">
+				and create_date <![CDATA[ <= ]]> #{maxDate}
+			</if>
+			
+			<if test="type!=null and type!=''">
+				and type = #{type}
+			</if>
+			<if test="strarray != null">
+				and type in 
+				<foreach item="item" index="index" collection="strarray"
+	      			open="(" separator="," close=")">
+	       	 		#{item}
+	  			</foreach>
+			</if>
+		order by id desc
+		limit #{pager.thisSize},#{pager.pageSize}
+	</select>
+	
+	<!-- 查询用户资金单笔详情 -->
+	<select id="getAccountDetailByUserIdSingle" resultType="com.qmd.mode.user.UserAccountDetail" parameterType="java.util.Map">
+		select 
+			* 
+			from 
+			fy_user_account_detail 
+		where 
+			user_id = #{userId}
+			and id=#{id}
+	</select>
+	
+	<!-- 用户资金总记录数 -->
+	<select id="queryCountAccountDetailByUserId" resultType="integer" parameterType="java.util.Map">
+		select
+			count(*)
+		from fy_user_account_detail
+		where
+		 	 user_id = #{userId}
+		 	 <if test="minDate!=null">
+				and create_date <![CDATA[ >= ]]> #{minDate}
+			</if>
+			<if test="maxDate!=null">
+				and create_date <![CDATA[ <= ]]> #{maxDate}
+			</if>
+		 	 
+			<if test="type!=null and type!=''">
+				and type = #{type}
+			</if>
+			
+			<if test="strarray != null">
+				and type in 
+				<foreach item="item" index="index" collection="strarray"
+	      			open="(" separator="," close=")">
+	       	 		#{item}
+	  			</foreach>
+			</if>
+	</select>
+	
+	<!-- 查询所有用户账户记录 -->
+	<select id="getUserAccountAllRecodeList" resultType="com.qmd.mode.user.UserAccount">
+		select 
+			* 
+		from 
+			fy_user_account as r
+		order by r.id 
+	</select>
+	
+</mapper>
+
+
+
+

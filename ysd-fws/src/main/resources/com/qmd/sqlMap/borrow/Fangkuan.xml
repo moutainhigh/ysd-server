@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Fangkuan">
+
+	<select id="getById" resultType ="com.qmd.mode.borrow.Fangkuan" parameterType = "java.lang.Integer">
+		select t.* from fy_fangkuan t  where t.id=#{id}
+	</select>
+
+	<select id="getForUpdate" resultType ="com.qmd.mode.borrow.Fangkuan" parameterType = "java.lang.Integer">
+		select t.* from fy_fangkuan t where t.id=#{id} for update
+	</select>
+
+	<select id="queryListByMap"  resultType ="com.qmd.mode.borrow.Fangkuan" parameterType="java.util.Map">
+		select t.*,
+		b.name,
+		u.real_name as borrowerRealName
+		 from fy_fangkuan t 
+		left join fy_borrow b on b.id = t.borrow_id 
+		left join fy_user u on u.id = t.user_id 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_fangkuan t 
+		left join fy_borrow b on b.id = t.borrow_id 
+		left join fy_user u on u.id = t.user_id 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="type != null">and t.type = #{type} </if>
+			<if test="agencyId != null">and t.agency_id = #{agencyId} </if>
+			<if test="userId != null">and t.user_id = #{userId} </if>
+			<if test="borrowId != null">and t.borrow_id = #{borrowId} </if>
+			<if test="fangkuanMoney != null">and t.fangkuan_money = #{fangkuanMoney} </if>
+			<if test="bankCard != null">and t.bank_card = #{bankCard} </if>
+			<if test="bankBranch != null">and t.bank_branch = #{bankBranch} </if>
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="ip != null">and t.ip = #{ip} </if>
+			<if test="verifyTime != null">and t.verify_time = #{verifyTime} </if>
+			<if test="verifyAdmin != null">and t.verify_admin = #{verifyAdmin} </if>
+			<if test="verifyPhone != null">and t.verify_phone = #{verifyPhone} </if>
+			<if test="verifyRemark != null">and t.verify_remark = #{verifyRemark} </if>
+			<if test="verifyIp != null">and t.verify_ip = #{verifyIp} </if>
+			<if test="sqMinDate != null">
+				<![CDATA[ and t.create_date >= #{sqMinDate}]]>
+			 </if>
+			<if test="sqMaxDate != null">
+				<![CDATA[ and t.create_date <=  #{sqMaxDate}]]>
+			</if>
+			
+			<if test="shMinDate != null">
+				<![CDATA[ and t.verify_time >= #{shMinDate}]]>
+			 </if>
+			<if test="shMaxDate != null">
+				<![CDATA[ and t.verify_time <=  #{shMaxDate}]]>
+			</if>
+			
+			
+			
+			<if test="name != null and name != '' ">
+				<![CDATA[and b.name like '%${name}%']]>
+			</if>
+			<if test="borrowerRealName != null"> and u.real_name = #{borrowerRealName}</if> 
+			<if test="agencyid != null"> and b.agency_id = #{agencyid}</if> 
+			<if test="borrowStatus != null"> and b.status = #{borrowStatus}</if>
+			<if test="borrowFangkuanStatus != null"> and b.fangkuan_status = #{borrowFangkuanStatus}</if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.borrow.Fangkuan" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_fangkuan(
+			<if test="type != null">type, </if>
+			<if test="agencyId != null">agency_id, </if>
+			<if test="userId != null">user_id, </if>
+			<if test="borrowId != null">borrow_id, </if>
+			<if test="fangkuanMoney != null">fangkuan_money, </if>
+			<if test="bankCard != null">bank_card, </if>
+			<if test="bankBranch != null">bank_branch, </if>
+			<if test="status != null">status, </if>
+			<if test="ip != null">ip, </if>
+			<if test="verifyTime != null">verify_time, </if>
+			<if test="verifyAdmin != null">verify_admin, </if>
+			<if test="verifyPhone != null">verify_phone, </if>
+			<if test="verifyRemark != null">verify_remark, </if>
+			<if test="verifyIp != null">verify_ip, </if>
+			modify_date,
+			create_date
+		)values(
+			
+			<if test="type != null">#{ type}, </if>
+			<if test="agencyId != null">#{ agencyId}, </if>
+			<if test="userId != null">#{ userId}, </if>
+			<if test="borrowId != null">#{ borrowId}, </if>
+			<if test="fangkuanMoney != null">#{ fangkuanMoney}, </if>
+			<if test="bankCard != null">#{ bankCard}, </if>
+			<if test="bankBranch != null">#{ bankBranch}, </if>
+			<if test="status != null">#{ status}, </if>
+			<if test="ip != null">#{ ip}, </if>
+			<if test="verifyTime != null">#{ verifyTime}, </if>
+			<if test="verifyAdmin != null">#{ verifyAdmin}, </if>
+			<if test="verifyPhone != null">#{ verifyPhone}, </if>
+			<if test="verifyRemark != null">#{ verifyRemark}, </if>
+			<if test="verifyIp != null">#{ verifyIp}, </if>
+			now(),
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.borrow.Fangkuan" >
+		update
+			fy_fangkuan
+		<set>
+			<if test="type != null">type = #{type},</if>
+			<if test="agencyId != null">agency_id = #{agencyId},</if>
+			<if test="userId != null">user_id = #{userId},</if>
+			<if test="borrowId != null">borrow_id = #{borrowId},</if>
+			<if test="fangkuanMoney != null">fangkuan_money = #{fangkuanMoney},</if>
+			<if test="bankCard != null">bank_card = #{bankCard},</if>
+			<if test="bankBranch != null">bank_branch = #{bankBranch},</if>
+			<if test="status != null">status = #{status},</if>
+			<if test="ip != null">ip = #{ip},</if>
+			<if test="verifyTime != null">verify_time = #{verifyTime},</if>
+			<if test="verifyAdmin != null">verify_admin = #{verifyAdmin},</if>
+			<if test="verifyPhone != null">verify_phone = #{verifyPhone},</if>
+			<if test="verifyRemark != null">verify_remark = #{verifyRemark},</if>
+			<if test="verifyIp != null">verify_ip = #{verifyIp},</if>
+				modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 申请放款列表 fy_borrow -->
+	<select id="queryBorrowList"  resultType ="com.qmd.bean.BorrowFangkuanBean" parameterType="java.util.Map">
+		select 
+			 b.id,
+			 b.name,
+			 u.real_name as borrowerRealName,
+			 b.success_time as firstRepaymentTime,
+			 b.account as borrowTotal,
+			 b.borrow_money,
+			 b.deposit_money,
+			 b.fee_money,
+			 b.fee_type,
+			 b.part_account
+		 from fy_borrow b
+		left join fy_user u on u.id = b.user_id 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryBorrowListCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_borrow b
+		left join fy_user u on u.id = b.user_id 
+		<include refid="queryWhere"/>
+	</select>
+	
+	<select id="getBorrowFangkuan" resultType ="com.qmd.bean.BorrowFangkuanBean" parameterType = "java.lang.Integer">
+		 SELECT 
+		  b.id,
+		  b.name,
+		  b.`user_id`,
+		  u.real_name AS borrowerRealName,
+		  tt.account AS bankCard,
+		  tt.branch AS bankBranch,
+		  b.account AS borrowTotal,
+		  b.deposit_money,
+		  b.fee_money,
+		  b.fee_type,
+		  b.part_account
+		FROM
+		  fy_borrow b 
+		  LEFT JOIN fy_user u ON u.id = b.user_id 
+		  LEFT JOIN 
+		  (SELECT ab.account,ab.branch,ab.user_id FROM fy_account_bank ab 
+		    WHERE ab.status =1 ) tt ON tt.user_id = b.user_id WHERE b.id = #{id}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
+

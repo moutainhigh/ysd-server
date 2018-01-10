@@ -1,0 +1,321 @@
+body * {
+    -webkit-text-size-adjust: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: auto;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 0.4rem/1.6 'Microsoft YaHei Arial';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, input, button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input, button {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#header .top {
+    width: 100%;
+    height: auto;
+}
+
+#header .top img {
+    display: block;
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    padding: 0 0.4rem;
+}
+
+/* 注册页面样式 */
+.register-list {
+    width: 100%;
+    margin-top: 0.33333333rem;
+}
+
+.register-list .line {
+    display: -webkit-flex;
+    display: flex;
+    padding-top: 0.82222222rem;
+}
+
+.register-list .line:last-child {
+    margin-top: 0.28rem;
+}
+
+.register-list .line .icon {
+    display: inline-block;
+    width: 1.26666666rem;
+    margin-right: 0.33333333rem;
+}
+
+.register-list .line .icon-phone {
+    background: url("../img/move/login_register_phoneNumber.png") no-repeat center center;
+    background-size: contain;
+}
+
+.register-list .line .icon-verification {
+    background: url("../img/move/login_register_verificationCode.png") no-repeat center center;
+    background-size: contain;
+}
+
+.register-list .line .icon-password {
+    background: url("../img/move/ogin_register_password.png") no-repeat center center;
+    background-size: contain;
+}
+
+.register-list .line input {
+    border: none;
+    color: #bab9be;
+}
+
+.register-list .line .input-text {
+    width: 100%;
+    height: 1.33333333rem;
+    line-height: 1.33333333rem;
+    text-indent: 0.2rem;
+    border-bottom: 2px solid #d1d1d1;
+}
+
+
+.register-list .line .identify_img {
+    width: 3.4rem;
+    height: 1.4rem;
+    margin-left: 0.17rem;
+    border-radius: 0.2rem;
+    line-height: 1.4rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.35555555rem;
+}
+
+.register-list .line .btn {
+    display: inline-block;
+}
+
+.register-list .line .btn-red {
+    background-color: #fe0000;
+}
+
+.register-list .line .btn-getCode {
+    width: 5rem;
+    height: 1.4rem;
+    margin-left: 0.17rem;
+    border-radius: 0.2rem;
+    line-height: 1.4rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.35555555rem;
+}
+
+.register-list .line .getcode_disable {
+    background-color: #ccc;
+}
+
+.register-list .line .btn-submit {
+    width: 100%;
+    height: 1.9rem;
+    border-radius: 0.2rem;
+    font-size: 0.7rem;
+    color: #fff;
+}
+
+.register-list .other-line {
+    margin: 0.9rem 0;
+    text-align: center;
+    color: #999;
+}
+
+.register-list .other-line .icon-check {
+    display: inline-block;
+    width: 0.44444444rem;
+    height: 0.44444444rem;
+    margin-top: -2px;
+    margin-right: 0.2rem;
+    background: url("../img/move/login_register_check.png") no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.register-list .other-line .checked {
+    background: url("../img/move/login_register_check_selected.png") no-repeat;
+    background-size: contain;
+}
+
+.register-list .other-line .a-red {
+    color: #bb3532;
+}
+
+
+/*项目介绍页面样式*/
+.project-info {
+    margin-top: 0.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.project-info h1 {
+    font-size: 0.6rem;
+}
+
+.project-info h2 {
+    height: 1rem;
+    margin-top: 0.4rem;
+    line-height: 1rem;
+    font-size: 0.45rem;
+}
+
+.project-info p {
+    margin-top: 0.4rem;
+}
+
+.reason-w {
+    margin-top: 0.6rem;
+}
+
+.reason-w ul {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.reason-w ul li {
+    width: 25%;
+    text-align: center;
+}
+
+.reason-w ul li .pic {
+    height: 1.82222222rem;
+    line-height: 1.82222222rem;
+}
+
+.reason-w ul li .pic img {
+    display: inline-block;
+    width: 1.77777777rem;
+    height: auto;
+    vertical-align: middle;
+}
+
+.reason-w ul li .tit {
+    display: inline-block;
+    margin-top: 0.3rem;
+}
+
+.project-info .ul-infos {
+    margin-top: 0.3rem;
+}
+
+.help .dl-list {
+    margin-top: 0.3rem;
+}
+
+.help .dl-list dt {
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.help .dl-list dd {
+    color: #666;
+}
+
+.hint-w a {
+    color: darkblue;
+}
+
+
+/*弹框样式*/
+.mobile-layer {
+    width: 100%;
+}
+
+.protocol-info {
+    padding: 0 0.5rem 0.5rem;
+}
+
+.protocol-info h1 {
+    height: 1rem;
+    margin-top: 0.5rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: 0.6rem;
+}
+
+.protocol-info h2, .protocol-info p {
+    margin-top: 0.3rem;
+}
+
+
+
+
+
+
+
+
+

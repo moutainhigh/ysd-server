@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite>
+	<rule>
+		<note>文章详情</note>
+		<from>^/article/content/(\w+).htm$</from>
+		<to type="forward">/article/content.do?id=$1</to>
+	</rule>
+</urlrewrite>

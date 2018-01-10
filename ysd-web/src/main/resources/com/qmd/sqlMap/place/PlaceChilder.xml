@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PlaceChilder">
+
+	<select id="getById" resultType ="com.qmd.mode.place.PlaceChilder" parameterType = "java.lang.Integer">
+		select t.*,p.name as placeName from fy_place_childer t left join fy_place p on p.id = t.place_id where t.id=#{id}
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.place.PlaceChilder" parameterType="java.util.Map">
+		select t.*,p.name as placeName from fy_place_childer t left join fy_place p on p.id = t.place_id 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_place_childer t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="status != null">and t.status = #{status} </if>
+			<if test="random != null">and t.random = #{random} </if>
+			 
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<update id="update" parameterType="com.qmd.mode.place.PlaceChilder" >
+		update
+			fy_place_childer
+		<set>
+			<if test="viewNum != null">view_num = #{viewNum},</if>
+			<if test="regNum != null">reg_num = #{regNum},</if>
+			<if test="loginNum != null">login_num = #{loginNum},</if>
+				modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+</mapper>
+

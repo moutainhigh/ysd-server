@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Borrow">
+	<select id="queryBorrowListCount" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+		count(*) 
+		from 
+		fy_borrow b 
+		left join fy_user u on
+    	b.user_id = u.id
+		where 1 =1 
+	<include refid="queryBy_noorder"/>
+	</select>
+	<select id="queryBorrowList" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.util.Map">
+		select b.*,
+		u.username,
+		(select a.name from fy_area a where a.id = u.city) city,
+		(select a.name from fy_area a where a.id = u.area) area
+		from
+		fy_borrow b 
+		left join fy_user u on
+    	b.user_id = u.id
+		where 1 =1 
+		<include refid="queryBy"/>
+		limit #{start},#{end}
+	</select>
+	<select id="queryBorrowListCopy" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.util.Map">
+		select 
+		  	b.* ,
+		  	(select ifnull(sum(b1.account),0) from fy_borrow b1 where b1.parent_id = b.id and b1.status in (1, 3, 5, 7)) as childmoneyfinish,
+		  	(select ifnull(sum(b2.account),0) from fy_borrow b2 where b2.parent_id = b.id and b2.status =0) as childmoneyready 
+		from
+		  	fy_borrow b 
+		where 1 =1 
+			<include refid="queryBy"/>
+			limit #{start},#{end}
+	</select>
+	<sql id="queryBy">
+		<if test="agencyId != null">
+			and b.agency_id = #{agencyId}
+		</if>
+		<if test="tenderUserId != null">
+			and d.user_id = #{tenderUserId}
+		</if>
+		<if test="userId != null">
+			and b.user_id = #{userId}
+		</if>
+		<if test="balance != null and balance !=''">
+			and b.balance = #{balance}
+		</if>
+		<if test="isVouch != null and isVouch !=''">
+			and b.is_vouch = #{isVouch}
+		</if>
+		<if test="array != null">
+			and b.status in 
+			<foreach item="item" index="index" collection="array"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+		</if>
+		<if test="types != null">
+			and b.type in 
+			<foreach item="item" index="index" collection="types"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+		</if>
+		<if test="keywords != null and keywords != '' ">
+			<![CDATA[and b.name like '%${keywords}%']]>
+		</if>
+		<if test="useReason != null and useReason != '' ">
+			and b.use_reason = #{useReason}
+		</if>
+		<if test="isday != null and isday != '' ">
+			and b.isday = #{isday}
+		</if>
+		<if test="timeLimit != null and timeLimit != '' ">
+			and b.time_limit = #{timeLimit}
+		</if>
+		<if test="accountStart != null and accountStart != '' ">
+			<![CDATA[b.and account >= #{accountStart}]]>
+		</if>
+		<if test="accountEnd != null and accountEnd != '' ">
+			<![CDATA[and b.account <= #{accountEnd}]]>
+		</if>
+		<if test="fundsStart != null and fundsStart != '' ">
+			<![CDATA[and b.funds >= #{fundsStart}]]>
+		</if>
+		<if test="fundsEnd != null and fundsEnd != '' ">
+			<![CDATA[and b.funds <= #{fundsEnd}]]>
+		</if>
+		<if test="bType != null">
+			and b.type = #{bType}
+		</if>
+		<if test="aprStart != null and aprStart != '' ">
+			<![CDATA[and b.apr >= #{aprStart}]]>
+		</if>
+		<if test="aprEnd != null and aprEnd != '' ">
+			<![CDATA[and b.apr <= #{aprEnd}]]>
+		</if>
+		<if test="timeLimitStart != null and timeLimitStart != '' ">
+			<![CDATA[and b.time_limit >= #{timeLimitStart}]]>
+		</if>
+		<if test="timeLimitEnd != null and timeLimitEnd != '' ">
+			<![CDATA[and b.time_limit <= #{timeLimitEnd}]]>
+		</if>
+		<if test="borrStatus != null and borrStatus != '' ">
+			<![CDATA[and b.status = #{borrStatus}]]>
+		</if>
+		<if test="minDate!=null and maxDate!=null">
+	    		and (b.create_date between #{minDate} and #{maxDate})
+		</if>
+		
+		<if test="varyAccountStart != null and varyAccountStart != '' ">
+			<![CDATA[and b.account >= #{varyAccountStart}]]>
+		</if>
+		<if test="varyAccountEnd != null and varyAccountEnd != '' ">
+			<![CDATA[and b.account <= #{varyAccountEnd}]]>
+		</if>
+		<if test="varyYearRateStart != null and varyYearRateStart != '' ">
+			<![CDATA[and b.vary_year_rate >= #{varyYearRateStart}]]>
+		</if>
+		<if test="varyYearRateEnd != null and varyYearRateEnd != '' ">
+			<![CDATA[and b.vary_year_rate <= #{varyYearRateEnd}]]>
+		</if>
+		<if test="varyMonthLimitStart != null and varyMonthLimitStart != '' ">
+			<![CDATA[and b.vary_month_limit >= #{varyMonthLimitStart}]]>
+		</if>
+		<if test="varyMonthLimitEnd != null and varyMonthLimitEnd != '' ">
+			<![CDATA[and b.vary_month_limit <= #{varyMonthLimitEnd}]]>
+		</if>
+		<if test="parentFlg !=null and parentFlg !=''">
+						and b.parent_flg =  #{parentFlg}
+		</if>
+		<if test="parentId !=null and parentId !=''">
+						and b.parent_id =  #{parentId}
+		</if>
+		<if test="parentMoney !=null and parentMoney !=''">
+						and b.parent_money =  #{parentMoney}
+		</if>
+		<if test="awardType !=null and awardType !=''">
+						and b.award_type =  #{awardType}
+		</if>
+		
+		<if test="orderBy != null and orderBy != '' ">
+			order by ${orderBy}
+		</if>
+	</sql>
+	<sql id="queryBy_noorder">
+		<if test="tenderUserId != null">
+			and d.user_id = #{tenderUserId}
+		</if>
+		<if test="userId != null">
+			and b.user_id = #{userId}
+		</if>
+		<if test="balance != null and balance !=''">
+			and b.balance = #{balance}
+		</if>
+		<if test="array != null">
+			and b.status in 
+			<foreach item="item" index="index" collection="array"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+		</if>
+		<if test="types != null">
+			and b.type in 
+			<foreach item="item" index="index" collection="types"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+		</if>
+		<if test="keywords != null and keywords != '' ">
+			<![CDATA[and b.name like '%${keywords}%']]>
+		</if>
+		<if test="useReason != null and useReason != '' ">
+			and b.use_reason = #{useReason}
+		</if>
+		<if test="isday != null and isday != '' ">
+			and b.isday = #{isday}
+		</if>
+		<if test="timeLimit != null and timeLimit != '' ">
+			and b.time_limit = #{timeLimit}
+		</if>
+		<if test="accountStart != null and accountStart != '' ">
+			<![CDATA[b.and account >= #{accountStart}]]>
+		</if>
+		<if test="accountEnd != null and accountEnd != '' ">
+			<![CDATA[and b.account <= #{accountEnd}]]>
+		</if>
+		<if test="fundsStart != null and fundsStart != '' ">
+			<![CDATA[and b.funds >= #{fundsStart}]]>
+		</if>
+		<if test="fundsEnd != null and fundsEnd != '' ">
+			<![CDATA[and b.funds <= #{fundsEnd}]]>
+		</if>
+		<if test="bType != null">
+			and b.type = #{bType}
+		</if>
+		<if test="aprStart != null and aprStart != '' ">
+			<![CDATA[and b.apr >= #{aprStart}]]>
+		</if>
+		<if test="aprEnd != null and aprEnd != '' ">
+			<![CDATA[and b.apr <= #{aprEnd}]]>
+		</if>
+		<if test="timeLimitStart != null and timeLimitStart != '' ">
+			<![CDATA[and b.time_limit >= #{timeLimitStart}]]>
+		</if>
+		<if test="timeLimitEnd != null and timeLimitEnd != '' ">
+			<![CDATA[and b.time_limit <= #{timeLimitEnd}]]>
+		</if>
+		<if test="borrStatus != null and borrStatus != '' ">
+			<![CDATA[and b.status = #{borrStatus}]]>
+		</if>
+		<if test="minDate!=null and maxDate!=null">
+	    		and (b.create_date between #{minDate} and #{maxDate})
+		</if>
+		
+		<if test="varyAccountStart != null and varyAccountStart != '' ">
+			<![CDATA[and b.account >= #{varyAccountStart}]]>
+		</if>
+		<if test="varyAccountEnd != null and varyAccountEnd != '' ">
+			<![CDATA[and b.account <= #{varyAccountEnd}]]>
+		</if>
+		<if test="varyYearRateStart != null and varyYearRateStart != '' ">
+			<![CDATA[and b.vary_year_rate >= #{varyYearRateStart}]]>
+		</if>
+		<if test="varyYearRateEnd != null and varyYearRateEnd != '' ">
+			<![CDATA[and b.vary_year_rate <= #{varyYearRateEnd}]]>
+		</if>
+		<if test="varyMonthLimitStart != null and varyMonthLimitStart != '' ">
+			<![CDATA[and b.vary_month_limit >= #{varyMonthLimitStart}]]>
+		</if>
+		<if test="varyMonthLimitEnd != null and varyMonthLimitEnd != '' ">
+			<![CDATA[and b.vary_month_limit <= #{varyMonthLimitEnd}]]>
+		</if>
+		
+		<if test="parentFlg !=null and parentFlg !=''">
+						and b.parent_flg =  #{parentFlg}
+		</if>
+		<if test="parentId !=null and parentId !=''">
+						and b.parent_id =  #{parentId}
+		</if>
+		<if test="awardType !=null and awardType !=''">
+						and b.award_type =  #{awardType}
+		</if>
+		<if test="parentMoney !=null and parentMoney !=''">
+						and b.parent_money =  #{parentMoney}
+		</if>
+		
+	</sql>
+	
+	<select id="getBorrowById" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">
+		select 
+		b.*,
+		a.company_name as agencyName,
+		u.username,
+		u.real_name as realName,
+		u.email as userEmail,
+		u.card_id as userCardId,
+		(select a.name from fy_area a where a.id = u.province) province,
+		(select a.name from fy_area a where a.id = u.city) city,
+		(select a.name from fy_area a where a.id = u.area) area
+		from fy_borrow b 
+			left join fy_user u on b.user_id = u.id
+			left join fy_agency a on a.id = b.agency_id
+		where b.id = #{id}
+	</select>
+	<!-- 列表查询 -->
+	<select id="queryUserBorrowList" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.util.Map">
+		select b.*,u.username
+		from
+		fy_borrow b left join fy_user u on
+    	b.user_id = u.id
+    	where 1=1 
+		<include refid="queryBy"/>
+	</select>
+	<!-- 添加标内容 -->
+	<insert id="addBor"  parameterType="com.qmd.mode.borrow.Borrow" useGeneratedKeys="true" keyProperty="id" >
+	insert into fy_borrow(			maxborrow_id,
+									user_id,
+									name,
+									status,
+									hits,
+									is_vouch,
+									type,
+									forst_account,
+									repayment_account,
+									monthly_repayment,
+									use_reason,
+									time_limit,
+									style,
+									account,
+									account_yes,
+									tender_times,
+									apr,
+									lowest_account,
+									most_account,
+									valid_time,
+									award,
+									part_account,
+									funds,
+									open_account,
+									open_borrow,
+									open_tender,
+									open_credit,
+									content,
+									is_do,
+									is_fast,
+									is_dxb,
+									pwd,
+									time_limit_day,
+									add_persion,
+									create_date,
+									operator_ip,
+									balance,
+									bor_stages,
+									bor_image,
+									<if test="borImageFirst!=null">
+	    								bor_image_first,
+									</if>
+									<if test="wanderTenderTimes!=null">
+	    								wander_tender_times,
+									</if>
+									<if test="wanderPieceSize!=null">
+	    								wander_piece_size,
+									</if>
+									<if test="wanderPieceMoney!=null">
+	    								wander_piece_money,
+									</if>
+									<if test="wanderRedeemTimes!=null">
+	    								wander_redeem_times,
+									</if>
+									<if test="wanderStages!=null and wanderStages!=''">
+	    								wander_stages,
+									</if>
+									<if test="bonus!=null and bonus!=''">
+	    								bonus,
+									</if>
+									<if test="interestTotal!=null and interestTotal!=''">
+	    								interest_total,
+									</if>
+									<if test="repayCapital!=null and repayCapital!=''">
+	    								repay_capital,
+									</if>
+									<if test="repayInterest!=null and repayInterest!=''">
+	    								repay_interest,
+									</if>
+									<if test="payedCapital!=null and payedCapital!=''">
+	    								payed_capital,
+									</if>
+									<if test="payedInterest!=null and payedInterest!=''">
+	    								payed_interest,
+									</if>
+									<if test="repaymentPeriod!=null and repaymentPeriod!=''">
+	    								repayment_period,
+									</if>
+									<if test="varyYearRate!=null and varyYearRate!=''">
+	    								vary_year_rate,
+									</if>
+									<if test="varyMonthLimit!=null and varyMonthLimit!=''">
+	    								vary_month_limit,
+									</if>
+									
+									<if test="parentFlg !=null and parentFlg !=''">
+	    								parent_flg,
+									</if>
+									<if test="parentId !=null and parentId !=''">
+	    								parent_id,
+									</if>
+									<if test="parentMoney !=null and parentMoney !=''">
+	    								parent_money,
+									</if>
+									<if test="awardType !=null and awardType !=''">
+	    								award_type,
+									</if>
+									<if test ="borrowInfoJson != null and borrowInfoJson != ''"> borrow_info_json, </if>
+									<if test ="borImage2 != null and borImage2 != ''"> bor_image2, </if>
+									<if test ="businessCode != null and businessCode != ''"> business_code, </if>
+									divides,
+									isday,
+									auto_tender_repay_way
+									) values
+								 (
+								 	#{maxborrowId},
+									#{userId},
+									#{name},
+									#{status},
+									#{hits},
+									#{isVouch},
+									#{type},
+									#{forstAccount},
+									#{repaymentAccount},
+									#{monthlyRepayment},
+									#{useReason},
+									#{timeLimit},
+									#{style},
+									#{account},
+									#{accountYes},
+									#{tenderTimes},
+									#{apr},
+									#{lowestAccount},
+									#{mostAccount},
+									#{validTime},
+									#{award},
+									#{partAccount},
+									#{funds},
+									#{openAccount},
+									#{openBorrow},
+									#{openTender},
+									#{openCredit},
+									#{content},
+									#{isDo},
+									#{isFast},
+									#{isDxb},
+									#{pwd},
+									#{timeLimitDay},
+									#{addPersion},
+									#{createDate},
+									#{operatorIp},
+									#{balance},
+									#{borStages},
+									#{borImage},
+									<if test="borImageFirst!=null">
+	    								#{borImageFirst},
+									</if>
+									<if test="wanderTenderTimes!=null">
+	    								#{wanderTenderTimes},
+									</if>
+									<if test="wanderPieceSize!=null">
+	    								#{wanderPieceSize},
+									</if>
+									<if test="wanderPieceMoney!=null">
+	    								#{wanderPieceMoney},
+									</if>
+									<if test="wanderRedeemTimes!=null">
+	    								#{wanderRedeemTimes},
+									</if>
+									<if test="wanderStages!=null and wanderStages!=''">
+	    								#{wanderStages},
+									</if>
+									<if test="bonus!=null and bonus!=''">
+	    								#{bonus},
+									</if>
+									<if test="interestTotal!=null and interestTotal!=''">
+	    								#{interestTotal},
+									</if>
+									<if test="repayCapital!=null and repayCapital!=''">
+	    								#{repayCapital},
+									</if>
+									<if test="repayInterest!=null and repayInterest!=''">
+	    								#{repayInterest},
+									</if>
+									<if test="payedCapital!=null and payedCapital!=''">
+	    								#{payedCapital},
+									</if>
+									<if test="payedInterest!=null and payedInterest!=''">
+	    								#{payedInterest},
+									</if>
+									<if test="repaymentPeriod!=null and repaymentPeriod!=''">
+	    								#{repaymentPeriod},
+									</if>
+									<if test="varyYearRate!=null and varyYearRate!=''">
+	    								#{varyYearRate},
+									</if>
+									<if test="varyMonthLimit!=null and varyMonthLimit!=''">
+	    								#{varyMonthLimit},
+									</if>
+									
+									<if test="parentFlg !=null and parentFlg !=''">
+										#{parentFlg},
+									</if>
+									<if test="parentId !=null and parentId !=''">
+	    								#{parentId},
+									</if>
+									<if test="parentMoney !=null and parentMoney !=''">
+	    								#{parentMoney},
+									</if>
+									<if test="awardType !=null and awardType !=''">
+	    								#{awardType},
+									</if>
+									<if test ="borrowInfoJson != null and borrowInfoJson != ''"> #{borrowInfoJson},</if>
+									<if test ="borImage2 != null and borImage2 != ''"> #{borImage2},</if>
+									<if test ="businessCode != null and businessCode != ''"> #{businessCode},</if>
+									#{divides},
+									#{isday},
+									#{autoTenderRepayWay}
+									)
+	</insert>
+	<select id="queryUserTenderBorrowListCount" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+		count(*) 
+		from 
+		fy_borrow b 
+		left join fy_user u on
+    	b.user_id = u.id
+		where 1 =1 
+	<include refid="queryBy_noorder"/>
+	</select>
+	
+	<select id="queryBorrowListCountForRepay" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+		count(*) 
+		from 
+		fy_borrow b 
+		left join fy_user u on
+    	b.user_id = u.id
+		where b.user_id = #{userId} AND ( (b.type = 2 AND b.status = 1) OR (b.type <![CDATA[ <> 2 ]]> AND b.status = 3))
+		<if test="keywords != null and keywords != '' ">
+			<![CDATA[ and b.name like '%${keywords}%' ]]>
+		</if>
+		<if test="minDate!=null and maxDate!=null">
+	    		and (b.create_date between #{minDate} and #{maxDate})
+		</if>
+	</select>
+	<select id="queryBorrowListForRepay" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.util.Map">
+		select b.*,
+		u.username,
+		(select a.name from fy_area a where a.id = u.city) city,
+		(select a.name from fy_area a where a.id = u.area) area
+		from
+		fy_borrow b 
+		left join fy_user u on
+    	b.user_id = u.id
+		where b.user_id = #{userId} 
+			AND ( (b.type = 2 AND b.status = 1) OR (b.type <![CDATA[ <> 2 ]]> AND b.status = 3))
+		<if test="keywords != null and keywords != '' ">
+			<![CDATA[ and b.name like '%${keywords}%' ]]>
+		</if>
+		<if test="minDate!=null and maxDate!=null">
+	    	and (b.create_date between #{minDate} and #{maxDate})
+		</if>
+		<if test="orderBy != null and orderBy != '' ">
+			order by ${orderBy}
+		</if>
+		limit #{start},#{end}
+	</select>
+	
+	<update id="updateborr" parameterType="com.qmd.mode.borrow.Borrow">
+		 update fy_borrow set 
+		 user_id = #{userId}
+		<if test ="name != null and name != ''"> ,name = #{name}</if>
+		<if test ="status != null and status != ''"> ,status = #{status}</if>
+		<if test ="hits != null and hits != ''"> ,hits = #{hits}</if>
+		<if test ="type != null and type != ''"> ,type = #{type}</if>
+		<if test ="repaymentUser != null and repaymentUser != ''"> ,repayment_user = #{repaymentUser}</if>
+		<if test ="repaymentAccount != null and status != ''"> ,repayment_account = #{repaymentAccount}</if>
+		<if test ="repaymentTime != null and repaymentTime != ''"> ,repayment_time = #{repaymentTime}</if>
+		<if test ="repamyentRemark != null and repamyentRemark != ''"> ,repamyent_remark = #{repamyentRemark}</if>
+		<if test ="successTime !=null and successTime != ''"> ,success_time = #{successTime}</if>
+		<if test ="endTime != null and endTime != ''"> ,end_time = #{endTime}</if>
+		<if test ="paymentAccount != null and paymentAccount != ''"> ,payment_account = #{paymentAccount}</if>
+		<if test ="repaymentYesaccount != null and repaymentYesaccount != ''"> ,repayment_yesaccount = #{repaymentYesaccount}</if>
+		<if test ="updatePersion != null and updatePersion != ''"> ,update_persion = #{updatePersion}</if>
+		<if test ="timeLimit != null and timeLimit != ''"> ,time_limit = #{timeLimit}</if>
+		<if test ="account != null and account != ''"> ,account = #{account}</if>
+		<if test ="apr != null and apr != ''"> ,apr = #{apr}</if>
+		<if test ="lowestAccount != null and lowestAccount != ''"> ,lowest_account = #{lowestAccount}</if>
+		<if test ="mostAccount != null and mostAccount != ''"> ,most_account = #{mostAccount}</if>
+		<if test ="validTime != null and validTime != ''"> ,valid_time = #{validTime}</if>
+		<if test ="award != null and award != ''"> ,award = #{award}</if>
+		<if test ="funds != null and funds != ''"> ,funds = #{funds}</if>
+		<if test ="content != null and content != ''"> ,content = #{content}</if>
+		<if test ="isDxb != null and isDxb != ''"> ,is_dxb = #{isDxb}</if>
+		<if test ="pwd != null and pwd != ''"> ,pwd = #{pwd}</if>
+		<if test ="operatorIp != null and operatorIp != ''"> ,operator_ip = #{operatorIp}</if>
+		<if test ="balance != null and balance != ''"> ,balance = #{balance}</if>
+		<if test ="borStages != null and borStages != ''"> ,bor_stages = #{borStages}</if>
+		<if test ="borImage != null and borImage != ''"> ,bor_image = #{borImage}</if>
+		<if test ="borImageFirst != null and borImageFirst != ''"> ,bor_image_first = #{borImageFirst}</if>
+		<if test ="schedule != null and schedule != ''"> ,schedule = #{schedule}</if>
+		<if test ="finalRepayDate != null and finalRepayDate != ''"> ,final_repay_date = #{finalRepayDate}</if>
+		<if test ="nextRepayDate != null and nextRepayDate != ''"> ,next_repay_date = #{nextRepayDate}</if>
+		<if test ="bonus != null and bonus != ''"> ,bonus = #{bonus}</if>
+		<if test ="interestTotal != null and interestTotal != ''"> ,interest_total = #{interestTotal}</if>
+		<if test="wanderTenderTimes!=null">
+						,wander_tender_times = #{wanderTenderTimes}
+		</if>
+		<if test="wanderPieceSize!=null">
+						,wander_piece_size = #{wanderPieceSize}
+		</if>
+		<if test="wanderPieceMoney!=null">
+						,wander_piece_money = #{wanderPieceMoney}
+		</if>
+		<if test="wanderRedeemTimes!=null">
+						,wander_redeem_times = #{wanderRedeemTimes}
+		</if>
+		<if test="wanderStages!=null and wanderStages!=''">
+						,wander_stages = #{wanderStages}
+		</if>
+		<if test="bonus!=null and bonus!=''">
+						,bonus = #{bonus}
+		</if>
+		<if test="interestTotal!=null and interestTotal!=''">
+						,interest_total = #{interestTotal}
+		</if>
+		<if test="divides!=null and divides!=''">
+						,divides = #{divides}
+		</if>
+		<if test="isVouch!=null">
+						,is_vouch = #{isVouch}
+		</if>
+		<if test="awardType!=null">
+						,award_type = #{awardType}
+		</if>
+		 ,repay_capital = #{repayCapital}
+		 ,repay_interest = #{repayInterest}
+		 ,payed_capital = #{payedCapital}
+		 ,payed_interest = #{payedInterest}
+		,modify_date = now()
+		 where id = #{id}
+	</update>
+	
+	<update  id="updateParent" parameterType="com.qmd.mode.borrow.Borrow">
+		update fy_borrow 
+		set 
+			parent_id = #{id}
+		 where id = #{id}
+	</update>
+	
+	
+	<!-- 删除标 -->
+	<delete id="delectborr" parameterType="java.lang.Integer" >
+	delete from fy_borrow where id = #{id}
+	</delete>
+	
+	<select id="queryUserTenderBorrowList" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.util.Map">
+		select b.*
+		from
+		fy_borrow b 
+    	left join fy_borrow_detail d on b.id = d.borrow_id  
+		where 1 =1 
+		<include refid="queryBy"/>
+		limit #{start},#{end}
+	</select>
+	
+	<select id="queryBorrowAccountSum" resultType ="double" parameterType = "java.util.Map">
+		select
+			 sum(account) as accountSum 
+		from 
+			fy_borrow b
+	    where 
+	    	b.user_id=#{userId}
+	    	<if test="array != null">
+				and b.status in 
+				<foreach item="item" index="index" collection="array"
+	      			open="(" separator="," close=")">
+	       	 		#{item}
+	  			</foreach>
+			</if>
+			<if test ="parentId != null and parentId != ''">
+				and b.parent_id = #{parentId}
+			</if>
+	</select>
+	
+	<!-- 后续添加 整理-->
+	
+<insert id="Borrow_insert"  parameterType="com.qmd.mode.borrow.Borrow" useGeneratedKeys="true" keyProperty="id" >
+insert into fy_borrow(
+status,
+<if test ="maxborrowId != null and maxborrowId != ''"> maxborrow_id,</if>
+<if test ="userId != null and userId != ''"> user_id,</if>
+<if test ="name != null and name != ''"> name,</if>
+<if test ="orderNum != null and orderNum != ''"> order_num,</if>
+<if test ="hits != null and hits != ''"> hits,</if>
+<if test ="isVouch != null and isVouch != ''"> is_vouch,</if>
+<if test ="type != null and type != ''"> type,</if>
+<if test ="verifyUser != null and verifyUser != ''"> verify_user,</if>
+<if test ="verifyTime != null and verifyTime != ''"> verify_time,</if>
+<if test ="verifyRemark != null and verifyRemark != ''"> verify_remark,</if>
+<if test ="repaymentUser != null and repaymentUser != ''"> repayment_user,</if>
+<if test ="forstAccount != null and forstAccount != ''"> forst_account,</if>
+<if test ="repaymentAccount != null and repaymentAccount != ''"> repayment_account,</if>
+<if test ="monthlyRepayment != null and monthlyRepayment != ''"> monthly_repayment,</if>
+<if test ="repaymentYesaccount != null and repaymentYesaccount != ''"> repayment_yesaccount,</if>
+<if test ="repaymentTime != null and repaymentTime != ''"> repayment_time,</if>
+<if test ="repamyentRemark != null and repamyentRemark != ''"> repamyent_remark,</if>
+<if test ="successTime != null and successTime != ''"> success_time,</if>
+<if test ="endTime != null and endTime != ''"> end_time,</if>
+<if test ="paymentAccount != null and paymentAccount != ''"> payment_account,</if>
+<if test ="eachTime != null and eachTime != ''"> each_time,</if>
+<if test ="useReason != null and useReason != ''"> use_reason,</if>
+<if test ="timeLimit != null and timeLimit != ''"> time_limit,</if>
+<if test ="style != null and style != ''"> style,</if>
+<if test ="account != null and account != ''"> account,</if>
+<if test ="accountYes != null and accountYes != ''"> account_yes,</if>
+<if test ="tenderTimes != null and tenderTimes != ''"> tender_times,</if>
+<if test ="apr != null and apr != ''"> apr,</if>
+<if test ="lowestAccount != null and lowestAccount != ''"> lowest_account,</if>
+<if test ="mostAccount != null and mostAccount != ''"> most_account,</if>
+<if test ="validTime != null and validTime != ''"> valid_time,</if>
+<if test ="award != null and award != ''"> award,</if>
+<if test ="partAccount != null and partAccount != ''"> part_account,</if>
+<if test ="funds != null and funds != ''"> funds,</if>
+<if test ="isFalse != null and isFalse != ''"> is_false,</if>
+<if test ="openAccount != null and openAccount != ''"> open_account,</if>
+<if test ="openBorrow != null and openBorrow != ''"> open_borrow,</if>
+<if test ="openTender != null and openTender != ''"> open_tender,</if>
+<if test ="openCredit != null and openCredit != ''"> open_credit,</if>
+<if test ="content != null and content != ''"> content,</if>
+<if test ="isDo != null and isDo != ''"> is_do,</if>
+<if test ="isMb != null and isMb != ''"> is_mb,</if>
+<if test ="isFast != null and isFast != ''"> is_fast,</if>
+<if test ="isDxb != null and isDxb != ''"> is_dxb,</if>
+<if test ="pwd != null and pwd != ''"> pwd,</if>
+<if test ="isday != null and isday != ''"> isday,</if>
+<if test ="timeLimitDay != null and timeLimitDay != ''"> time_limit_day,</if>
+<if test ="addPersion != null and addPersion != ''"> add_persion,</if>
+<if test ="addTime != null and addTime != ''"> add_time,</if>
+<if test ="updatePersion != null and updatePersion != ''"> update_persion,</if>
+<if test ="updateTime != null and updateTime != ''"> update_time,</if>
+<if test ="operatorIp != null and operatorIp != ''"> operator_ip,</if>
+<if test ="schedule != null and schedule != ''"> schedule,</if>
+<if test ="orderList != null and orderList != ''"> order_list,</if>
+<if test ="modifyDate != null and modifyDate != ''"> modify_date,</if>
+<if test ="balance != null and balance != ''"> balance,</if>
+<if test ="borImage != null and borImage != ''"> bor_image,</if>
+<if test ="borImageFirst != null and borImageFirst != ''"> bor_image_first,</if>
+<if test ="awardType != null and awardType != ''"> award_type,</if>
+<if test ="createDate != null and createDate != ''"> create_date, </if>
+<if test ="borrowInfoJson != null and borrowInfoJson != ''"> borrow_info_json, </if>
+<if test ="borImage2 != null and borImage2 != ''"> bor_image2, </if>
+<if test ="businessCode != null and businessCode != ''"> business_code </if>
+	) VALUES (
+#{status},
+<if test ="maxborrowId != null and maxborrowId != ''"> #{maxborrowId},</if>
+<if test ="userId != null and userId != ''"> #{userId},</if>
+<if test ="name != null and name != ''"> #{name},</if>
+<if test ="orderNum != null and orderNum != ''"> #{orderNum},</if>
+<if test ="hits != null and hits != ''"> #{hits},</if>
+<if test ="isVouch != null and isVouch != ''"> #{isVouch},</if>
+<if test ="type != null and type != ''"> #{type},</if>
+<if test ="verifyUser != null and verifyUser != ''"> #{verifyUser},</if>
+<if test ="verifyTime != null and verifyTime != ''"> #{verifyTime},</if>
+<if test ="verifyRemark != null and verifyRemark != ''"> #{verifyRemark},</if>
+<if test ="repaymentUser != null and repaymentUser != ''"> #{repaymentUser},</if>
+<if test ="forstAccount != null and forstAccount != ''"> #{forstAccount},</if>
+<if test ="repaymentAccount != null and repaymentAccount != ''"> #{repaymentAccount},</if>
+<if test ="monthlyRepayment != null and monthlyRepayment != ''"> #{monthlyRepayment},</if>
+<if test ="repaymentYesaccount != null and repaymentYesaccount != ''"> #{repaymentYesaccount},</if>
+<if test ="repaymentTime != null and repaymentTime != ''"> #{repaymentTime},</if>
+<if test ="repamyentRemark != null and repamyentRemark != ''"> #{repamyentRemark},</if>
+<if test ="successTime != null and successTime != ''"> #{successTime},</if>
+<if test ="endTime != null and endTime != ''"> #{endTime},</if>
+<if test ="paymentAccount != null and paymentAccount != ''"> #{paymentAccount},</if>
+<if test ="eachTime != null and eachTime != ''"> #{eachTime},</if>
+<if test ="useReason != null and useReason != ''"> #{useReason},</if>
+<if test ="timeLimit != null and timeLimit != ''"> #{timeLimit},</if>
+<if test ="style != null and style != ''"> #{style},</if>
+<if test ="account != null and account != ''"> #{account},</if>
+<if test ="accountYes != null and accountYes != ''"> #{accountYes},</if>
+<if test ="tenderTimes != null and tenderTimes != ''"> #{tenderTimes},</if>
+<if test ="apr != null and apr != ''"> #{apr},</if>
+<if test ="lowestAccount != null and lowestAccount != ''"> #{lowestAccount},</if>
+<if test ="mostAccount != null and mostAccount != ''"> #{mostAccount},</if>
+<if test ="validTime != null and validTime != ''"> #{validTime},</if>
+<if test ="award != null and award != ''"> #{award},</if>
+<if test ="partAccount != null and partAccount != ''"> #{partAccount},</if>
+<if test ="funds != null and funds != ''"> #{funds},</if>
+<if test ="isFalse != null and isFalse != ''"> #{isFalse},</if>
+<if test ="openAccount != null and openAccount != ''"> #{openAccount},</if>
+<if test ="openBorrow != null and openBorrow != ''"> #{openBorrow},</if>
+<if test ="openTender != null and openTender != ''"> #{openTender},</if>
+<if test ="openCredit != null and openCredit != ''"> #{openCredit},</if>
+<if test ="content != null and content != ''"> #{content},</if>
+<if test ="isDo != null and isDo != ''"> #{isDo},</if>
+<if test ="isMb != null and isMb != ''"> #{isMb},</if>
+<if test ="isFast != null and isFast != ''"> #{isFast},</if>
+<if test ="isDxb != null and isDxb != ''"> #{isDxb},</if>
+<if test ="pwd != null and pwd != ''"> #{pwd},</if>
+<if test ="isday != null and isday != ''"> #{isday},</if>
+<if test ="timeLimitDay != null and timeLimitDay != ''"> #{timeLimitDay},</if>
+<if test ="addPersion != null and addPersion != ''"> #{addPersion},</if>
+<if test ="addTime != null and addTime != ''"> #{addTime},</if>
+<if test ="updatePersion != null and updatePersion != ''"> #{updatePersion},</if>
+<if test ="updateTime != null and updateTime != ''"> #{updateTime},</if>
+<if test ="operatorIp != null and operatorIp != ''"> #{operatorIp},</if>
+<if test ="schedule != null and schedule != ''"> #{schedule},</if>
+<if test ="orderList != null and orderList != ''"> #{orderList},</if>
+<if test ="modifyDate != null and modifyDate != ''"> #{modifyDate},</if>
+<if test ="balance != null and balance != ''"> #{balance},</if>
+<if test ="borImage != null and borImage != ''"> #{borImage},</if>
+<if test ="borImageFirst != null and borImageFirst != ''"> #{borImageFirst},</if>
+<if test ="awardType != null and awardType != ''"> #{awardType},</if>
+<if test ="createDate != null and createDate != ''"> #{createDate},</if>
+<if test ="borrowInfoJson != null and borrowInfoJson != ''"> #{borrowInfoJson},</if>
+<if test ="borImage2 != null and borImage2 != ''"> #{borImage2},</if>
+<if test ="businessCode != null and businessCode != ''"> #{businessCode}</if>
+	)
+	</insert>
+	
+	<select id="getForUpdate" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">
+		select * from fy_borrow where id = #{id} for update
+	</select>
+	
+	<!-- pc  index-->
+	<select id="selectListByRongXunFlg" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">
+	  select * from fy_borrow where  status in(1,3,5,7) and rong_xun_flg = #{rongXunFlg} order by status asc, show_sort asc ,id desc limit 0,3	
+	</select>
+	
+</mapper>

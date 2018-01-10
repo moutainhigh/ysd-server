@@ -1,0 +1,96 @@
+#main .content {
+    height: 624px;
+    background-color: #fff;
+    margin-bottom: 370px;
+}
+.content .already_identify {
+    height: 50px;
+    width: 170px;
+    padding-left: 70px;
+    margin:0 auto;
+    line-height: 50px;
+    font-size: 24px;
+    box-sizing: border-box;
+    margin-top: 96px;
+    margin-left: 378px;
+    background: url("../img/recharge_success.png") no-repeat;
+
+}
+.content .already_identify_ing {
+    height: 50px;
+    width: 170px;
+    padding-left: 50px;
+    margin:0 auto;
+    line-height: 36px;
+    font-size: 24px;
+    box-sizing: border-box;
+    margin-top: 96px;
+    margin-left: 378px;
+    background: url("../img/recharge_success_ing.png") no-repeat;
+
+}
+.content .my_bankcard {
+    width: 405px;
+    margin:0 auto;
+    margin-top: 50px;
+}
+.content .my_bankcard > span{
+    font-size: 18px;
+    *float:left;
+}
+.content .my_bankcard .card_type {
+    display: inline-block;
+    vertical-align: top;
+    width: 258px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    *float:left;
+}
+.content .my_bankcard .card_type div.card_name {
+    height: 36px;
+    margin-left: 13px;
+    margin-top:13px;
+    margin-bottom:13px;
+    background: url("../img/banks.png") no-repeat;
+}
+.content .my_bankcard .card_type div.banks_ICBC{ background-position:0px 0px;}
+.content .my_bankcard .card_type div.banks_ABC{ background-position:0px -36px;}
+.content .my_bankcard .card_type div.banks_CCB{ background-position:0px -72px;}
+.content .my_bankcard .card_type div.banks_BOC{ background-position:0px -108px;}
+.content .my_bankcard .card_type div.banks_PSBC{ background-position:0px -144px;}
+.content .my_bankcard .card_type div.banks_PAB{ background-position:0px -216px;}
+.content .my_bankcard .card_type div.banks_BCOM{ background-position:0px -612px;}
+.content .my_bankcard .card_type div.banks_CIB{ background-position:0px -288px;}
+.content .my_bankcard .card_type div.banks_SPDB{ background-position:0px -324px;}
+.content .my_bankcard .card_type div.banks_CEB{ background-position:0px -360px;}
+.content .my_bankcard .card_type div.banks_CITIC{ background-position:0px -396px;}
+.content .my_bankcard .card_type div.banks_CMBC{ background-position:0px -468px;}
+.content .my_bankcard .card_type div.banks_GDB{ background-position:0px -504px;}
+.content .my_bankcard .card_type div.banks_CMB{ background-position:0px -540px;}
+.content .my_bankcard .card_type div.card_num {
+    height: 28px;
+    line-height: 28px;
+    background-color: #f5f5f5;
+    padding-left: 13px;
+    font-size: 14px;
+}
+.content .hint {
+    height: 71px;
+    box-sizing: border-box;
+    padding-top:21px;
+    padding-bottom:21px;
+    background-color: #fde8e8;
+    font-size: 14px;
+    margin-top: 116px;
+}
+.content .hint span {
+    display: inline-block;
+    height: 27px;
+    width: 101px;
+    background: url("../img/wram_tips.png") no-repeat;
+    margin-left: 68px;
+    padding-left: 47px;
+    font-size: 18px;
+}
+

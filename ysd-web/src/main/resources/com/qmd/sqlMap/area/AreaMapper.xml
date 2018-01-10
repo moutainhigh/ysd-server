@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Area">
+	
+	<select id="getRootAreaList" resultType ="com.qmd.mode.area.Area" >
+		select * from fy_area where pid is null order by order_list asc
+	</select>
+	
+	<select id="getParentAreaList" resultType ="com.qmd.mode.area.Area" >
+		select * from fy_area where id in
+		<foreach collection="area.domain" item="ids"  open="(" separator="," close=")">  
+            #{ids} 
+         </foreach>
+	</select>
+	
+	<select id="getChildrenAreaList" resultType ="com.qmd.mode.area.Area"  parameterType = "string" >
+		select * from fy_area where pid = #{id,jdbcType=INTEGER} 
+	</select>
+	
+	<select id="getAreaDomain" resultType ="string"  parameterType = "string" >
+		select domain from fy_area where id = #{id,jdbcType=INTEGER} 
+	</select>
+	
+	<select id="getAreaName" resultType ="string"  parameterType = "string" >
+		select name from fy_area where id = #{id,jdbcType=INTEGER} 
+	</select>
+	
+	
+	
+	
+</mapper>

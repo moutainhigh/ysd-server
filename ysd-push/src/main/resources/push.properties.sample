@@ -1,0 +1,9 @@
+#for test
+##商户端-测试环境
+#用于区分ios开发环境和生产环境
+JPUSH_B_IOS_ENV=false
+JPUSH_B_KEY=[{"appKey":"a74875a8262859a635a57f4b","masterSecret":"ba5b90e0e426eec10ba38619","maxRetryTimes":1},{"appKey":"f127a54a9fc4e8c9e38fe37c","masterSecret":"6c349b8dca63f70ad7699b45","maxRetryTimes":1}]
+
+#用于区分ios开发环境和生产环境
+JPUSH_C_IOS_ENV=false
+JPUSH_C_KEY=[{"appKey":"53f23ec5fc57ae07d2159f20","masterSecret":"d02d0100ccc54753a8d0d982","maxRetryTimes":1},{"appKey":"b577292003e47b61ddde89f3","masterSecret":"a06e5a44ccbc06d6f525712b","maxRetryTimes":1}]

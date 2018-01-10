@@ -1,0 +1,468 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>产品列表</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link type="text/css" href="${base}/h5/assets/css/amazeui.min.css" rel="stylesheet" media="screen" />
+    <!-- <link type="text/css" href="assets/css/app.css" rel="stylesheet" media="screen" /> -->
+    <link type="text/css" href="${base}/h5/assets/css/base.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/style.css" rel="stylesheet" />
+    <link type="text/css" href="${base}/h5/assets/css/invest_list.css" rel="stylesheet" media="screen" />
+
+    <!--    以下JS 必须在先加载，这里会阻塞页面，待优化-->
+    <script src="${base}/h5/mobile_js/jquery.min.js"></script>
+     <script src="${base}/h5/mobile_js/qmd.js"></script>
+     <script src="${base}/h5/mobile_js/base.js"></script>
+    <script src="${base}/h5/mobile_js/amazeui.min.js"></script>
+    <script>var CACHE_TIME = 2016060610111;</script>
+  <style>
+    .plus{  background: url(${base}/h5/mobile_img/9.png) no-repeat center center;display: inline-block;background-size: 100%;padding: 0.1em 0.7em;color: #fff;}
+  *, :after, :before {
+  box-sizing: content-box;
+}
+*, li, ul {
+    box-sizing: border-box;
+}
+  .am-list {
+    width: 100%;
+    min-height: 27.4rem;
+    font-size: .6rem;
+    background-color: #f4f4f4;
+    padding-bottom: 1.7rem;
+}
+.am-list > ul{
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fff;
+  margin-bottom: 0.8rem;
+}
+.am-list > ul li {
+  padding: 1.0rem;
+  font-size: 1.4rem;
+}
+.am-list > ul li:nth-child(1) {
+  border-bottom: 1px #f2f2f2 solid;
+  width: 92%;
+  height: 3.4rem;
+  line-height: 1.7rem;
+  margin: 0 auto;
+}
+.am-list > ul li:nth-child(2) {
+  line-height: 1.8rem;
+  font-size: 0;
+  padding-top: 0.4rem;
+}
+.am-list > ul li span.title {
+  font-size: 1.6rem;
+  color: #444444;
+  position: relative;
+  right: 4%;
+}
+.am-list > ul li span.imgs5 {
+  display: block;
+  background: url(/h5/mobile_img/orange.png) no-repeat;
+  background-size: 2.875rem .91rem;
+  width: 2.875rem;
+  height: .91rem;
+  float: right;
+  margin-left: 1rem;
+  position: relative;
+  left: .5rem;
+  top: -1px;
+  font-size: .5rem;
+  color: #fff;
+  text-align: center;
+  line-height: .9rem;
+}
+.am-list > ul li:nth-child(2) span {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  display: inline-block;
+  width: 24%;
+  box-sizing: border-box;
+  text-align: center;
+  color: #ff7255;
+}
+.am-list > ul li:nth-child(2) span:nth-child(1) {
+  font-size: 2.5rem;
+  color: #ff7255;
+  width: 46%;
+  line-height: 3rem;
+}
+.am-list > ul li:nth-child(2) span:nth-child(2) {
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  display: inline-block;
+  width: 30%;
+  box-sizing: border-box;
+  text-align: center;
+  color: #ff7255;
+  border-right: 1px #f2f2f2 solid;
+  border-left: 1px #f2f2f2 solid;
+}
+.am-list > ul li:nth-child(2) span::after {
+  content: attr(data);
+  font-size: 1.35rem;
+  display: block;
+  height: 1rem;
+  color: #999999;
+  margin-top: -0.65rem;
+  text-align: center;
+  padding-left: .5rem;
+}
+.am-list > ul li:nth-child(2) span:nth-child(1) .add {
+  font-size: 1.2rem;
+  color: #fff;
+  background: url(/h5/mobile_img/attach.png) no-repeat;
+  background-size: 5rem 2.25rem;
+  background-position: .3rem .4rem;
+  width: 6rem;
+  line-height: 3.0rem;
+  border: none;
+}
+.am-list > ul li:nth-child(2) .prolimite::after {
+  content: attr(data);
+  font-size: 1.35rem;
+  display: block;
+  height: 1rem;
+  color: #999999;
+  margin-top: -0.65rem;
+  text-align: center;
+  padding-left: 0;
+}
+span.imgs1 {
+  display: block;
+  background: url(/h5/mobile_img/green.png) no-repeat;
+  background-size: 100%;
+  width: 6em;
+  height: 1.9em;
+  float: right;
+  margin-left: 1rem;
+  position: relative;
+  top: -11px;
+  font-size: 1em;
+  color: #fff;
+  text-align: center;
+  line-height: 1.9em;
+}
+    </style>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<header data-am-widget="header" class="am-header am-header-default bgc h40 lh40 am-no-layout">
+  <div class="am-header-left am-header-nav">
+  <!--
+      <a href="#left-link" class="">
+          <i class="am-header-icon am-icon-bullhorn" style="font-size:1.1em;"></i>
+      </a>
+    -->
+  </div>
+  <h1 class="am-header-title">
+      产品列表
+  </h1>
+  <div class="am-header-right am-header-nav">
+      <a href="#right-link" class="">
+      </a>
+  </div>
+</header>
+<!--content-->
+
+<script src="/h5/mobile_js/handlebars.min.js"></script>
+<script src="/h5/mobile_js/circle.js"></script>
+
+<div class="page">
+    <div id="wrapper" data-am-widget="list_news"
+         class="am-list-news am-list-news-default">
+        <div class="am-list-news-bd">
+            <div class="pull-action loading" id="pull-down">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-down-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="am-list" id="events-list">
+                <li class="am-list-item-desced">
+                    <div class="am-list-item-text">
+                      	  正在加载内容...
+                    </div>
+                </li>
+            </ul>
+            <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-up-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+    {{#each this}}
+		<ul data-id="{{id}}" onclick="goborrow({{id}})">
+		        <li>
+		            <span class="title">{{name}}</span>
+						 {{getState type}}
+		        </li>
+		        <li>
+					<span data="年化收益率">{{baseApr}}%{{getAward awardApr}}</span>
+					<span data="投资期限(天)" class="prolimite">{{timeLimit}}</span>
+		            <span data=""><!-- 60000 -->
+		                <div class="circle" style="width:7rem;height:44px;float:left;margin-right:1em;margin-top:0.5rem;">
+							<canvas width="44" height="44" data-to="{{schedule}}" data1="{{showBorrowStatus}}"></canvas>
+		                    <div class="tac" style="width:100%;margin-top:-4.0em;">
+								<span style="font-size:1em;color:#999;width:100%;"{{getStatus status}}>{{showBorrowStatus}}</span>
+                			</div>
+		                </div>
+		            </span>                     
+		        </li>
+		    </ul>
+    {{/each}}
+</script>
+<script>
+
+    	
+     Handlebars.registerHelper('getStatus',function(status) { //这边的state是等下要用在模板文件里面的
+		if(status == 1){
+            return new Handlebars.SafeString(' class="color"');
+        } else{
+            return '';
+        }
+    });
+     Handlebars.registerHelper('getAward',function(awardApr) { //这边的state是等下要用在模板文件里面的
+		if(eval(awardApr) > 0){
+            return new Handlebars.SafeString('<span class="add" rate="2.8">+' + awardApr + '%</span>');
+        } else{
+            return '';
+        }
+    });
+     Handlebars.registerHelper('getState',function(type) { //这边的state是等下要用在模板文件里面的
+        if(type == 16){
+            return new Handlebars.SafeString('<span class="imgs1">新手标</span>');
+        } else{
+            return '';
+        }
+    });
+    (function($) {
+        //当前加载页  用来控制全局的上拉加载  下拉刷新
+        var tag=1;
+        var EventsList = function(element, options) {
+            var $main = $('#wrapper');
+            var $list = $main.find('#events-list');
+            var $pullDown = $main.find('#pull-down');
+            var $pullDownLabel = $main.find('#pull-down-label');
+            var $pullUp = $main.find('#pull-up');
+            var topOffset = -$pullDown.outerHeight();
+
+            this.compiler = Handlebars.compile($('#tpi-list-item').html());
+            tag= options.params.pageNumber;
+            this.pageCount = null;
+
+            this.getURL = function(params) {
+                var queries = ['callback=1'];
+                for (var key in  params) {
+                    if (key !== 'pageNumber') {
+                        queries.push(key + '=' + params[key]);
+                    }
+                }
+                queries.push('pageNumber=');
+                return options.api + '?' + queries.join('&');
+            };
+
+            this.renderList = function(type) {
+                var _this = this;
+                var $el = $pullDown;
+
+                if (type === 'load') {
+                    $el = $pullUp;
+                }
+
+/*                console.log("start");
+                console.log(this.URL + tag);*/
+
+                $.get(this.URL+tag).then(function(strdata) {
+
+    
+                    var data= $.parseJSON(strdata);
+/*                    console.log("data:");
+                    console.log(data);*/
+                    var datalist=data.borrowItemList;
+                    //替换掉默认的
+
+                    _this.pageCount = data.pageBean.pageCount;  //设置统计总页数的参数
+                    if (_this.pageCount == 1) {
+						$("#pull-down").hide();
+						$("#pull-up").html("没有更多数据哦 <span style='text-decoration:underline;' onclick='location.reload();'>点我刷新<span>");
+					}
+                    tag =++data.pageBean.pageNumber; //请求成功了，pageNumber 自增 1
+
+
+                    var html = _this.compiler(datalist);
+                    if (type === 'refresh') {
+                        $list.html(html);
+                        processLoad();
+                    } else if (type === 'load') {
+                        $list.append(html);
+                        processLoad();
+                    } else {
+                        $list.html(html);
+                        processLoad();
+                    }
+
+                    // refresh iScroll
+                    setTimeout(function() {
+                        _this.iScroll.refresh();
+                    }, 100);
+                }, function() {
+                    console.log('Error...');
+                }).always(function() {
+                    _this.resetLoading($el);
+                    if (type !== 'load') {
+                        _this.iScroll.scrollTo(0, topOffset, 800, $.AMUI.iScroll.utils.circular);
+                    }
+                });
+            };
+
+            this.setLoading = function($el) {
+                $el.addClass('loading');
+            };
+
+            this.resetLoading = function($el) {
+                $el.removeClass('loading');
+            };
+
+            this.init = function() {
+                var myScroll = this.iScroll = new $.AMUI.iScroll('#wrapper', {
+                    click: true
+                });
+                // myScroll.scrollTo(0, topOffset);
+                var _this = this;
+                var pullFormTop = false;
+                var pullStart;
+
+                this.URL = this.getURL(options.params);
+                this.renderList();
+
+                myScroll.on('scrollStart', function() {
+                    if (this.y >= topOffset) {
+                        pullFormTop = true;
+                    }
+
+                    pullStart = this.y;
+                    // console.log(this);
+                });
+
+                myScroll.on('scrollEnd', function() {
+                    if (pullFormTop && this.directionY === -1) {
+                        _this.handlePullDown();
+                    }
+                    pullFormTop = false;
+
+                    // pull up to load more
+                    if (pullStart === this.y && (this.directionY === 1)) {
+                        _this.handlePullUp();
+                    }
+                });
+            };
+
+            this.handlePullDown = function() {
+                console.log('handle pull down');
+                //下拉刷新 先把  tag 的值设置为 1
+                tag=1;
+                this.setLoading($pullDown);
+                this.renderList( 'refresh');
+            };
+
+            this.handlePullUp = function() {
+//                console.log('handle pull up');
+/*                console.log(this.next);
+                console.log(this.total);*/
+            
+                if (tag < this.pageCount) {
+                    this.setLoading($pullUp);
+                    this.renderList( 'load');
+                } else {
+                    $("#pull-up").html("没有更多数据哦");
+                    // this.iScroll.scrollTo(0, topOffset);
+                }
+            }
+        };
+
+
+        $(function() {
+            var app = new EventsList(null, {
+             	   api: qmd.base+'/rest/borrow',
+                params: {
+                    pageNumber: 1,
+                    pageSize: 10,
+                    totalCount:0,
+                    pageCount:0
+                }
+            });
+            app.init();
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, false);
+    })(window.jQuery);
+    
+    function goborrow(id){
+   window.location.href =qmd.base+"/borrow/detail.do?id="+id;
+   }
+   function goPage1(){
+   window.location.href =qmd.base+"/index.do";
+   }
+    function goPage2(){
+   window.location.href =qmd.base+"/userCenter/index.do";
+   }
+    function goPage3(){
+   window.location.href =qmd.base+"/moreTo.do";
+   }
+</script>
+<div class="footer" >
+  <ul class="am-navbar-nav am-cf am-avg-sm-4" style="background-color:#f9f9f9;">
+		     <li>
+      <a href="#" onclick=" goPage1()">
+        <span class="am-icon home"></span>
+        <span class="am-navbar-label">首页</span>
+      </a>
+    </li>
+		     <li>
+      <a class="active" href="#">
+        <span class="am-icon list"></span>
+        <span class="am-navbar-label">产品列表</span>
+      </a>
+    </li>
+		     <li>
+      <a href="#" onclick=" goPage2()">
+        <span class="am-icon acpageCount"></span>
+        <span class="am-navbar-label">我的钱袋</span>
+      </a>
+    </li>
+ 
+	<li>
+      <a href="#" onclick=" goPage3()">
+        <span class="am-icon more"></span>
+        <span class="am-navbar-label">更多</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/public/AmazeUI-2.4.2/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+</body>
+</html>

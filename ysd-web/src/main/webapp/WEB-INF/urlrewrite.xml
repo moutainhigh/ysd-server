@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite>
+
+	<rule>
+		<note>文章列表</note>
+		<from>^/article/list/(\w+).htm$</from>
+		<to type="forward">/about.do?sign=$1</to>
+	</rule>
+	<rule>
+		<note>文章详情</note>
+		<from>^/article/content/(\w+).htm$</from>
+		<to type="forward">/article/content.do?id=$1</to>
+	</rule>
+	<rule>
+		<note>会员协议</note>
+		<from>^/reg_treaty.htm$</from>
+		<to type="forward">/regTreaty.do</to>
+	</rule>
+	<!-- <rule>
+		<note>投资人推广</note>
+		<from>^/fd/(\w+).htm$</from>
+		<to type="forward">/spread.do?r=$1</to>
+	</rule>
+
+	<rule>
+		<note>投资人推广</note>
+		<from>^/p_(\w+)$</from>
+		<to type="forward">/spread.do?r=$1&amp;f=p</to>
+	</rule>
+	 -->
+ 	<rule>
+		<note>投资人推广</note>
+		<from>^/fd/(\w+)$</from>
+		<to type="forward">/spread.do?r=$1</to>
+	</rule>
+	
+ 	<rule>
+		<note>渠道活动推广</note>
+		<from>^/pr/(\w+)$</from>
+		<to type="forward">/place.do?r=$1</to>
+	</rule>
+</urlrewrite>

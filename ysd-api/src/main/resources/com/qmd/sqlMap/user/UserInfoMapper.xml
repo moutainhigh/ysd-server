@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserInfo">
+	
+	<!-- 注册添加用户详细信息 -->
+	<insert id="addUserInfo" parameterType="com.qmd.mode.user.UserInfo" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_info
+			(user_id,
+			create_date,
+			modify_date,
+			add_ip,
+			private_name) 
+		values
+			(#{userId},
+			now(),
+			now(),
+			#{addIp},
+			#{privateName}
+			);
+	</insert>
+	
+	<!-- 根据用户ID查找用户详情 -->
+	<select id="findByUserId" resultType="com.qmd.mode.user.UserInfo"
+		parameterType="string">
+		select * from fy_user_info where user_id = #{userId}
+	</select>
+	
+	<!-- 个人借款人资料认证 -->
+	<update id="updateDetailProfile" parameterType="com.qmd.mode.user.UserInfo" >
+		update fy_user_info set
+			modify_date=#{modifyDate},
+			marry=#{marry},
+			bareheaded_img=#{bareheadedImg},
+			address=#{address},
+			marry=#{marry},
+			company_name=#{companyName},
+			company_address=#{companyAddress},
+			company_office=#{companyOffice},
+			income=#{income},
+			others=#{others},
+			education_record=#{educationRecord},
+			social_insurance_status=#{socialInsuranceStatus},
+			housing=#{housing},
+			car_status=#{carStatus},
+			update_ip=#{updateIp}
+		where 
+			id = #{id}
+	</update>
+	
+	<!-- 修改企业资料 -->
+	<update id="updateEnterprise" parameterType="com.qmd.mode.user.UserInfo" >
+		update fy_user_info set
+			modify_date=now(),
+			private_name=#{privateName},
+			registration=#{registration},
+			tax_registration=#{taxRegistration},
+			organization=#{organization},
+			registered_capital=#{registeredCapital},
+			linkman=#{linkman},
+			private_phone=#{privatePhone},
+			introduce=#{introduce},
+			private_charter_img=#{privateCharterImg},
+			private_tax_img=#{privateTaxImg},
+			private_organization_img=#{privateOrganizationImg},
+			account_licence_img = #{accountLicenceImg},
+			private_place=#{privatePlace},
+			private_income=#{privateIncome},
+			private_employees=#{privateEmployees},
+			update_ip=#{updateIp}
+		where 
+			id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="LogIdentity">
+
+	<insert id="baseInsert" parameterType = "com.qmd.mode.report.LogIdentity" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_log_identity(
+			<if test="msgStatus != null">msg_status, </if>
+			<if test="msgValue != null">msg_value, </if>
+			<if test="msgQuerySeq != null">msg_query_seq, </if>
+			<if test="policeStatus != null">police_status, </if>
+			<if test="policeValue != null">police_value, </if>
+			<if test="name != null">name, </if>
+			<if test="identitycard != null">identitycard, </if>
+			<if test="compStatus != null">comp_status, </if>
+			<if test="compResult != null">comp_result, </if>
+			<if test="region != null">region, </if>
+			<if test="birthday != null">birthday, </if>
+			<if test="sex != null">sex, </if>
+			<if test="returnXml != null">return_xml, </if>
+			create_date,
+			modify_date
+		)values(
+			<if test="msgStatus != null">#{msgStatus}, </if>
+			<if test="msgValue != null">#{msgValue}, </if>
+			<if test="msgQuerySeq != null">#{msgQuerySeq}, </if>
+			<if test="policeStatus != null">#{policeStatus}, </if>
+			<if test="policeValue != null">#{policeValue}, </if>
+			<if test="name != null">#{name}, </if>
+			<if test="identitycard != null">#{identitycard}, </if>
+			<if test="compStatus != null">#{compStatus}, </if>
+			<if test="compResult != null">#{compResult}, </if>
+			<if test="region != null">#{region}, </if>
+			<if test="birthday != null">#{birthday}, </if>
+			<if test="sex != null">#{sex}, </if>
+			<if test="returnXml != null">#{returnXml}, </if>
+			now(),
+			now()
+		)
+	</insert>
+
+</mapper>
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserAccountDetail">
+	<insert id="insert" parameterType="com.qmd.mode.user.UserAccountDetail" useGeneratedKeys="true" keyProperty="id" >
+		insert 
+		into 
+		fy_user_account_detail(
+			<if test ="userId != null and userId != ''">user_id</if>
+			,create_date
+			,modify_date
+			<if test ="type != null and type != ''">,type</if>
+			<if test ="total != null and total != ''">,total</if>
+			,money
+			<if test ="useMoney != null and useMoney != ''">,use_money</if>
+			<if test ="noUseMoney != null and noUseMoney != ''">,no_use_money</if>
+			<if test ="collection != null and collection != ''">,collection</if>
+			<if test ="toUser != null and toUser != ''">,to_user</if>
+			<if test ="remark != null and remark != ''">,remark</if>
+			<if test ="addTime != null and addTime != ''">,add_time</if>
+			<if test ="operatorIp != null and operatorIp != ''">,operator_ip</if>
+			<if test ="awardMoney != null and awardMoney != ''">,award_money</if>
+			<if test ="tasteMoney != null and tasteMoney != ''">,taste_money</if>
+			<if test ="borrowId != null and borrowId != ''">,borrow_id</if>
+			
+			,investor_collection_capital
+			,investor_collection_interest
+			,borrower_collection_capital
+			,borrower_collection_interest
+			,continue_total
+			)
+			values(
+			<if test ="userId != null and userId != ''">#{userId}</if>
+			,now()
+			,now()
+			<if test ="type != null and type != ''">,#{type}</if>
+			<if test ="total != null and total != ''">,#{total}</if>
+			,#{money}
+			<if test ="useMoney != null and useMoney != ''">,#{useMoney}</if>
+			<if test ="noUseMoney != null and noUseMoney != ''">,#{noUseMoney}</if>
+			<if test ="collection != null and collection != ''">,#{collection}</if>
+			<if test ="toUser != null and toUser != ''">,#{toUser}</if>
+			<if test ="remark != null and remark != ''">,#{remark}</if>
+			<if test ="addTime != null and addTime != ''">,#{addTime}</if>
+			<if test ="operatorIp != null and operatorIp != ''">,#{operatorIp}</if>
+			<if test ="awardMoney != null and awardMoney != ''">,#{awardMoney}</if>
+			<if test ="tasteMoney != null and tasteMoney != ''">,#{tasteMoney}</if>
+			<if test ="borrowId != null and borrowId != ''">,#{borrowId}</if>
+			,#{investorCollectionCapital}
+			,#{investorCollectionInterest}
+			,#{borrowerCollectionCapital}
+			,#{borrowerCollectionInterest}
+			,#{continueTotal}
+			)
+	</insert>
+	
+	
+	<!-- 查询用户投标总额  -->
+	<select id="selectSumMoneyBySign" resultType ="bigDecimal" parameterType = "java.util.Map">
+		select
+			sum(money) 
+		from 
+			fy_user_account_detail
+	    where
+	    	user_id=#{userId} and type = #{type}
+	</select>
+	
+	<select id="selectSumMoneyBySignDate" resultType ="bigDecimal" parameterType = "java.util.Map">
+		select
+			sum(money) 
+		from 
+			fy_user_account_detail
+	    where
+	    	user_id=#{userId} and type = #{type}
+		<if test="minDate!=null and maxDate!=null">
+	    	and (create_date between #{minDate} and #{maxDate})
+		</if>
+	</select>
+	
+</mapper>

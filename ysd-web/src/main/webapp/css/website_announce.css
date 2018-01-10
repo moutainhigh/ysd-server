@@ -1,0 +1,41 @@
+.content {
+    width: 1200px;
+    margin:0 auto;
+    background: #f2f2f2;
+    margin-top: 58px;
+    margin-bottom: 137px;
+}
+.content .announce {
+    background-color: #fff;
+    width: 895px;
+    margin-left: 35px;
+    padding: 0 65px;
+    box-sizing: border-box;
+    *width:805px;
+}
+.content .announce .announce_title {
+    background-color: #fff;
+    font-size: 24px;
+    color: #ef3e44;
+    text-align: center;
+    margin-top: 18px;
+    line-height:68px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.content .announce .announce_wrap {
+    height: 67px;
+    line-height: 67px;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px dashed #e5e5e5;
+}
+.content .announce .announce_wrap > a {
+    color: #333;
+    text-decoration: none;
+}
+.content .announce .announce_wrap > div:nth-child(2) {
+    text-align: right;
+    color: #666666;
+    padding-right: 20px;
+}

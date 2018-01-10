@@ -1,0 +1,47 @@
+body {
+    background: url(../img/app_download.jpg)  no-repeat;
+}
+#content {
+    width: 1200px;
+    margin: 0 auto;
+}
+#content .title {
+    box-sizing: border-box;
+    font-size: 60px;
+    font-family:"Microsoft YaHei",serif,sans-serif;
+    margin-top: 30px;
+}
+
+#content .download {
+       padding-top: 58px;
+    margin-right: 300px;
+}
+#content > div.img {
+    margin-top: 30px;
+}
+#content .download > div {
+    display: inline-block;
+    text-align: center;
+    font-size: 40px;
+    color: #fffefe;
+}
+#content .download > div img {
+    width: 308px;
+    height: 308px;
+}
+#content .download > div p {
+    margin-top: 10px;
+}
+#content .download > div p i {
+    display: inline-block;
+    width: 32px;
+    height: 40px;
+    background: url("../img/apple_10.png");
+    margin-right: 20px;
+}
+#content .download > div.last {
+    margin-left: 88px;
+}
+#content .download > div.last p i {
+    background: url("../img/android_logo.png");
+}

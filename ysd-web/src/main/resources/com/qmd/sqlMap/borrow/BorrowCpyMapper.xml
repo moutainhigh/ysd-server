@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BorrowCompany">
+	<insert id="addMes"  parameterType="com.qmd.mode.borrow.BorCompany" useGeneratedKeys="true" keyProperty="id" >
+	insert into fy_borrow_company(isqiye,
+									yongtu,
+									Mortgage,
+									diya,
+									ddlAge,
+									ddlOccupation,
+									ddlInCome,
+									ddlIndustry,
+									ddlTurnover,
+									ddlStaff,
+									txtRemark,
+									txtContact,
+									Sex,
+									txtTelephone,
+									user_id,
+									borrow_id,
+									companyname) values
+								 (#{isqiye},
+									#{yongtu},
+									#{mortgage},
+									#{diya},
+									#{ddlAge},
+									#{ddlOccupation},
+									#{ddlInCome},
+									#{ddlIndustry},
+									#{ddlTurnover},
+									#{ddlStaff},
+									#{txtRemark},
+									#{txtContact},
+									#{sex},
+									#{txtTelephone},
+									#{userId},
+									#{borrowId},
+									#{companyname}
+									)
+	</insert>
+	
+	<update id="updateId"   parameterType="java.util.Map"  >
+	 update fy_borrow_company set borrow_id = #{borrowId} where id = #{companyId}
+	</update>
+	
+</mapper>

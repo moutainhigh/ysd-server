@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="IosIdfa">
+
+	<select id="getById" resultType ="com.qmd.mode.place.IosIdfa" parameterType = "java.lang.Integer">
+		select t.* from fy_ios_idfa t where t.id=#{id}
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.place.IosIdfa" parameterType="java.util.Map">
+		select t.* from fy_ios_idfa t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_ios_idfa t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="idfa != null">and t.idfa = #{idfa} </if>
+			<if test="ip != null">and t.ip = #{ip} </if>
+			<if test="drkey != null">and t.drkey = #{drkey} </if>
+			<if test="source != null">and t.source = #{source} </if>
+			<if test="placeChilderId != null">and t.place_childer_id = #{placeChilderId} </if>
+			<if test="mac != null">and t.mac = #{mac} </if>
+			<if test="udid != null">and t.udid = #{udid} </if>
+			<if test="os != null">and t.os = #{os} </if>
+			<if test="callback != null">and t.callback = #{callback} </if>
+			<if test="status != null">and t.status = #{status} </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.place.IosIdfa" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_ios_idfa(
+			<if test="modifyDate != null">modify_date, </if>
+			<if test="idfa != null">idfa, </if>
+			<if test="ip != null">ip, </if>
+			<if test="drkey != null">drkey, </if>
+			<if test="source != null">source, </if>
+			<if test="placeChilderId != null">place_childer_id, </if>
+			<if test="mac != null">mac, </if>
+			<if test="udid != null">udid, </if>
+			<if test="os != null">os, </if>
+			<if test="callback != null">callback, </if>
+			<if test="status != null">status, </if>
+			create_date
+		)values(
+			<if test="modifyDate != null">#{ modifyDate}, </if>
+			<if test="idfa != null">#{ idfa}, </if>
+			<if test="ip != null">#{ ip}, </if>
+			<if test="drkey != null">#{ drkey}, </if>
+			<if test="source != null">#{ source}, </if>
+			<if test="placeChilderId != null">#{ placeChilderId}, </if>
+			<if test="mac != null">#{ mac}, </if>
+			<if test="udid != null">#{ udid}, </if>
+			<if test="os != null">#{ os}, </if>
+			<if test="callback != null">#{ callback}, </if>
+			<if test="status != null">#{ status}, </if>
+			now()
+		)
+	</insert>
+
+	<update id="update" parameterType="com.qmd.mode.place.IosIdfa" >
+		update
+			fy_ios_idfa
+		<set>
+			<if test="createDate != null">create_date = #{createDate},</if>
+			<if test="idfa != null">idfa = #{idfa},</if>
+			<if test="ip != null">ip = #{ip},</if>
+			<if test="drkey != null">drkey = #{drkey},</if>
+			<if test="source != null">source = #{source},</if>
+			<if test="placeChilderId != null">place_childer_id = #{placeChilderId},</if>
+			<if test="mac != null">mac = #{mac},</if>
+			<if test="udid != null">udid = #{udid},</if>
+			<if test="os != null">os = #{os},</if>
+			<if test="callback != null">callback = #{callback},</if>
+			<if test="status != null">status = #{status},</if>
+				modify_date = now()
+		</set>
+		where id = #{id}
+	</update>
+</mapper>
+

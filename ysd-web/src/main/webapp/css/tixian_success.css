@@ -1,0 +1,75 @@
+#main .content {
+    margin-bottom: 406px;
+}
+#main .tixian_success {
+    width: 924px;
+    height: 556px;
+    padding: 17px 0;
+    background: #fff url("../img/recharge_success.png") no-repeat;
+    background-position: 440px 46px;
+}
+#main .tixian_success .close {
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+    background: url(../img/close.png) no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+#main .tixian_success .tips {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+     font-size: 18px;
+}
+#main .tixian_success .table_detail {
+    text-align: center;
+    width: 820px;
+    margin:0 auto;
+    font-size: 18px;
+    color: #666666;
+    border-spacing: 0;
+    border-collapse:collapse;
+}
+#main .tixian_success .table_detail td{
+    border:1px solid #e5e5e5;
+}
+#main .tixian_success .table_detail tr:first-child td{
+    height: 53px;
+}
+#main .tixian_success .table_detail tr:last-child td{
+    height: 88px;
+}
+#main .tixian_success .warm_tips {
+    height: 70px;
+    line-height: 70px;
+    margin-top: 30px;
+    font-size: 18px;
+    padding-left: 110px;
+    background: #fde8e8 url("../img/wram_tips.png") no-repeat;
+    background-position: 67px 22px;
+}
+#main .tixian_success .warm_tips span {
+    font-size: 14px;
+}
+#main .tixian_success .options {
+    margin-left: 260px;
+    margin-top: 33px;
+}
+#main .tixian_success .options span {
+    display: inline-block;
+    width: 138px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 18px;
+}
+#main .tixian_success .options span.back_account {
+    background-color: #ef3e44;
+    margin-right: 120px;
+}
+#main .tixian_success .options span.continue_tixian {
+    background-color: #3e9aef;   
+}

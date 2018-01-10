@@ -1,0 +1,9 @@
+#命令查找grep -n 'hzjcb.com' -r ./
+
+#grep -n 'jcb.com' -r ./
+
+#grep -n 'itunes.apple.com' -r ./
+
+grep -n '和平' -r ./
+
+grep -n '4000-333-113' -r ./

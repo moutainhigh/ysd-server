@@ -1,0 +1,221 @@
+body * {
+    -webkit-text-size-adjust: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: auto;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 0.4rem/1.5 '宋体 Arial';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, input, button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input, button {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+
+.main .pic-box img {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.main .activity_info {
+    width: 100%;
+    height: 11.82608695rem;
+    background: url("../img/activity_info.jpg") no-repeat;
+    background-size: cover;
+}
+
+.main .activity_info .text {
+    padding: 2.66666666rem 1.5rem 0;
+}
+
+.main .activity_info .text p {
+    margin-bottom: 0.3rem;
+    font-size: 0.51533110rem;
+    color: #fff;
+}
+
+.main .activity_about {
+    width: 100%;
+    height: 8.39935587rem;
+    background: url("../img/activity_about.jpg") no-repeat;
+    background-size: cover;
+}
+
+.main .activity_about ul {
+    padding: 2.9rem 1.5rem 0;
+
+}
+
+.main .activity_about ul li {
+    width: 100%;
+    margin-bottom: 0.1rem;
+    overflow: hidden;
+}
+
+.main .activity_about ul li span {
+    float: left;
+    width: 3.4rem;
+    white-space:nowrap;
+    font-weight: bold;
+}
+
+.main .activity_about ul li p {
+    float: left;
+    width: 9.3rem;
+}
+
+.main .activity_guide {
+    width: 100%;
+    height: 9.72624798rem;
+    background: url("../img/activity_guide.jpg") no-repeat;
+    background-size: cover;
+}
+
+.main .activity_guide .text {
+    padding: 3.2rem 1.5rem 0;
+}
+
+.main .activity_guide .text p {
+    margin-bottom: 0.3rem;
+    text-indent: 1rem;
+    font-size: 0.5rem;
+}
+
+.main .activity_footer {
+    position: relative;
+    width: 100%;
+    height: 4.90821256rem;
+    background: url("../img/activity_foot.jpg") no-repeat;
+    background-size: cover;
+}
+
+.main .activity_footer .activity_footer_bg1, .main .activity_footer .activity_footer_bg2 {
+    display: inline-block;
+}
+
+.main .activity_footer .activity_footer_bg1 {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    width: 3.98067632rem;
+    height: 2.83413848rem;
+    background: url("../img/activity_foot_h.png") no-repeat;
+    background-size: cover;
+}
+
+.main .activity_footer .activity_footer_bg2 {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+    width: 4.76650563rem;
+    height: 2.70531400rem;
+    background: url("../img/activity_foot_d.png") no-repeat;
+    background-size: cover;
+}
+
+.main .activity_footer p {
+    padding-top: 0.8rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.4rem;
+}
+
+.main .link-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.main .link-bottom a {
+    display: inline-block;
+    width: 100%;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    background-color: #c00;
+    text-align: center;
+    color: #fff;
+    font-size: 0.7rem;
+}
+
+@media screen and (max-width: 325px) {
+    .main .activity_info {
+        height: 12.5rem;
+    }
+
+    .main .activity_info .text {
+        padding-top: 2.2rem;
+    }
+
+    .main .activity_info .text p {
+        margin-bottom: 0.1rem;
+    }
+
+    .main .activity_about {
+        height: 9.5rem;
+    }
+
+    .main .activity_guide {
+        height: 10.5rem;
+    }
+
+    .main .activity_guide .text p {
+        margin-bottom: 0;
+    }
+}

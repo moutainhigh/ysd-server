@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserAccountRecharge">
+	<!-- 获取15天内的充值记录 -->
+	<select id="getUserAccountRechargeList" resultType="com.qmd.mode.user.UserAccountRecharge" parameterType="java.util.Map">
+		select
+		*
+		from fy_user_account_recharge where (create_date between  #{startTime} and #{endTime}) and (user_id =#{id}) and (status=#{status});
+	</select>
+	
+	<!-- 获取用户充值总金额 -->
+	<select id="getUserAccountRechargeSum" resultType="double" parameterType="java.util.Map">
+		select
+			sum(money)
+		from
+			fy_user_account_recharge 
+		where
+			status = 1 and user_id=#{userId};
+	</select>	
+	
+	<select id="getForUpdate" resultType="com.qmd.mode.user.UserAccountRecharge" parameterType="java.lang.Integer">
+		select * from fy_user_account_recharge where id = #{id} for update
+	</select>
+	
+	<select id="baseList" resultType ="com.qmd.mode.user.UserAccountRecharge" parameterType = "java.util.Map">
+		select * from fy_user_account_recharge a
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and a.id = #{id} </if>
+			<if test="userId != null">and a.user_id = #{userId} </if>
+			<if test="status != null">and a.status = #{status} </if>
+			<if test="rechargeDate != null and rechargeDate !=''">and a.recharge_date = #{rechargeDate} </if>
+		</where> 
+	</sql>
+	
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+	
+	<sql id="queryLimit">
+		<if test="limitsize != null">
+			limit #{limitsize}
+		</if>
+	</sql>
+
+</mapper>

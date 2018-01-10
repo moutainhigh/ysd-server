@@ -1,0 +1,614 @@
+body {
+    background: url("../img/none_bg.png") no-repeat;
+}
+.content {
+    width: 1200px;
+    margin:0 auto;
+    color: #333333;
+    margin-top: 35px;
+}
+.content .nav {
+    font-size: 18px;
+    color: #333;
+    background-color: #fff;
+}
+.content .nav  ul li {
+    width: 229px;
+    height: 70px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+    line-height: 68px;
+}
+.content .nav  ul li.current {
+    background-color: #ef3e44;
+    color: #ffffff;
+}
+.content .main {
+    width: 936px;
+}
+.content .main .assets {
+    font-size: 14px;
+    /*margin-bottom: 108px;*/
+}
+.content .main .assets .assets_top {
+    background-color: #fff;
+    height: 310px;
+    margin-bottom: 35px;
+    padding-top: 12px;
+}
+.content .main .assets .assets_bottom {
+    background-color: #fff;
+    height: 543px;
+    margin-bottom: 74px;
+}
+.content .main .assets .assets_top .assets_top_msg table {
+    font-family: "Microsoft YaHei", serif, sans-serif;
+    width: 830px;
+    margin:0 auto;
+    font-size: 18px;
+    color: #333;
+    border-bottom:1px dashed #b4b4b4;
+}
+.content .main .assets .assets_top .assets_top_msg table.personal td {
+    font-family: "Microsoft YaHei", serif, sans-serif;
+}
+.content .main .assets .assets_top .assets_top_msg table.personal td.center {
+    text-align: center;
+}
+.content .main .assets .assets_top .assets_top_msg table.personal tr:first-child td {
+    vertical-align: bottom;
+}
+.content .main .assets .assets_top .assets_top_msg table.personal tr:last-child td {
+    vertical-align: baseline;
+    padding-bottom: 10px;
+}
+.content .main .assets .assets_top .assets_top_msg table.personal tr td.font14 {
+    font-size: 14px;
+}
+.content .main .assets .assets_top .assets_top_msg table.person_detail {
+    margin-top: 47px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    font-size: 14px;
+    height: 68px;
+}
+.content .main .assets .assets_top .assets_top_msg table.person_detail tr:first-child {
+    font-weight: 700;
+    /*font-family: Microsoft YaHei, serif, sans-serif;*/
+}
+.content .main .assets .assets_top .assets_top_msg .option div {
+    float: right;
+    display: inline-block;
+    width: 86px;
+    height: 26px;
+    border:1px solid #ef3e44;
+    border-radius: 5px;
+    margin-right: 45px;
+    text-align: center;
+    line-height: 26px;
+    color: #ef3e44;
+    margin-top: 33px;
+    cursor: pointer;
+}
+.content .main .assets .assets_top .assets_top_msg .option div.current {
+    background-color: #ef3e44;
+    color: #ffffff;
+}
+.content .main .assets .assets_bottom {
+    padding-top: 22px;
+    font-size: 14px;
+
+}
+.content .main .assets .assets_bottom .nav {
+    font-size: 14px;
+    border-bottom: 1px solid #cccccc;
+    margin: 0 32px;
+    margin-bottom: 10px;
+}
+.content .main .assets .assets_bottom .nav > div{
+    display: inline-block;
+    width: 173px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-weight:700;
+    cursor: pointer;
+}
+.content .main .assets .assets_bottom .nav > div.current {
+    border-bottom: 2px solid #ef3e44;
+}
+.content .main .assets .assets_bottom table {
+    width: 860px;
+    margin:0 auto;
+    text-align: center;
+    vertical-align: middle;
+    border-spacing: 0;
+    margin-bottom: 15px;
+}
+.content .main .assets .assets_bottom table.record td.font_yel a{
+    color: #ff9000;
+}
+.content .main .assets .assets_bottom table th{
+    border-bottom:1px solid #ef3e44;
+    height: 40px;
+}
+.content .main .assets .assets_bottom table td {
+    font-family: Microsoft YaHei serif, sans-serif, monospace;
+    height: 60px;
+    border-bottom:1px dashed #b3b3b3;
+}
+ul.mpage {
+    margin-top: 43px;
+}
+.invest_detail {
+    width: 936px;
+    height: 625px;
+    font-size: 14px;
+    background-color: #fff;
+    background: url("../img/revest_detail_bg.png");
+    margin-bottom: 365px;
+
+}
+.invest_detail .back a span {
+    display: inline-block;
+    width: 58px;
+    height: 28px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 28px;
+    margin: 7px;
+    margin-bottom: 17px;
+}
+.invest_detail .invest_detail_desc1 {
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 922px;
+    height: 60px;
+    padding: 0 20px;
+    margin:0 auto;
+    line-height: 60px;
+}
+.invest_detail .invest_detail_desc1 span {
+    padding:0 40px;
+    border-right: 1px solid #999999;
+}
+.invest_detail .invest_detail_desc1 span:first-child {
+    padding-left: 10px;
+}
+.invest_detail .invest_detail_desc1 span:last-child {
+    border:none;
+    display: inline-block;
+    padding:0;
+    width: 110px;
+    height: 28px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 28px;
+    border-radius: 10px;
+    margin-left: 240px;
+}
+.invest_detail .invest_detail_desc2 {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    color: #333333;
+    /*border:1px solid #cccccc;*/
+}
+.invest_detail .invest_detail_desc2 tr td{
+    /*border:1px solid #cccccc;*/
+}
+.invest_detail .invest_detail_desc2 tr:last-child td {
+    padding-top: 5px;
+    font-size: 24px;
+}
+.invest_detail .invest_detail_desc3{
+    box-sizing: border-box;
+    background-color: #fff;
+    padding:0 25px;
+    width: 922px;
+    margin: 0 auto;
+}
+.invest_detail .invest_detail_desc3 div {
+    height: 50px;
+    line-height: 50px;
+}
+.invest_detail .invest_detail_desc3 div.top span.right {
+    margin-left: 123px;
+}
+.invest_detail .invest_detail_desc3 div.bottom span.right {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 207px;
+    padding-left: 28px;
+    background: url("../img/pro.png") no-repeat;
+    background-position: 0 2px;
+    /*padding-left: 20px;*/
+}
+.invest_detail .invest_detail_desc4 {
+    width: 922px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+    margin:0 auto;
+    margin-top: 15px;
+    padding-top: 23px;
+}
+.invest_detail .invest_detail_desc4 table {
+    margin:0 auto;
+    width: 895px;
+    vertical-align: middle;
+    text-align: center;
+    border-spacing: 0;
+}
+.invest_detail .invest_detail_desc4 table tr:first-child td {
+    height: 38px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    font-weight: 700;
+}
+.invest_detail .invest_detail_desc4 table tr:last-child td {
+    height: 69px;
+    vertical-align: middle;
+}
+.invest_detail .useless {
+    width: 922px;
+    height: 71px;
+    background-color: #fff;
+    margin:0 auto;
+}
+.invest_detail img.repayment {
+    position: relative;
+    top: -346px;
+    left: 801px;
+}
+.main .recharge {
+    height: 753px;
+    margin-bottom: 242px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding-left: 129px;
+    padding-top: 95px;
+    font-size: 18px;
+}
+.main .recharge .recharge_way input {
+    margin-left: 30px;
+}
+.main .recharge .account_balance {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.main .recharge .account_balance span {
+    color: #ef3e44;
+    padding-left: 30px;
+    padding-right: 5px;
+}
+.main .recharge .recharge_value input {
+    width: 266px;
+    height: 36px;
+    border: 1px solid #ef3e44;
+    padding-left: 5px;
+    font-size: 18px;
+}
+.main .recharge .identify_num {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding-left: 18px;
+}
+.main .recharge .identify_num input {
+    width: 162px;
+    height: 36px;
+    border: 1px solid #ef3e44;
+    padding-left: 5px;
+    font-size: 18px;
+}
+.main .recharge .identify_num img {
+    width: 102px;
+    height: 38px;
+    position: relative;
+    top: 14px;
+    right: -7px;
+}
+.main .recharge .sub {
+    width: 166px;
+    height: 52px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 52px;
+    margin-left: 97px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.main .recharge .recharge_success_wrap {
+    width: 1920px;
+    height: 1547px;
+    background: url("../img/black_bg56.png");
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left:0;
+}
+.main .recharge .recharge_success {
+    width: 510px;
+    height: 463px;
+    padding: 17px 20px;
+    margin-left: 810px;
+    margin-top: 258px;
+    background: #fff url("../img/recharge_success.png") no-repeat;
+    background-position: 236px 46px;
+
+}
+.main .recharge .recharge_success .close {
+    width: 18px;
+    height: 18px;
+    background: url(../img/close.png) no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+.main .recharge .recharge_success .tips {
+    text-align: center;
+    margin-top: 10px;
+}
+.main .recharge .recharge_success .success_hint {
+    margin-top: 110px;
+}
+.main .recharge .recharge_success .options {
+    margin-left: 28px;
+    margin-top: 100px;
+}
+.main .recharge .recharge_success .options span {
+    display: inline-block;
+    width: 138px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+    border-radius: 10px;
+    margin-right: 19px;
+}
+.main .recharge .recharge_success .options span.back_account {
+    background-color: #ef3e44;
+}
+.main .recharge .recharge_success .options span.continue_tixian {
+    background-color: #3e9aef;
+}
+.main .recharge .recharge_success .options span.immediately_invest {
+    background-color: #ff9000;
+}
+.main .tixian {
+    height: 753px;
+    margin-bottom: 242px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding-left: 129px;
+    padding-top: 95px;
+    font-size: 18px;
+}
+.main .tixian .to_bankcard .card_type {
+    display: inline-block;
+    vertical-align: top;
+    width: 258px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+
+}
+.main .tixian .to_bankcard .card_type div.card_name {
+    height: 63px;
+    line-height: 63px;
+    padding-left: 44px;
+    background: url("../img/construct.png") no-repeat;
+    background-position: 13px 19.5PX;
+}
+.main .tixian .to_bankcard .card_type div.card_num {
+    height: 28px;
+    line-height: 28px;
+    background-color: #f5f5f5;
+    padding-left: 13px;
+    font-size: 14px;
+}
+.main .tixian .tixian_detail .tixian_available span {
+    color: #ef3e44;
+}
+.main .tixian .tixian_detail table {
+    margin-top: 55px;
+
+}
+.main .tixian .tixian_detail table tr > td {
+    padding-bottom: 21px;
+}
+.main .tixian .tixian_detail table tr > td:first-child {
+    text-align: right;
+}
+.main .tixian .tixian_detail table tr.tixian_tr td:nth-child(2) input {
+    width: 266px;
+    height: 36px;
+    border:1px solid #ef3e44;
+    font-size: 18px;
+}
+.main .tixian .tixian_detail table tr.tixian_tr td:nth-child(3){
+    font-size: 14px;
+    padding-left: 5px;
+}
+.main .tixian .tixian_detail table tr.identify_tr td:nth-child(2) input.left {
+    width: 162px;
+    height: 36px;
+    border:1px solid #ef3e44;
+    font-size: 18px;
+}
+.main .tixian .tixian_detail table tr.identify_tr td:nth-child(2) input.right {
+    margin-left: 12px;
+    width: 115px;
+    height: 38px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.main .tixian .tixian_detail table tr:last-child td {
+    padding-top: 34px;
+    padding-right: 456px
+}
+.main .tixian .tixian_detail table tr:last-child td input{
+    width: 166px;
+    height: 52px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.main .tixian .tixian_success_wrap {
+    width: 1920px;
+    height: 1547px;
+    background: url("../img/black_bg56.png");
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left:0;
+}
+.main .tixian .tixian_success {
+    width: 924px;
+    height: 556px;
+    padding: 17px 0;
+    margin-left: 622px;
+    margin-top: 258px;
+    background: #fff url("../img/recharge_success.png") no-repeat;
+    background-position: 440px 46px;
+}
+.main .tixian .tixian_success .close {
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+    background: url(../img/close.png) no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+.main .tixian .tixian_success .tips {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.main .tixian .tixian_success .table_detail {
+    text-align: center;
+    width: 820px;
+    margin:0 auto;
+    font-size: 18px;
+    color: #666666;
+    border-spacing: 0;
+    border-collapse:collapse;
+}
+.main .tixian .tixian_success .table_detail td{
+    border:1px solid #e5e5e5;
+}
+.main .tixian .tixian_success .table_detail tr:first-child td{
+    height: 53px;
+}
+.main .tixian .tixian_success .table_detail tr:last-child td{
+    height: 88px;
+}
+.main .tixian .tixian_success .warm_tips {
+    height: 70px;
+    line-height: 70px;
+    margin-top: 30px;
+    padding-left: 110px;
+    background: #fde8e8 url("../img/wram_tips.png") no-repeat;
+    background-position: 67px 22px;
+}
+.main .tixian .tixian_success .warm_tips span {
+    font-size: 14px;
+}
+.main .tixian .tixian_success .options {
+    margin-left: 260px;
+    margin-top: 33px;
+}
+.main .tixian .tixian_success .options span {
+    display: inline-block;
+    width: 138px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+    border-radius: 10px;
+}
+.main .tixian .tixian_success .options span.back_account {
+    background-color: #ef3e44;
+    margin-right: 120px;
+}
+.main .tixian .tixian_success .options span.continue_tixian {
+    background-color: #3e9aef;
+}
+.fund_record {
+    box-sizing: border-box;
+    height: 682px;
+    background-color: #fff;
+    font-size: 14px;
+    padding-top: 8px;
+    margin-bottom: 313px;
+}
+.fund_record ul.nav {
+    font-size: 14px;
+    margin-left: 22px;
+    height: 50px;
+}
+.fund_record ul.nav li {
+    display: inline-block;
+    width: 61px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 24px;
+    cursor: pointer;
+}
+.fund_record ul.nav li.current {
+    border-bottom: 4px solid #ef3e44;
+}
+.fund_record table.all_detail {
+    width: 100%;
+    margin:0 auto;
+    margin-top: 4px;
+    border-spacing: 0;
+}
+.fund_record table.all_detail tr td {
+    text-align: center;
+    vertical-align: middle;
+    height: 69px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+.fund_record table.all_detail tr td.font_yell {
+    color: #ff9000;
+}
+.fund_record table.all_detail tr td a {
+    color: #ef3e44;
+    font-weight: 500;
+}
+.fund_record table.all_detail tr:first-child {
+    background-color: #eeeeee;
+    height: 47px;
+}
+.fund_record table.all_detail tr td.font_blue {
+    color: #2180e0;
+}
+
+
+
+
+
+
+#footer {
+    background: transparent;
+    /*opacity: 0.4;*/
+    /*margin-top: 96px;*/
+}
+#footer .footerArea {
+    width: 100%;
+    height: 300px;
+    background: url("../img/footer_bg01.png") no-repeat center center;
+}

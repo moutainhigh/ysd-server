@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BorrowTender">
+	<select id="queryBorrowTenderList" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.lang.Integer">
+		select d.*,
+		u.username
+		from
+		fy_borrow_detail d left join fy_user u on d.user_id = u.id
+		where 1 =1 and borrow_id =#{borrow_id}
+	</select>
+	<select id="queryBorrowTenderById" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.lang.Integer">
+		select d.*
+		from fy_borrow_detail d 
+		where d.id =#{borrowDetailId}
+	</select>
+	<select id="getById" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.lang.Integer">
+		select d.*,
+		b.name as title,
+		b.account as borrowAccount,
+		b.apr as apr,
+		b.status as borrowStatus,
+		b.time_limit as timeLimit,
+		b.type type,
+		b.style style,
+		b.isday
+		from fy_borrow_detail d left join fy_borrow b on b.id = d.borrow_id
+		where d.id =#{id}
+	</select>
+	
+	
+	<insert id="insert" parameterType = "com.qmd.mode.borrow.BorrowTender" useGeneratedKeys="true" keyProperty="id" >
+		insert into
+		fy_borrow_detail(
+			user_id,
+			status,
+			borrow_id,
+			money,
+			account,
+			repayment_account,
+			interest,
+			repayment_yesaccount,
+			wait_account,
+			repayment_yesinterest,
+			wait_interest,
+			add_persion,
+			operator_ip,
+			create_date,
+			modify_date,
+			able_amount,
+			continue_amount,
+			hongbao_amount,
+			taste_amount,
+			reward
+		)values(
+			#{userId},
+			#{status},
+			#{borrowId},
+			#{money},
+			#{account},
+			#{repaymentAccount},
+			#{interest},
+			#{repaymentYesaccount},
+			#{waitAccount},
+			#{repaymentYesinterest},
+			#{waitInterest},
+			#{addPersion},
+			#{operatorIp},
+			now(),
+			now(),
+			#{ableAmount},
+			#{continueAmount},
+			#{hongbaoAmount},
+			#{tasteAmount},
+			#{reward}
+		)
+	</insert>
+	
+	<update id="upateBorrowDetail" parameterType="java.util.Map" >
+		update 
+			fy_borrow_detail 
+		set
+			repayment_yesaccount=#{repaymentYesaccount},
+			wait_account=#{waitAccount},
+			repayment_yesinterest=#{repaymentYesinterest},
+			wait_interest=#{waitInterest},
+			operator_ip=#{operatorIp} 
+		where id=#{id}
+		
+	</update>
+	
+	<!-- 查询用户所有已收利息总额,待收利息总额,用户投标总额 -->
+	<select id="selectAllDetailByUserid" resultType ="com.qmd.mode.amount.Amount" parameterType = "java.util.Map">
+		select
+			 sum(repayment_yesinterest) as repaymentYesinterest, 
+			 sum(account) as tenderAccount,
+			 sum(wait_interest) as waitInterest
+		from 
+			fy_borrow_detail
+	    where 
+	    	user_id=#{userId}
+	    	<if test="minDate!=null and maxDate!=null"> 
+	　　　　　and　create_date between #{minDate} and #{maxDate} 
+	　　　　</if>
+	</select>
+	
+	<!-- 查询用户投标总额  -->
+	<select id="selectAllAccountByUserid" resultType ="double" parameterType = "java.util.Map">
+		select
+			 sum(account) 
+		from 
+			fy_borrow_detail
+	    where 
+	    	user_id=#{userId}
+	    	<if test="minDate!=null and maxDate!=null"> 
+	　　　　　and　create_date between #{minDate} and #{maxDate} 
+	　　　　</if>
+			<if test="borrowId != null and borrowId !=''">
+				and borrow_id = #{borrowId}
+			</if>
+	</select>
+	
+	<!-- 查询用户投标明细 -->
+	<select id="getTenderDetailByUserid" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.util.Map">
+		select
+			q1.id as id,
+			q1.borrow_id as borrowId,
+			q1.user_id as userId,
+			q1.client_type asclientType,
+			q3.username as name,
+			q2.name as title,
+			q2.account as borrowAccount,
+			q1.create_date as repaymentDate,
+			q1.account as loanAmountFee,
+			q1.repayment_account as totalIncomeFee,
+			q1.repayment_yesaccount as totalReceivedFee,
+			q1.wait_account as collectAmountFee,
+			q1.repayment_yesinterest as receivedInterestFee,
+			q1.wait_interest as collectInterestFee,
+			q1.interest as interest,
+			q2.apr as apr,
+			q2.status as status,
+			q2.time_limit as timeLimit,
+			q2.type type,
+			q1.able_amount as ableAmount,
+			q1.continue_amount as continueAmount,
+			q2.vary_year_rate as varyYearRate,
+			q2.vary_month_limit as varyMonthLimit
+		from 
+			fy_borrow_detail q1
+			left join fy_borrow q2 on q1.borrow_id = q2.id
+			left join fy_user q3 on q2.user_id = q3.id
+	    where 
+	    	q1.user_id=#{userId}
+	    	<if test="minDate != null">
+				<![CDATA[and q1.create_date >= #{minDate}]]>
+			</if>
+			<if test="maxDate != null">
+				<![CDATA[and q1.create_date <= #{maxDate}]]>
+			</if>
+	    	<if test="keywords!=null">
+	    		<![CDATA[and q2.name like '%${keywords}%']]>
+	    	</if>
+	    	<if test="status!=null">
+	    		and q2.status = #{status}
+	    	</if>
+	    	<if test="borrowId!=null">
+	    		and q1.borrow_id = #{borrowId}
+	    	</if>
+	    	<if test="backStatus!=null">
+	    		and q1.back_status = #{backStatus}
+	    	</if>
+	    	<if test="noBorrowType!=null">
+	    		and q2.type != #{noBorrowType}
+	    	</if>
+	    		order by q1.create_date desc
+			<if test="pager != null">
+				limit #{pager.thisSize},#{pager.pageSize}
+			</if>
+	</select>
+	
+	<select id="queryTenderDetailList" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*) 
+		from 
+			fy_borrow_detail q1
+			left join fy_borrow q2 on q1.borrow_id = q2.id
+		where
+			q1.user_id=#{userId}
+			<if test="keywords!=null">
+	    		<![CDATA[and q2.name like '%${keywords}%']]>
+	    	</if>
+	    	<if test="status!=null">
+	    		and q2.status = #{status}
+	    	</if>
+	    	<if test="minDate != null">
+				<![CDATA[and q1.create_date >= #{minDate}]]>
+			</if>
+			<if test="maxDate != null">
+				<![CDATA[and q1.create_date <= #{maxDate}]]>
+			</if>
+	</select>
+	
+	<!-- 借款人-借款明细 -->
+	<select id="getJkmxUserid" resultType ="com.qmd.mode.borrow.BorrowTemp" parameterType = "java.util.Map">
+		select
+			q1.id as id,
+			q1.borrow_id as borrowId,
+			q1.user_id as userId,
+			q3.username as name,
+			q2.name as title,
+			q1.create_date as repaymentDate,
+			q1.account as loanAmountFee,
+			q1.repayment_account as totalIncomeFee,
+			q1.repayment_yesaccount as totalReceivedFee,
+			q1.wait_account as collectAmountFee,
+			q1.repayment_yesinterest as receivedInterestFee,
+			q1.wait_interest as collectInterestFee,
+			q1.able_amount as ableAmount,
+			q1.continue_amount as continueAmount
+		from 
+			fy_borrow_detail q1
+			left join fy_borrow q2 on q1.borrow_id = q2.id
+			left join fy_user q3 on q2.user_id = q3.id
+	    where 
+	    	q2.user_id=#{userId} and 
+			q2.status in 
+			<foreach item="item" index="index" collection="status"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+	    	<if test = "borrowId != null">and q1.borrow_id=#{borrowId}</if>
+	    	<if test="minDate!=null and maxDate!=null">
+	    		and (q1.create_date between #{minDate} and #{maxDate})
+			</if>
+			order by q1.create_date desc
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	
+	<select id="queryJkmxList" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*) 
+		from 
+			fy_borrow_detail q1 
+			left join fy_borrow q2 on q1.borrow_id = q2.id
+			left join fy_user q3 on q2.user_id = q3.id
+		where
+			q2.user_id=#{userId} and 
+			q2.status in 
+			<foreach item="item" index="index" collection="status"
+      			open="(" separator="," close=")">
+       	 		#{item}
+  			</foreach>
+			<if test = "borrowId != null">
+	    		and q1.borrow_id=#{borrowId}
+	    	</if>
+			<if test="minDate!=null and maxDate!=null">
+				and (q1.create_date between #{minDate} and #{maxDate})
+			</if>
+	</select>
+	
+	<select id="getTenderDetailByMaxMoney" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.util.Map">
+		select
+			q3.username as username,
+			q1.account as account
+		from 
+			fy_borrow_detail q1
+			left join fy_user q3 on q1.user_id = q3.id
+	    where 
+	    	q1.borrow_id=#{borrowId}
+	    	order by q1.account *1 desc, q1.id asc
+	</select>
+	
+		<select id="queryListByMap" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.lang.Integer">
+		select d.*,
+			b.name as title,
+			u.username
+		from
+		fy_borrow_detail d left join fy_user u on d.user_id = u.id
+		left join fy_borrow b on b.id = d.borrow_id
+		 order by d.create_date desc
+		 <if test="start != null and end != null">
+			limit #{start},#{end}
+		</if>
+	</select>
+	
+	<select id="queryPagerListByMap" resultType ="com.qmd.mode.borrow.BorrowTender" parameterType = "java.util.Map">
+		select d.*,
+			b.name as title,
+			u.username
+		from
+		fy_borrow_detail d left join fy_user u on d.user_id = u.id
+		left join fy_borrow b on b.id = d.borrow_id
+		where d.borrow_id = #{borrowId}
+		 order by d.create_date desc
+		 <if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+	</select>
+	
+	<select id="queryPagerListCount" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*) 
+		from
+		fy_borrow_detail d left join fy_user u on d.user_id = u.id
+		left join fy_borrow b on b.id = d.borrow_id
+		where d.borrow_id = #{borrowId}
+		 order by d.create_date desc
+	</select>
+	
+</mapper>

@@ -1,0 +1,178 @@
+body {
+    background: url(../img/invest_web.jpg) no-repeat;
+}
+.content {
+    width: 1200px;
+    margin: 0 auto;
+}
+.content > .img{
+    float: left;
+    width: 480px;
+    height: 294px;
+    background: url(../img/5.1_03.png) no-repeat;
+    margin-top: 170px;
+}
+.content .register {
+    float: right;
+    background: url(../img/register_bg.png) no-repeat;
+    width: 545px;
+    height: 537px;
+    margin-top: 78px;
+}
+.content .register form {
+    margin-left: 62px;
+    margin-top: 48px;
+    font-size: 26px;
+}
+.content .register form table .invest_person {
+    font-size: 18px;
+}
+.content .register form table .invest_person td {
+	padding-bottom: 20px;
+}
+.content .register form table .invest_person span {
+    color: #ef3e44;
+}
+.content .register form table .phone {
+    width: 419px;
+    height: 52px;
+    box-sizing: border-box;
+    padding-left: 46px;
+    background: url(../img/invest_phone.png) no-repeat;
+ }
+.content .register form table .identify input {
+    width: 244px;
+    height: 52px;
+    box-sizing: border-box;
+    padding-left: 13px;
+    background: url(../img/invest_iden.png) no-repeat;
+}
+.content .register form table .identify img {
+    width: 124px;
+    height: 52px;
+    vertical-align: middle;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.content .register form table .message input {
+    width: 209px;
+    height: 52px;
+    box-sizing: border-box;
+    padding-left: 13px;
+    background: url(../img/invest_message.png) no-repeat;
+}
+.content .register form table .message a {
+	display:block;
+    width: 159px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ef3e44;
+    border:1px solid transparent;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.content .register form table .pwd input {
+    width: 429px;
+    height: 52px;
+    box-sizing: border-box;
+    padding-left: 46px;
+    background: url(../img/invest_lock.png) no-repeat;
+}
+.content .register form table .button input {
+    width: 429px;
+    height: 52px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #ef3e44;
+    text-align: center;
+    line-height: 52px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.content .feature {
+    margin-top: 121px;
+    margin-bottom: 236px;
+}
+.content .feature > div{
+    height: 75px;
+}
+
+.content .feature > div.left{
+    height: 75px;
+    float: left;
+}
+.content .feature > div .img {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+}
+.content .feature > div .content {
+    display: inline-block;
+    width: 263px;
+    height: 75px;
+    color: #ffffff;
+    vertical-align: text-bottom;
+}
+.content .feature > div > div > .hr {
+    width: 263px;
+    height: 1px;
+    background: url(../img/invest_hr_03.png) no-repeat;
+
+}
+.content .feature > div.left .img {
+    background: url("../img/invest_yun.png") center;
+    background-size: contain;
+}
+.content .feature > div.right{
+    height: 75px;
+    float: right;
+}
+.content .feature > div.right .img {
+    background: url("../img/invest_data.png") center;
+    background-size: contain;
+}
+.content .feature > div.center {
+    display: inline-block;
+    margin-left: 85px;
+}
+.content .feature > div.center .img {
+    background: url("../img/invest_ins.png") center;
+    background-size: contain;
+}
+.content .feature > div > div.content .top {
+    margin-bottom: 12px;
+}
+.content .feature > div > div.content .bottom {
+    margin-top: 9px;
+}
+.content .feature > div > div.content img {
+    vertical-align: middle;
+}
+tr.input_hint{
+	visibility: hidden;
+}
+tr.input_hint td{
+	height: 30px;
+	color: #ef3e44;
+	font-size: 14px;
+	line-height: 31px;
+}
+tr.input_hint td label{
+	line-height: 31px;
+	height: 30px;
+}
+tr.input_hint td label span{
+	background: #fff url("../img/tips.png") no-repeat 10px center;
+	display:inline-block;
+	height:20px;
+	width:35px;
+	position:relative;
+	top:3px;
+	*display:block;
+	*float:left;
+}

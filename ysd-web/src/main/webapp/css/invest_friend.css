@@ -1,0 +1,123 @@
+#main .content {
+    height: 950px;
+    box-sizing: border-box;
+    padding: 0 38px;
+    background-color: #fff;
+    font-size: 16px;
+    margin-bottom: 46px;
+    *width:870px;
+    
+}
+#main .content .invest_link {
+    height: 189px;
+    border-bottom: 2px solid #e5e5e5;
+    padding-left: 18px;
+    padding-top: 45px;
+    box-sizing: border-box;
+}
+#main .content .invest_link .title {
+    font-size: 18px;
+}
+#main .content .invest_link .link {
+    margin-top: 25px;
+    display: inline-block;
+    width: 457px;
+    height: 52px;
+    border:1px solid #ef3e44;
+    box-sizing: border-box;
+    margin-right: 70px;
+    padding-left: 15px;
+    line-height: 52px;
+    *float:left;
+}
+#main .content .invest_link .link textarea{
+    border:0;
+    padding-left: 15px;
+    box-sizing: border-box;
+    width:100%;
+    height:50px;
+    line-height: 50px;
+    resize : none;
+    outline:none;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size: 18px;
+    display:inline-block;
+    background:none;
+}
+#main .content .invest_link .copy {
+    margin-top: 25px;
+    display: inline-block;
+    width: 198px;
+    height: 52px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    line-height: 52px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    position:relative;
+    top:-18px;
+    top:0\0;
+    *top:0;
+}
+#main .content .weixin {
+    height: 186px;
+    border-bottom: 2px solid #e5e5e5;
+    box-sizing: border-box;
+    padding-top: 30px;
+}
+#main .content .weixin div {
+    margin-bottom: 10px;
+}
+#main .content .weixin .title{
+	margin-top:10px;
+}
+#main .content .weixin .qrcodeTable{
+    width:140px;
+    height:140px;
+    float:left;
+    margin:0 22px;
+	
+}
+#main .content .weixin .qrcodeTable table{
+	margin-top:0;
+}
+#main .content .weixin .qrcodeTable table td{
+	height:auto;
+	border:0;
+}
+#main .content .invest_introduction {
+    padding-top: 39px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    line-height: 26px;
+}
+#main .content .invest_introduction div {
+    margin-bottom: 10px;
+}
+#main .content table {
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+    width: 914px;
+    margin:0 auto;
+    border-spacing: 0;
+}
+#main .content table tr td {
+    width: 212px;
+    height: 67px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+#main .content tr:first-child td {
+    height: 47px;
+    border-bottom: 2px solid #ef3e44;
+}
+.friend_phone{
+	overflow-x:hidden;
+	height:300px;
+	overflow-y:auto;
+}
+#main .content .friend_phone table{
+	margin-top:0;
+}

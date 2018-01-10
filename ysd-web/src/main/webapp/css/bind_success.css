@@ -1,0 +1,50 @@
+.content {
+    width: 1200px;
+    height: 710px;
+    margin:0 auto;
+    background-color: #fff;
+    font-size: 18px;
+    box-sizing: border-box;
+    border:1px solid #e5e5e5;
+    margin-top: 60px;
+    margin-bottom: 144px;
+}
+.content .success_tips {
+    height: 50px;
+    line-height: 50px;
+    background: url("../img/recharge_success.png") no-repeat;
+    margin-left: 186px;
+    font-size: 24px;
+    color: #333333;
+    box-sizing: border-box;
+    padding-left: 64px;
+    margin-top: 80px;
+}
+.content .services {
+    margin-left: 186px;
+    font-size: 18px;
+    color: #333333;
+    margin-top: 20px;
+}
+.content .services strong {
+    font-weight: 500;
+    color: #ef3e44;
+}
+.content a {
+    display: inline-block;
+    width: 138px;
+    height: 52px;
+    color: #ffffff;
+    margin-right: 122px;
+    text-align: center;
+    line-height: 52px;
+    border-radius: 10px;
+    margin-top: 60px;
+}
+.content a.account {
+    background-color: #ef3e44;
+    margin-left: 186px;
+}
+.content a.invest {
+    background-color: #3e9aef;
+}

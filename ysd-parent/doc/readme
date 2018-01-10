@@ -1,0 +1,36 @@
+【文件清单】
+（1）ysd-server： 服务端
+	A  ysd-boss： 管理后台（总）
+	B  ysd-fws： 服务商后台（分公司、发标&回款）
+	C  ysd-web： 前端（PC官网）
+	D  ysd-api：与App接口
+
+依赖处理(如果直接使用他们提供的repository,可能不需要以下的操作):
+lib目录中的jar,安装到本地仓库
+mvn install:install-file -DgroupId=javax.jms -DartifactId=jms -Dversion=1.1 -Dfile=jms-1.1.jar -Dpackaging=jar
+mvn install:install-file -DgroupId=pay -DartifactId=Hnapay_Client -Dversion=V2.6.2 -Dfile=Hnapay_Client-V2.6.2.jar -Dpackaging=jar
+mvn install:install-file -DgroupId=pay -DartifactId=cryptix-jce-provider -Dversion=1 -Dfile=cryptix-jce-provider-1.jar -Dpackaging=jar
+
+#根据生产环境打包
+mvn clean package -Pdev -Dmaven.test.skip=true
+mvn clean package -Ptest -Dmaven.test.skip=true
+mvn clean package -Pprod -Dmaven.test.skip=true
+
+
+#打包上传到服务器脚本
+进入sh目录执行脚本package_upload.sh,支持两个参数:第1个参数环境参数,第2个参数子工程的pom文件
+./package_upload.sh prod
+
+
+#常见问题
+单独进入ysd-boss执行打包命令的时候,可能会报ysd-sms,ysd-push ysd-pay-sand的jar包不存在。
+则需要进入ysd-sms,ysd-push工程,执行mvn clean install -Dmaven.test.skip=true
+执行完成后,再ysd-boss等工程打包
+
+
+
+#杉德支付关联jar包
+mvn install:install-file -DgroupId=cn.com.sand.online -DartifactId=agent-service-sdk -Dversion=1.0.0 -Dfile=agent-service-sdk-1.0.0.jar -Dpackaging=jar
+mvn install:install-file -DgroupId=com.sand -DartifactId=sandutil -Dversion=0.0.1 -Dfile=sandutil-0.0.1.jar -Dpackaging=jar
+
+

@@ -1,0 +1,72 @@
+package com.qmd.service.borrow;
+
+import com.qmd.mode.borrow.Borrow;
+import com.qmd.mode.borrow.BorrowRepaymentDetail;
+import com.qmd.mode.borrow.BorrowTemp;
+import com.qmd.mode.borrow.BorrowTender;
+import com.qmd.mode.util.MailRepayForInvestor;
+import com.qmd.service.BaseService;
+import com.qmd.util.Pager;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+public interface BorrowTenderService extends BaseService<BorrowTender,Integer>{
+	public List<BorrowTender> getBorrowTenderByBorrowId(Integer borrow_id);
+
+	/**
+	 * 还款
+	 * @param borrowTenderList
+	 * @param borrowRepaymentDetail
+	 * @param borrow
+	 * 
+	 * @return 0 还款成功，1资金不足，2本期已还
+	 */
+	public int updateBorrowDetail(List<BorrowTender> borrowTenderList,BorrowRepaymentDetail borrowRepaymentDetail,Borrow borrow,List<MailRepayForInvestor> mailList,String ip);//修改borrow_detail中的值
+	
+	
+	/**
+	 * 灵活宝还款  
+	 * @param borrowId
+	 * @param mailList
+	 * @param ip
+	 * @return 0 还款成功，1资金不足，2本期已还
+	 */
+	public  int updateBorrowAgile(Integer borrowRepaymentDetail_id,List<MailRepayForInvestor> mailList,String ip);
+	
+	/**
+	 * 逾期项目还款  
+	 * @param borrowId
+	 * @param mailList
+	 * @param ip
+	 * @return 0 还款成功，1资金不足，2本期已还
+	 */
+	public int updateBorrowLate(Integer borrowId,BigDecimal lateAccountPaying,List<MailRepayForInvestor> mailList,String ip);
+	
+	
+	/**
+	 * 查询用户投标-分页
+	 * @param pager
+	 * @param map
+	 * @return
+	 */
+	public Pager queryUncollectedDetailList(Pager pager,Map<String,Object> map);
+	
+	
+	/**
+	 * 查询借款人 借款明细-列表
+	 * @param map
+	 * @return
+	 */
+	public List<BorrowTemp> getJkmxByUserid(Map<String, Object> map);
+	
+	/**
+	 * 查询借款人 借款明细-分页
+	 * @param pager
+	 * @param map
+	 * @return
+	 */
+	public Pager queryJkmxList(Pager pager,Map<String,Object> map);
+
+}

@@ -1,0 +1,184 @@
+body {
+    background: url("../img/none_bg.png") no-repeat;
+    background-size:cover;
+}
+.content {
+    width: 1200px;
+    height: 755px;
+    margin: 0 auto;
+    margin-top: 35px;
+    margin-bottom: 240px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.content .hint {
+    font-size: 14px;
+    color: rgba(102, 102, 102, 0.58);
+    margin-top: 56px;
+    margin-left: 66px;
+}
+.content .hint > span {
+    font-size: 18px;
+    color: #333333;
+}
+.content .progress {
+    margin-top: 89px;
+}
+.content .progress ul {
+    position: relative;
+    margin-left: 179px;
+    margin-bottom: 10px;
+}
+.content .progress ul li.progress_bz {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(191, 191, 191, 0.92);
+    border-radius: 30px;
+    text-align: center;
+    line-height: 60px;
+    margin-left: -5px;
+    font-size: 24px;
+    font-family: Arial,serif,sans-serif;
+}
+.content .progress ul li {
+    display: inline-block;
+    width: 200px;
+    height: 2px;
+    background-color: #f7f7f7;
+    margin-left: -5px;
+    position: relative;
+    top: -6px;
+}
+.content .progress ul li.current {
+   background-color: #ef3e44;
+   color: #fff;
+}
+.content .progress .progress_name span {
+    font-size: 16px;
+    color: #333333;
+}
+.content .progress .progress_name span.one {
+    margin-left: 173px;
+}
+.content .progress .progress_name span.two {
+    margin-left: 191px;
+}
+.content .progress .progress_name span.three {
+    margin-left: 194px;
+}
+.content .progress .progress_name span.four {
+    margin-left: 205px;
+}
+
+form {
+    margin-left: 365px;
+    margin-top: 65px;
+    font-size: 16px;
+    color: #333333;
+}
+form .input_tips {
+    margin-left: 29px;
+    visibility: hidden;
+}
+form table tr td {
+    padding-bottom: 36px;
+}
+form table tr td:first-child {
+    height: 36px;
+    line-height: 36px;
+    text-align: right;
+}
+form table tr td:last-child {
+    padding-left: 0px;
+}
+form table tr td input {
+    width: 266px;
+    height: 36px;
+    border: 1px solid #ef3e44;
+}
+form table tr td input[type=submit] {
+    width: 166px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 52px;
+    font-size: 18px;
+    font-family: "微软雅黑",serif,sans-serif;
+    margin-right: 56px;
+}
+form.identify table tr td.get_inum .getcode {
+    display: inline-block;
+    width: 115px;
+    height: 38px;
+    border:0;
+    border-radius: 10px;
+    background-color: #ef3e44;
+    color: #ffffff;
+    text-align: center;
+    line-height: 38px;
+}
+form.identify table tr td.get_inum .getcode_disable {
+    display: inline-block;
+    width: 115px;
+    height: 38px;
+    border:0;
+    border-radius: 10px;
+    background-color: #ccc;
+    color: #ffffff;
+    text-align: center;
+    line-height: 38px;
+}
+div.complete {
+    width: 272px;
+    height: 262px;
+    margin:0 auto;
+    margin-top: 10px;
+}
+div.complete .reset_success {
+    text-align: center;
+    font-size: 18px;
+    color: #333333;
+    margin-top: 60px;
+}
+div.complete .auto {
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+    margin-top: 30px;
+}
+div.complete .login {
+    width: 166px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+    background-color: #ef3e44;
+    border-radius: 10px;
+    margin:0 auto;
+    margin-top: 30px;
+}
+div.complete .auto span {
+    color: #ef3e44;
+}
+#footer {
+    background: transparent;
+    /*opacity: 0.4;*/
+    /*margin-top: 96px;*/
+}
+#footer .footerArea {
+    width: 100%;
+    height: 300px;
+    background: url("../img/footer_bg01.png") no-repeat center center;
+    background-size:cover;
+}
+/*
+.content {
+    position: absolute;
+    top: 0;
+    width: 1920px;
+    height: 1379px;
+    background: url(../img/mycount_bg.png);
+}*/

@@ -1,0 +1,76 @@
+.fund_record {
+       box-sizing: border-box;
+    height: 720px;
+    background-color: #fff;
+    font-size: 14px;
+    padding-top: 8px;
+    margin-bottom: 276px;
+}
+.fund_record ul.nav {
+    font-size: 14px;
+    margin-left: 22px;
+    height: 50px;
+}
+.fund_record ul.nav li {
+    display: inline-block;
+    width: 61px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 24px;
+    cursor: pointer;
+    *float:left;
+}
+.fund_record ul.nav li.current {
+    border-bottom: 4px solid #ef3e44;
+}
+.fund_record table.all_detail {
+    width: 100%;
+    margin:0 auto;
+    margin-top: 4px;
+    margin-bottom: 50px;
+    border-spacing: 0;
+}
+.fund_record table.all_detail tr {
+    width: 850px;
+    margin:0 auto;
+}
+.fund_record table.all_detail tr td {
+    text-align: center;
+    vertical-align: middle;
+    height: 69px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+.fund_record table.all_detail tr th.one {
+    width: 215px;
+}
+.fund_record table.all_detail tr th.two {
+    width: 162px;
+}
+.fund_record table.all_detail tr th.three {
+    width: 162px;
+}
+.fund_record table.all_detail tr th.four {
+    width: 162px;
+}
+.fund_record table.all_detail tr th.five {
+    width: 317px;
+}
+.fund_record table.all_detail tr td.font_yell {
+    color: #ff9000;
+}
+.fund_record table.all_detail tr td a {
+    color: #ef3e44;
+    font-weight: 500;
+}
+.fund_record table.all_detail tr:first-child {
+    background-color: #eeeeee;
+    height: 47px;
+}
+.fund_record table.all_detail tr td.font_blue {
+    color: #2180e0;
+}
+ul.mpage{
+	margin-top:16px;
+	padding-bottom:20px;
+}

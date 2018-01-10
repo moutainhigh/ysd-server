@@ -1,0 +1,20 @@
+#查看所有
+git branch -a
+
+#在本地新创建分支
+git branch feature/new_home
+
+#将本地创建分支push到服务器仓库
+git push -u origin feature/new_home:feature/new_home
+
+##从远程的分支上，创建本地分支
+git checkout -b feature/new_home origin/feature/new_home
+
+#将新增,修改过的文件添加到暂存区
+git add *
+
+#将暂存区的文件提交到本地版本库
+git commit -m 'new'
+
+#将本地版本提交到服务器仓库
+git push

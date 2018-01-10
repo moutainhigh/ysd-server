@@ -1,0 +1,71 @@
+.content {
+    width: 1200px;
+    margin:0 auto;
+    background: #f2f2f2;
+    margin-top: 38px;
+}
+.content .partner {
+    background-color: #fff;
+    padding: 18px 65px;
+    min-height:500px;
+    padding-bottom: 100px;
+    width: 1000px;
+    margin-left: 20px;
+    box-sizing: border-box;
+}
+.content .partner h3{
+    background-color: #fff;
+    font-size: 24px;
+    color: #ef3e44;
+    line-height:68px;
+    border-bottom: 1px solid #e5e5e5;
+	text-align:center;
+	font-weight:normal;
+}
+.content .partner .partner_title {
+    background-color: #fff;
+    font-size: 18px;
+    color: #ff9000;
+    line-height:68px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.content .partner .partner_wrap {
+    border-bottom: 1px dashed #e5e5e5;
+}
+.content .partner .partner_wrap .partner_content {
+    font-size: 14px;
+    height: 67px;
+    line-height: 67px;
+    color: #666;
+    cursor: pointer;
+}
+.content .partner .partner_wrap i {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url("../img/partner_03.png") no-repeat;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.content .partner .partner_wrap.on i{
+    background: url("../img/partner_06.png") no-repeat;
+}
+.content .partner .partner_wrap.on {
+    padding-bottom: 15px;
+}
+.content .partner .partner_wrap .partner_desc {
+    font-size: 14px!important;
+    color: #999;
+    text-indent: 2em;
+    height:0;
+    overflow:hidden;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.content .partner .partner_wrap .partner_desc span{
+	font-size: 14px!important;
+}
+.content .partner .partner_wrap.on .partner_desc{
+    height:auto;
+}

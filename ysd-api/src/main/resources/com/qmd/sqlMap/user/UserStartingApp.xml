@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserStartingApp">
+
+	<select id="getById" resultType ="com.qmd.mode.user.UserStartingApp" parameterType = "java.lang.Integer">
+		select t.* from fy_user_starting_app t where t.id=#{id}
+	</select>
+
+	<select id="queryListByMap" resultType="com.qmd.mode.user.UserStartingApp" parameterType="java.util.Map">
+		select t.* from fy_user_starting_app t 
+		<include refid="queryWhere"/>
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+
+	<select id="queryCountByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from fy_user_starting_app t 
+		<include refid="queryWhere"/>
+	</select>
+
+	<sql id="queryWhere">
+		<where> 
+			<if test="id != null">and t.id = #{id} </if>
+			<if test="createDate != null">and t.create_date = #{createDate} </if>
+			<if test="modifyDate != null">and t.modify_date = #{modifyDate} </if>
+			<if test="deviceToken != null">and t.device_token = #{deviceToken} </if>
+			<if test="appType != null">and t.app_type = #{appType} </if>
+			<if test="remark != null">and t.remark = #{remark} </if>
+		</where> 
+	</sql>
+
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+
+	<sql id="queryLimit">
+		<if test="pageStart != null and pageSize != null">
+			limit #{pageStart},#{pageSize}
+		</if>
+	</sql>
+
+	<insert id="insert" parameterType = "com.qmd.mode.user.UserStartingApp" useGeneratedKeys="true" keyProperty="id" >
+		insert into fy_user_starting_app(
+			<if test="deviceToken != null">device_token, </if>
+			<if test="appType != null">app_type, </if>
+			<if test="imei != null">imei, </if>
+			<if test="placeName != null">place_name, </if>
+			<if test="placeChilderId != null">place_childer_id, </if>
+			<if test="remark != null">remark, </if>
+			create_date,
+			modify_date
+		)values(
+			<if test="modifyDate != null">#{ modifyDate}, </if>
+			<if test="deviceToken != null">#{ deviceToken}, </if>
+			<if test="appType != null">#{ appType}, </if>
+			<if test="imei != null">#{ imei}, </if>
+			<if test="placeName != null">#{ placeName}, </if>
+			<if test="placeChilderId != null">#{ placeChilderId}, </if>
+			<if test="remark != null">#{ remark}, </if>
+			now(),
+			now()
+		)
+	</insert>
+
+</mapper>
+

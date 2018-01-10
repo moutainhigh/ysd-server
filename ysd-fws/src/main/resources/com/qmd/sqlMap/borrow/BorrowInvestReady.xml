@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BorrowInvestReady">
+	
+	<insert id="baseInsert" parameterType = "com.qmd.mode.borrow.BorrowInvestReady" useGeneratedKeys="true" keyProperty="id" >
+		insert into
+		fy_borrow_invest_ready(
+			user_id,
+			borrow_id,
+			invest_money,
+			continue_money,
+			taste_money,
+			direct_money,
+			invest_piece,
+			continue_piece,
+			taste_piece,
+			direct_piece,
+			wander_plan,
+			piece_money,
+			status_code,
+			remark,
+			auto_rate,
+			create_date,
+			modify_date
+		)values(
+			#{userId},
+			#{borrowId},
+			#{investMoney},
+			#{continueMoney},
+			#{tasteMoney},
+			#{directMoney},
+			#{investPiece},
+			#{continuePiece},
+			#{tastePiece},
+			#{directPiece},
+			#{wanderPlan},
+			#{pieceMoney},
+			#{statusCode},
+			#{remark},
+			#{autoRate},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<select id="baseLoad" resultType ="com.qmd.mode.borrow.BorrowInvestReady" parameterType = "java.lang.Integer">
+		select t.*
+		from
+		fy_borrow_invest_ready t
+		where t.id =#{id}
+	</select>
+	<select id="getForUpdate" resultType="com.qmd.mode.borrow.BorrowInvestReady" parameterType="java.lang.Integer">
+		select * from fy_borrow_invest_ready where id = #{id} for update
+	</select>
+	
+	<update id="baseUpdate" parameterType="com.qmd.mode.borrow.BorrowInvestReady" >
+		update 
+			fy_borrow_invest_ready 
+		set
+			user_id = #{userId},
+			borrow_id = #{borrowId},
+			invest_money = #{investMoney},
+			continue_money = #{continueMoney},
+			invest_piece = #{investPiece},
+			continue_piece = #{continuePiece},
+			wander_plan = #{wanderPlan},
+			piece_money = #{pieceMoney},
+			status_code = #{statusCode},
+			remark = #{remark},
+			create_date = #{createDate},
+			modify_date = now()
+		where id = #{id}
+	</update>
+	
+</mapper>

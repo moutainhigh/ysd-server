@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="i18n" />
+	<constant name="struts.i18n.reload" value="false" />
+	<constant name="struts.convention.classes.reload" value="false" />
+	<constant name="struts.convention.action.packages" value="com.qmd.action" />
+	
+	
+	<constant name="struts.serve.static.browserCache" value="true" />
+	
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.convention.action.suffix" value="Action" />
+	<constant name="struts.convention.action.mapAllMatches" value="true" />
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.convention.default.parent.package" value="qmd" />
+	<constant name="struts.freemarker.manager.classname" value="freemarkerManager" />
+
+	<package name="qmd" extends="json-default" namespace="/">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+
+		<interceptors>
+			<interceptor name="json"
+				class="org.apache.struts2.json.JSONInterceptor" />
+			<interceptor name="paramIntereptor" class="paramIntereptor" />
+			<interceptor name="trimInterceptor" class="trimInterceptor" />
+			<interceptor name="userVerifyInterceptor" class="userVerifyInterceptor" >
+				<param name="excludeMethods">borrowDetail,xBorrowList,payreturn,paynotify,result,agencyInfo,ajaxAgency,agencyBaoxianList,wmpslccpList,wmpslccpview,agencyBxViewById,agencyBxViewList,agencyDbViewById,agencyPtViewById,agencyTgViewById,zqzrDetail</param>
+			</interceptor>
+			<interceptor-stack name="qmdDefaultStack">
+				<interceptor-ref name="paramIntereptor" />
+				<interceptor-ref name="trimInterceptor" />
+				<interceptor-ref name="json" />
+				<interceptor-ref name="defaultStack" >
+					<param name="fileUpload.maximumSize">1048576</param>
+ <!--                     <param name="fileUpload.allowedTypes">image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-ms-bmp,image/png,image/x-png,"application/octet-stream,application/pdf</param>
+-->
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+					<param name="exception.logCategory">ERROR</param>
+                 </interceptor-ref>
+				<!-- <interceptor-ref name="fileUpload">
+					<param name="allowedTypes">image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-ms-bmp,image/png,image/x-png</param>
+					<param name="maximumSize">204800</param>
+				</interceptor-ref> -->
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="qmdDefaultStack" />
+		<global-results>
+			<result name="login" type="redirect">
+				<param name="location">/index.do</param>
+				<param name="loginRedirectUrl">${loginRedirectUrl}</param>
+			</result>
+			<!-- <result name="error">/error.jsp</result> -->
+			<result name="error_ftl" type="freemarker">/content/error.ftl</result>
+			<result name="error_no_back_ftl" type="freemarker">/content/error_no_back.ftl</result>
+			<result name="success_ftl" type="freemarker">/content/success.ftl</result>
+			<result name="ajaxError" type="freemarker">/content/ajax_error.ftl</result>
+			<result name="error" type="freemarker">/content/exception.ftl</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+		<!--  
+		<action name="index">
+			<result type="freemarker">/content/index.htm</result>
+		</action>
+		-->
+	</package>
+	
+	<package name="default" extends="struts-default">
+		<default-action-ref name="notFound" />
+		<action name="notFound">
+			<result name="success" type="freemarker">/content/exception.ftl</result>
+		</action>
+	</package>
+</struts>

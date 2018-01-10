@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="UserRepaymentDetail">
+<insert id="insert" parameterType="com.qmd.mode.user.UserRepaymentDetail" useGeneratedKeys="true" keyProperty="id" >
+		insert 
+		into 
+		fy_user_repayment_detail(
+			<if test ="userId != null and userId != ''">user_id</if>
+			<if test ="status != null and status != ''">,status</if>
+			<if test ="borrowId != null and borrowId != ''">,borrow_id</if>
+			<if test ="account != null and account != ''">,account</if>
+			<if test ="repaymentAccount != null and repaymentAccount != ''">,repayment_account</if>
+			<if test ="interest != null and interest != ''">,interest</if>
+			<if test ="repaymentYesaccount != null and repaymentYesaccount != ''">,repayment_yesaccount</if>
+			<if test ="waitAccount != null and waitAccount != ''">,wait_Account</if>
+			<if test ="repaymentYesinterest != null and repaymentYesinterest != ''">,repayment_yesinterest</if>
+			<if test ="waitInterest != null and waitInterest != ''">,wait_interest</if>
+			<if test ="addPersion != null and addPersion != ''">,add_persion</if>
+			<if test ="operatorIp != null and operatorIp != ''">,operator_ip</if>
+			<if test ="serviceCharge != null and serviceCharge != ''">,service_charge</if>
+			<if test ="profit != null and profit != ''">,profit</if>
+			<if test ="borrowDivides != null and borrowDivides != ''">,borrow_divides</if>
+			,create_date
+			,modify_date
+			<if test ="borrowRepaymentId != null and borrowRepaymentId != ''">,borrow_repayment_detail_id</if>
+			<if test ="borrowPeriods != null and borrowPeriods != ''">,borrow_periods</if>
+			<if test ="repaymentDate != null and repaymentDate != ''">,repayment_date</if>
+			<if test ="borrowDetailId != null and borrowDetailId != ''">,borrow_detail_id</if>
+			)
+			values(
+			<if test ="userId != null and userId != ''">#{userId}</if>
+			<if test ="status != null and status != ''">,#{status}</if>
+			<if test ="borrowId != null and borrowId != ''">,#{borrowId}</if>
+			<if test ="account != null and account != ''">,#{account}</if>
+			<if test ="repaymentAccount != null and repaymentAccount != ''">,#{repaymentAccount}</if>
+			<if test ="interest != null and interest != ''">,#{interest}</if>
+			<if test ="repaymentYesaccount != null and repaymentYesaccount != ''">,#{repaymentYesaccount}</if>
+			<if test ="waitAccount != null and waitAccount != ''">,#{waitAccount}</if>
+			<if test ="repaymentYesinterest != null and repaymentYesinterest != ''">,#{repaymentYesinterest}</if>
+			<if test ="waitInterest != null and waitInterest != ''">,#{waitInterest}</if>
+			<if test ="addPersion != null and addPersion != ''">,#{addPersion}</if>
+			<if test ="operatorIp != null and operatorIp != ''">,#{operatorIp}</if>
+			<if test ="serviceCharge != null and serviceCharge != ''">,#{serviceCharge}</if>
+			<if test ="profit != null and profit != ''">,#{profit}</if>
+			<if test ="borrowDivides != null and borrowDivides != ''">,#{borrowDivides}</if>
+			,now()
+			,now()
+			<if test ="borrowRepaymentId != null and borrowRepaymentId != ''">,#{borrowRepaymentId}</if>
+			<if test ="borrowPeriods != null and borrowPeriods != ''">,#{borrowPeriods}</if>
+			<if test ="repaymentDate != null and repaymentDate != ''">,#{repaymentDate}</if>
+			<if test ="borrowDetailId != null and borrowDetailId != ''">,#{borrowDetailId}</if>
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.qmd.mode.user.UserRepaymentDetail">
+		update fy_user_repayment_detail set
+			modify_date=now()
+			<if test ="userId != null and userId != ''">,user_id=#{userId}</if>
+			<if test ="status != null and status != ''">,status=#{status}</if>
+			<if test ="borrowId != null and borrowId != ''">,borrow_id=#{borrowId}</if>
+			<if test ="account != null and account != ''">,account=#{account}</if>
+			<if test ="repaymentAccount != null and repaymentAccount != ''">,repayment_account=#{repaymentAccount}</if>
+			<if test ="interest != null and interest != ''">,interest=#{interest}</if>
+			<if test ="repaymentYesaccount != null and repaymentYesaccount != ''">,repayment_yesaccount=#{repaymentYesaccount}</if>
+			<if test ="waitAccount != null and waitAccount != ''">,wait_account=#{waitAccount}</if>
+			<if test ="repaymentYesinterest != null and repaymentYesinterest != ''">,repayment_yesinterest=#{repaymentYesinterest}</if>
+			<if test ="waitInterest != null and waitInterest != ''">,wait_interest=#{waitInterest}</if>
+			<if test ="addPersion != null and addPersion != ''">,add_persion=#{addPersion}</if>
+			<if test ="operatorIp != null and operatorIp != ''">,operator_ip=#{operatorIp}</if>
+			<if test ="applyContinueTotal != null and applyContinueTotal != ''">,apply_continue_total=#{applyContinueTotal}</if>
+		where 
+			id=#{id}
+	</update>
+	
+	<!-- 获取用户的还款记录数 -->
+	<select id="queryUserRepaymentDetailCount" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select 
+			count(*) 
+		from 
+			fy_user_repayment_detail d
+			left join fy_borrow b on b.id = d.borrow_id
+		where 1=1
+			<include refid="queryBy"/>
+			<if test="keywords!=null">
+	    		<![CDATA[and b.name like '%${keywords}%']]>
+	    	</if>
+			<if test="minDate!=null and maxDate!=null">
+				and d.repayment_time between #{minDate} and #{maxDate}
+			</if>
+	</select>
+	
+	<!-- 获取用户的还款记录(分页获取) -->
+	<select id="queryUserRepaymentDetailPager" resultType ="com.qmd.mode.user.UserRepaymentDetail" parameterType = "java.util.Map">
+		select distinct  
+			d.id,
+			d.user_id,
+			d.status,
+			d.borrow_id,
+			d.account,
+			d.repayment_account,
+			d.interest,
+			d.repayment_yesaccount,
+			d.wait_account,
+			d.repayment_yesinterest,
+			d.wait_interest,
+			d.add_persion,
+			d.operator_ip,
+			d.borrow_periods,
+			u.username as username,
+			b.name as borrowName,
+			b.time_limit as timeLimit,
+			b.type as borrowtype,
+			r.repayment_time as repaymentTime,
+			r.repayment_yestime as repaymentYestime, 
+			bu.username as borrowUserName,
+			d.service_charge,
+			d.profit,
+			b.divides,
+			d.apply_continue_total,
+			d.borrow_divides
+		from fy_user_repayment_detail d
+			left join fy_user u on u.id = d.user_id
+			left join fy_borrow b on b.id = d.borrow_id
+			left join fy_borrow_repayment_detail r on r.id = d.borrow_repayment_detail_id
+			left join fy_user bu on bu.id = b.user_id
+		where 1=1
+			<include refid="queryBy"/>
+		<if test="minDate!=null and maxDate!=null">
+			and d.repayment_time between #{minDate} and #{maxDate}
+		</if>
+		<if test="keywords!=null">
+	    	<![CDATA[and b.name like '%${keywords}%']]>
+    	</if>
+    	<if test="status!=null">
+    		and b.status = #{status}
+    	</if>
+    	<if test="orderBy!=null">
+    		order by ${orderBy}
+    	</if>
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+		
+	</select>
+	
+	<!-- 获取用户的还款记录 -->
+	<select id="queryUserRepaymentDetail" resultType="com.qmd.mode.user.UserRepaymentDetail" parameterType="com.qmd.mode.user.UserRepaymentDetail">
+		select
+			d.id,
+			d.user_id,
+			d.status,
+			d.borrow_id,
+			d.account,
+			d.repayment_account,
+			d.interest,
+			d.repayment_yesaccount,
+			d.wait_account,
+			d.repayment_yesinterest,
+			d.wait_interest,
+			d.add_persion,
+			d.operator_ip,
+			d.borrow_periods,
+			u.username as username,
+			b.name as borrowName,
+			d.repayment_date,
+			d.create_date,
+			d.borrow_detail_id,
+			d.apply_continue_total,
+			d.borrow_divides
+		from fy_user_repayment_detail d
+		left join fy_user u on u.id = d.user_id
+		left join fy_borrow b on b.id = d.borrow_id
+		where 1=1
+			<include refid="queryBy"/>
+			<if test="orderBy != null and orderBy != '' ">
+				order by ${orderBy}
+			</if>
+	</select>
+	
+	<select id="queryUserRepaymentDetailForAnalysis" resultType="com.qmd.mode.user.UserRepaymentDetail" parameterType="java.util.Map">
+		select
+			d.id,
+			d.user_id,
+			d.status,
+			d.borrow_id,
+			d.account,
+			d.repayment_account,
+			d.interest,
+			d.repayment_yesaccount,
+			d.wait_account,
+			d.repayment_yesinterest,
+			d.wait_interest,
+			d.add_persion,
+			d.operator_ip,
+			d.borrow_periods,
+			d.borrow_divides,
+			d.create_date,
+			d.repayment_date,
+			r.repayment_time,
+			u.username,
+			d.apply_continue_total
+		from fy_user_repayment_detail d
+		left join fy_borrow_repayment_detail r 
+			on d.borrow_repayment_detail_id = r.id 
+		left join fy_user u 
+			on d.user_id = u.id 
+		where 1 =1 
+			<if test ="userId != null"> and d.user_id=#{userId}</if>
+			<if test ="borrowId != null"> and d.borrow_id=#{borrowId}</if>
+			<if test ="status != null"> and d.status=#{status}</if>
+			<if test ="beginDate != null"> <![CDATA[ and r.repayment_time >= #{beginDate} ]]> </if>
+			<if test ="endDate != null"> <![CDATA[ and r.repayment_time <= #{endDate} ]]> </if>
+			<if test ="startDate!= null"> <![CDATA[ and d.modify_date >= #{startDate} ]]> </if>
+			<if test ="finishDate != null"> <![CDATA[ and d.modify_date <= #{finishDate} ]]> </if>
+			<if test="orderBy != null">
+				order by ${orderBy}
+			</if>
+			<if test="limitSize != null ">
+				limit #{limitSize}
+			</if>
+	</select>
+	
+	<!-- 收益明细 -->
+	<select id="queryUserRepaymentDetailCountForIncome" resultType ="java.lang.Integer" parameterType = "java.util.Map">
+		select   
+			count(*) 
+		from 
+			fy_user_repayment_detail d 
+			left join fy_borrow_repayment_detail r on r.id = d.borrow_repayment_detail_id
+			left join fy_user u on u.id = d.user_id
+			left join fy_borrow b on b.id = d.borrow_id
+			left join fy_user bu on bu.id = b.user_id
+		where 1=1
+			<include refid="queryBy"/>
+			
+			<if test ="minDate != null"> <![CDATA[ and d.repayment_date >= #{minDate} ]]> </if>
+			<if test ="maxDate != null"> <![CDATA[ and d.repayment_date <= #{maxDate} ]]> </if>
+			<if test ="status != null"> <![CDATA[ and d.status = #{status} ]]> </if>
+			<if test="keywords!=null">
+		    	<![CDATA[and b.name like '%${keywords}%']]>
+	    	</if>
+		
+	</select>
+	
+	<select id="queryUserRepaymentDetailPagerForIncome" resultType ="com.qmd.mode.user.UserRepaymentDetail" parameterType = "java.util.Map">
+		select   
+			d.id,
+			d.user_id,
+			d.status,
+			d.borrow_id,
+			d.account,
+			d.repayment_account,
+			d.interest,
+			d.repayment_yesaccount,
+			d.wait_account,
+			d.repayment_yesinterest,
+			d.wait_interest,
+			d.add_persion,
+			d.operator_ip,
+			d.borrow_periods,
+			u.username as username,
+			b.name as borrowName,
+			b.time_limit as timeLimit,
+			b.type as borrowtype,
+			r.repayment_time as repayment_time,
+			r.repayment_yestime as repaymentYestime, 
+			bu.username as borrowUserName,
+			d.service_charge,
+			d.profit,
+			b.divides,
+			d.apply_continue_total,
+			d.borrow_divides
+		from 
+			fy_user_repayment_detail d 
+			left join fy_borrow_repayment_detail r on r.id = d.borrow_repayment_detail_id
+			left join fy_user u on u.id = d.user_id
+			left join fy_borrow b on b.id = d.borrow_id
+			left join fy_user bu on bu.id = b.user_id
+		where 1=1
+			<include refid="queryBy"/>
+		<if test ="minDate != null"> <![CDATA[ and d.repayment_date >= #{minDate} ]]> </if>
+		<if test ="maxDate != null"> <![CDATA[ and d.repayment_date <= #{maxDate} ]]> </if>
+		<if test ="status != null"> <![CDATA[ and d.status = #{status} ]]> </if>
+		<if test="keywords!=null">
+	    	<![CDATA[and b.name like '%${keywords}%']]>
+    	</if>
+    	<if test="orderBy!=null">
+    		order by ${orderBy}
+    	</if>
+		<if test="pager != null">
+			limit #{pager.thisSize},#{pager.pageSize}
+		</if>
+		
+	</select>
+	
+	<sql id="queryBy">
+		<if test ="userId != null and userId != ''"> and d.user_id=#{userId}</if>
+		<if test ="status != null and status != ''"> and d.status=#{status}</if>
+		<if test ="borrowId != null and borrowId != ''"> and d.borrow_id=#{borrowId}</if>
+		<if test ="account != null and account != ''"> and d.account=#{account}</if>
+		<if test ="repaymentAccount != null and repaymentAccount != ''"> and d.repayment_account=#{repaymentAccount}</if>
+		<if test ="interest != null and interest != ''"> and d.interest=#{interest}</if>
+		<if test ="repaymentYesaccount != null and repaymentYesaccount != ''"> and d.repayment_yesaccount=#{repaymentYesaccount}</if>
+		<if test ="waitAccount != null and waitAccount != ''"> and d.wait_account=#{waitAccount}</if>
+		<if test ="repaymentYesinterest != null and repaymentYesinterest != ''"> and d.repayment_yesinterest=#{repaymentYesinterest}</if>
+		<if test ="waitInterest != null and waitInterest != ''"> and d.wait_interest=#{waitInterest}</if>
+		<if test ="addPersion != null and addPersion != ''"> and d.add_persion=#{addPersion}</if>
+		<if test ="operatorIp != null and operatorIp != ''"> and d.operator_ip=#{operatorIp}</if>
+		<if test ="borrowRepaymentId != null and borrowRepaymentId != ''"> and d.borrow_repayment_detail_id=#{borrowRepaymentId}</if>
+	</sql>
+	
+	<select id="getForUpdate" resultType ="com.qmd.mode.user.UserRepaymentDetail" parameterType = "java.lang.Integer">
+		select * from fy_user_repayment_detail where id = #{id} for update
+	</select>
+	
+	<select id="getById" resultType ="com.qmd.mode.user.UserRepaymentDetail" parameterType = "java.lang.Integer">
+		select * from fy_user_repayment_detail where id = #{id}
+	</select>
+	
+	
+	<select id="baseList" resultType ="com.qmd.mode.user.UserRepaymentDetail" parameterType = "java.util.Map">
+		select * from fy_user_repayment_detail d
+		<where> 
+			<include refid="queryBy"/>
+		</where> 
+		<include refid="queryOrder"/>
+		<include refid="queryLimit"/>
+	</select>
+	
+	<sql id="queryOrder">
+		<if test="orderBy != null">
+			ORDER BY ${orderBy}
+		</if>
+	</sql>
+	
+	<sql id="queryLimit">
+		<if test="limitsize != null">
+			limit #{limitsize}
+		</if>
+	</sql>
+	
+</mapper>
