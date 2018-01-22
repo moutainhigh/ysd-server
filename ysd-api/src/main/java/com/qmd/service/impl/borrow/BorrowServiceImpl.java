@@ -1,5 +1,6 @@
 package com.qmd.service.impl.borrow;
 
+import com.qmd.bean.borrow.RichPeopleBean;
 import com.qmd.dao.borrow.BorrowDaoService;
 import com.qmd.dao.borrow.BorrowRepaymentDetailDaoService;
 import com.qmd.dao.borrow.BorrowTenderDaoService;
@@ -145,6 +146,13 @@ public class BorrowServiceImpl extends BaseServiceImpl<BorrowTender,Integer> imp
 	public void doSomethings() {
 	    // something that should execute on weekdays only
 		//System.out.println("b start at :" + System.currentTimeMillis());
+	}
+
+	@Override
+	public  List<User> findRichPeople(Integer id) {
+		// TODO Auto-generated method stub
+		List<User> list= this.borrowDaoService.findRichPeople(id);
+		return list;
 	}
 	
 	@Override

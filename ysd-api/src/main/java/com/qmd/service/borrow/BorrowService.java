@@ -1,5 +1,6 @@
 package com.qmd.service.borrow;
 
+import com.qmd.bean.borrow.RichPeopleBean;
 import com.qmd.mode.borrow.Borrow;
 import com.qmd.mode.borrow.BorrowTender;
 import com.qmd.mode.user.User;
@@ -63,5 +64,7 @@ public interface BorrowService extends BaseService<BorrowTender, Integer> {
 	public void delectBorrow(Integer id);
 
 	public Pager queryBorrowListCopy(Pager page, Map<String, Object> qMap);
+
+	public List<User> findRichPeople(Integer id);
 
 }

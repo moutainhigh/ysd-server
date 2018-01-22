@@ -3,6 +3,7 @@ package com.qmd.service.user;
 import com.qmd.mode.admin.Admin;
 import com.qmd.mode.user.AccountBank;
 import com.qmd.mode.user.User;
+import com.qmd.mode.user.UserAward;
 import com.qmd.service.BaseService;
 import com.qmd.util.Pager;
 
@@ -184,4 +185,15 @@ public interface UserService  extends BaseService<User, Integer>{
 	public void saveToken(User loginUser);
 	
 	public void logout(String token);
+
+	public List<UserAward> checkAwardPeople(Integer id);
+
+	public  List<UserAward> getAwardList();
+
+	public  UserAward getAwardInfo(Integer id);
+
+	public boolean checkAwardCode(String id);
+
+	public void updateAwardInfo(UserAward userAward);
+
 }

@@ -147,7 +147,6 @@ public class UserRepaymentDetailDaoImpl extends
 		
 		Query querycount = session.createSQLQuery(hqlcount.toString()).addScalar("count(*)", Hibernate.INTEGER);;
 		Query query = session.createSQLQuery(hql.toString());
-	
 		
 		if(map.get("startDate") !=null){
 			query.setParameter("startDate", map.get("startDate"));

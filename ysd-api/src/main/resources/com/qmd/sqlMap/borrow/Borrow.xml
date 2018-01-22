@@ -24,6 +24,15 @@
 		<include refid="queryBy"/>
 		limit #{start},#{end}
 	</select>
+
+	<select id="queryCheckAward" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">--  sjc 20180116
+		select user_id from fy_borrow_detail a
+		inner join (select * from fy_user where
+		create_date >= 2017-01-20 and
+		type_id = 0 and id = #{id}) b
+		on b.id = a.user_id
+	</select>
+
 	<select id="queryBorrowListCopy" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.util.Map">
 		select 
 		  	b.* ,
@@ -798,5 +807,16 @@ status,
 	<select id="getForUpdate" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">
 		select * from fy_borrow where id = #{id} for update
 	</select>
-	
+
+
+	<!--<select id="queryBorrowRichList" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">&#45;&#45;  sjc 20180112-->
+		<!--select  b.real_name, a.sum_account from fy_user b inner join(-->
+		<!--select user_id ,borrow_id ,sum(cast(account as decimal(7,2))) as sum_account-->
+		<!--from fy_borrow_detail where borrow_id = #{id} group by user_id)a on b.id = a.user_id order by a.sum_account desc limit 3;-->
+	<!--</select>-->
+
+	<select id="queryBorrowRichList" resultType ="com.qmd.mode.borrow.Borrow" parameterType = "java.lang.Integer">--  sjc 20180112
+		SELECT * from fy_borrow where id = #{id} ;
+	</select>
+
 </mapper>

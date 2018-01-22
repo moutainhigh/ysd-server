@@ -137,6 +137,16 @@ public class User implements Serializable{
 	private String mac;
 
 	private String bankCustNo ;//存管返回客户号
+
+	public Double getSumAccount() {
+		return sumAccount;
+	}
+
+	public void setSumAccount(Double sumAccount) {
+		this.sumAccount = sumAccount;
+	}
+
+	private Double sumAccount;
 	    
 	// token
 	private String token;

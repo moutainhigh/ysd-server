@@ -4,6 +4,7 @@ import com.qmd.dao.BaseDao;
 import com.qmd.mode.admin.Admin;
 import com.qmd.mode.user.AccountBank;
 import com.qmd.mode.user.User;
+import com.qmd.mode.user.UserAward;
 import com.qmd.util.Pager;
 
 import java.util.List;
@@ -155,4 +156,14 @@ public interface UserDao extends BaseDao<User, Integer>{
 	 * @param id
 	 */
 	public void setNullToken(Integer id);
+
+	public  List<UserAward> checkAwardPeople(Integer id) ;
+
+	public List<UserAward> getAwardList();
+
+	public UserAward getAwardInfo(Integer id);
+
+	public boolean checkAwardCode(String id);
+
+	public void updateAwardInfo(UserAward userAward);
 }

@@ -50,6 +50,36 @@ public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
 	}
 
 	@Override
+	public List<com.qmd.mode.user.UserAward> checkAwardPeople(Integer id) {
+		List<com.qmd.mode.user.UserAward> checkList = this.getSqlSession().selectList("Borrow.queryCheckAward", id);
+		return checkList;
+	}
+
+	@Override
+	public List<com.qmd.mode.user.UserAward> getAwardList() {
+		List<com.qmd.mode.user.UserAward> awardList = this.getSqlSession().selectList("User.queryAwardList");
+		return awardList;
+	}
+
+	@Override
+	public void updateAwardInfo(com.qmd.mode.user.UserAward userAward){
+		this.getSqlSession().update("User.updateAwardInfo", userAward);
+	}
+
+	@Override
+	public com.qmd.mode.user.UserAward getAwardInfo(Integer id) {
+		com.qmd.mode.user.UserAward info = this.getSqlSession().selectOne("User.queryAwardInfo",id);
+		return info;
+	}
+
+	@Override
+	public boolean checkAwardCode(String id){
+		com.qmd.mode.user.UserAward info = this.getSqlSession().selectOne("User.queryCheckAwardCode",id);
+		if(info == null) return false;
+		else return true;
+	}
+
+	@Override
 	public Pager queryUser(Pager pager,Map<String,Object> map) {
 		// TODO Auto-generated method stub
 		//List<User> userList = this.getSqlSession().selectList("User.queryUser");

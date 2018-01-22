@@ -448,13 +448,10 @@ public class ApiBaseAction extends ActionSupport {
 
 	protected String ajaxJson(String code, String message) {
 		HttpServletResponse response = initResponse(HEADER_JSON_CONTENT_TYPE);
-
 		BaseBean bean = new BaseBean();
 		bean.setRcd(code);
 		bean.setRmg(message);
-
 		JsonUtil.toJson(response, bean);
-
 		String json = JsonUtil.toJson(bean);
 		log.info("      【响应内容】[" + json + "]");
 

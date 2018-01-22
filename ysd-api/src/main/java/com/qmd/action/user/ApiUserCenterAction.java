@@ -23,6 +23,7 @@ import com.qmd.util.JsonUtil;
 import com.qmd.util.Pager;
 import com.qmd.util.md5.PWDUtil;
 import com.qmd.util.redis.CacheUtil;
+import com.qmd.util.rongbaoUtils.RongbaoUtil;
 import com.ysd.biz.YueSmsUtils;
 import com.ysd.ipyy.IPYYSMSResult;
 
@@ -53,6 +54,7 @@ public class ApiUserCenterAction extends ApiBaseAction {
 		
 	private static final long serialVersionUID = 6996957697026269082L;
 		Logger log = Logger.getLogger(ApiUserCenterAction.class);
+		
 		private Logger moneyLog = Logger.getLogger("userWithdrawMoneyLog");
 		
 		@Resource
@@ -144,8 +146,10 @@ public class ApiUserCenterAction extends ApiBaseAction {
 		private BorrowRepaymentDetail borrowRepaymentDetail;
 		private String borrowerTotal;
 		private UserAccount selfAccountView;
+		
 		private int userCashChargeTimes;
 		private BigDecimal userCashChargeMoney;
+		
 		private int cashChargeTimes;
 		private BigDecimal cashChargeMoney;
 		private Date todayDate;
@@ -155,6 +159,8 @@ public class ApiUserCenterAction extends ApiBaseAction {
 		
 		@Resource
 		BorrowService borrowService;
+
+
 		private String averageMonth;
 		private int averageRank;
 		private List<UserRepaymentDetail> userRepaymentDetaiList;

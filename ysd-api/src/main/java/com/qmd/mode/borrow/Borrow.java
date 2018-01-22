@@ -129,6 +129,9 @@ public class Borrow implements Serializable {
 
 	private BigDecimal baseApr;//基本利息
 	private BigDecimal awardApr;//奖励利息
+
+	private int showTop;
+
 	
 	//JSON类型数据
 	private String borrowInfoJson;
@@ -1162,7 +1165,13 @@ public class Borrow implements Serializable {
 	public void setAwardApr(BigDecimal awardApr) {
 		this.awardApr = awardApr;
 	}
-	
-	
-	
+
+
+	public int getShowTop() {
+		return showTop;
 	}
+
+	public void setShowTop(int top){
+		this.showTop = top;
+	}
+}

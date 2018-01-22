@@ -854,7 +854,7 @@ function change_is(type){
 				 <input type="hidden" name="borrow.award" id="award" value="0" />
 				 <input type="hidden" name="borrow.isDxb" id="isDxb" value="0" />
 				 <input type="hidden" name="number" id="number" value="0" />
-				 <input type="hidden" name="borrow.type" id="borrowType" value="${btp}" />
+				 <#--<input type="hidden" name="borrow.type" id="borrowType" value="${btp}" />-->
 				 <input type="hidden" name="borrow.isday" id="borrowIsday" value="${borrowIsday}" />
 				 
 				 
@@ -873,14 +873,20 @@ function change_is(type){
               <tr>
                 <td class="text_r org grayBg" width="40"></td>
                 <td class="text_r grayBg" width="86">项目类型：</td>
-                <td><input class="input1" disabled="disabled" type="text" value="<#if borrow.type=14>天标
-                					<#elseif borrow.type=15>月标
-                					<#elseif borrow.type=16>新手标
-									<#elseif borrow.type=17>体验标
-									<#elseif borrow.type=8>抵押质押
-									<#elseif borrow.type=9>信用
-									<#else>
-									</#if>" size="35"/></td>
+                <#--<td><input class="input1" disabled="disabled" type="text" value="<#if borrow.type=14>天标-->
+                					<#--<#elseif borrow.type=15>月标-->
+                					<#--<#elseif borrow.type=16>新手标-->
+									<#--<#elseif borrow.type=17>体验标-->
+									<#--<#elseif borrow.type=8>抵押质押-->
+									<#--<#elseif borrow.type=9>信用-->
+									<#--<#else>-->
+									<#--</#if>" size="35"/></td>-->
+				  <td><select name = "borrow.type">
+					  <option value=" 14" >普通标</option>
+                      <option value=" 16" >新手标</option>
+                      <option value=" 20" >活动标</option>
+				  </select ></td>
+				  <#--sjc 20180111-->
               </tr>
               <tr>
                 <td class="text_r org grayBg">*</td>
@@ -970,7 +976,9 @@ function change_is(type){
 			 </tr>
              </table> 
              <#-- -----------------table1 over    -------------------->
+             
          <h3>项目参数设置</h3>
+           
 			<table class="tableSet" width="100%" border="0" cellspacing="0" cellpadding="0">
 			 <tr>
                 <td class="text_r org grayBg" width="40">*</td>
@@ -978,12 +986,13 @@ function change_is(type){
                 <td><input class="input2 w_252" name="borrow.account" id="account"  value="${borrow.account}" onkeyup="value=value.replace(/[^0-9]/g,'')" onBlur="showRepayPlan();" type="text" size="35"/>元
                 <img src="${base}/static/img/qs.png" width="20" height="20" class="kaqu_e5"/></td>
               </tr>
-               <#--<tr>-->
-                <#--<td class="text_r org grayBg" width="40">*</td>-->
-                <#--<td class="text_r grayBg" width="86">车辆评估价：</td>-->
-                <#--<td><input class="input2 w_252" name="borrow.accountYes" id="accountYes"  value="${borrow.accountYes}" onkeyup="value=value.replace(/[^0-9]/g,'')"  type="text" size="35"/>元-->
-                <#--<img src="${base}/static/img/qs.png" width="20" height="20" class="kaqu_e5"/></td>-->
-              <#--</tr>-->
+          <!--    
+               <tr>
+                <td class="text_r org grayBg" width="40">*</td>
+                <td class="text_r grayBg" width="86">车辆评估价：</td>
+                <td><input class="input2 w_252" name="borrow.accountYes" id="accountYes"  value="${borrow.accountYes}" onkeyup="value=value.replace(/[^0-9]/g,'')"  type="text" size="35"/>元
+                <img src="${base}/static/img/qs.png" width="20" height="20" class="kaqu_e5"/></td>
+              </tr>-->
                <tr>
                 <td class="text_r org grayBg"></td>
                 <td class="text_r grayBg">投资有效期：</td>
@@ -1144,6 +1153,7 @@ function change_is(type){
               </tr> 
               </table>
              <#-- -----------------table2 over    -------------------->
+             
      		<h3>项目资料</h3>
      		<table class="tableSet" width="100%" border="0" cellspacing="0" cellpadding="0">
      		<!--

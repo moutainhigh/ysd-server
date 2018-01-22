@@ -1,7 +1,9 @@
 package com.qmd.dao.impl.borrow;
 
+import com.qmd.bean.borrow.RichPeopleBean;
 import com.qmd.dao.borrow.BorrowDaoService;
 import com.qmd.mode.borrow.Borrow;
+import com.qmd.mode.user.User;
 import com.qmd.util.Pager;
 import org.codehaus.plexus.util.StringUtils;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -55,6 +57,12 @@ public class BorrowDaoImpl extends SqlSessionDaoSupport implements BorrowDaoServ
 		List<Borrow> borrowList = this.getSqlSession().selectList("Borrow.queryBorrowListCopy", qMap);
 		page.setResult(borrowList);
 		return page;
+	}
+
+	@Override
+	public List<User> findRichPeople(Integer id) {
+		List<User> borrowList = this.getSqlSession().selectList("User.queryBorrowRichList", id);
+		return borrowList;
 	}
 	
 	@Override

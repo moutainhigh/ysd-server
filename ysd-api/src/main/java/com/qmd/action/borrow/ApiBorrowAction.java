@@ -1,5 +1,6 @@
  package com.qmd.action.borrow;
 
+ import com.alibaba.fastjson.JSONObject;
  import com.qmd.action.base.ApiBaseAction;
  import com.qmd.bean.PageBean;
  import com.qmd.bean.borrow.*;
@@ -198,25 +199,18 @@ public class ApiBorrowAction extends ApiBaseAction {
 	@SuppressWarnings("unchecked")
 	@Action(value="/api/borrow")
 	public String apiBorrow() throws Exception {
-		
 //		initPage();
-		
 		BorrowList borrowList = new BorrowList();
 		try {
 			Map<String, Object> qMap = new HashMap<String, Object>();
-
-
 				int[] array ={1, 3, 5, 7};
 				qMap.put("array", array);
-
 //			qMap.put("orderBy", "b.status asc, CAST(b.schedule as SIGNED) asc,b.type asc,b.create_date "+((desc!=null && desc==0)?"asc":"desc")); // 改成按创建时间排序
-
 //            if (desc == null) {
 //                qMap.put("orderBy", " CONVERT(time_limit, SIGNED) asc");
 //            } else {
                 qMap.put("orderBy", " b.verify_time "+((desc!=null && desc==0)?"asc":"desc"));
 //            }
-
 			if(StringUtils.isNotEmpty(type)) {
 				qMap.put("bType", type);
 			}
@@ -252,8 +246,10 @@ public class ApiBorrowAction extends ApiBaseAction {
 			// List<Borrow> blist = borrowService.queryUserBorrowList(mm);
 			
 			List<Borrow> blist = (List<Borrow>) pager.getResult();
-			
+			List<BorrowItem> bottomBeanList = new ArrayList<BorrowItem>();
+			List<BorrowItem> borrowItemLists = new ArrayList<BorrowItem>();
 			for (Borrow b : blist) {
+
 				BorrowItem bean = new BorrowItem();
 				bean.setId(b.getId());// 标ID
 				bean.setName(b.getName());// 标题
@@ -282,10 +278,19 @@ public class ApiBorrowAction extends ApiBaseAction {
 				}else{
 					bean.setBusinessType(b.getIsVouch());
 				}
-
-				borrowItemList.add(bean);
+				if (b.getShowTop() == 1 && b.getStatus()!= 3 ) {
+					borrowItemLists.add(bean);
+				} else if(b.getStatus()==3){
+					bottomBeanList.add(bean);
+				}else{
+					borrowItemList.add(bean);
+				}
 			}
-			borrowList.setBorrowItemList(borrowItemList);
+			borrowItemLists.addAll(borrowItemList);//sjc 20180110
+			borrowItemLists.addAll(bottomBeanList);
+			bottomBeanList = null;
+			borrowItemList = null;
+			borrowList.setBorrowItemList(borrowItemLists);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -296,6 +301,76 @@ public class ApiBorrowAction extends ApiBaseAction {
 		return ajax(JsonUtil.toJson(borrowList));
 
 	}
+
+	/**
+	 * 材料公示
+	 * id 项目ID
+	 * @return
+	 * sjc 20180111
+	 */
+
+	@Action(value="/api/verifyList/detail")
+	public String apiVerifyDetail() {
+		borrow = this.borrowService.getBorrowById(Integer.parseInt(id));
+		if (borrow == null) {
+			ajaxJson("M0010", ApiConstantUtil.M0010);
+		}
+		if (borrow.getStatus() == 0) {
+			ajaxJson("M0011", ApiConstantUtil.M0011);
+		}
+		String verifyListValue = borrow.getBorrowVerifyJson();
+		if (verifyListValue == null)
+			return "";
+
+		List<VerifyBean> verifyBeanList = new ArrayList<>();
+		try {
+			JSONObject obj = JSONObject.parseObject(verifyListValue);
+			for(int i=0;i<verifyKeyList.length;i++){
+				String value = obj.getString(verifyKeyList[i]);
+				if(value.equals("1")){
+					VerifyBean bean = new VerifyBean();
+					bean.setName(verifyKeyValueList[i]);
+					bean.setVerifyValue(value);
+					verifyBeanList.add(bean);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ajaxJson("S0001", ApiConstantUtil.S0001);
+		}
+
+		return ajax(JsonUtil.toJson(verifyBeanList));
+	}
+
+	private String[] verifyKeyList = {"anCase","cardDriving","gcfp","gouZhi","guJia","household"
+			,"idCard","income","jdczs","zhengXin"};
+	private String[] verifyKeyValueList = {"在执行案件查询","车辆行驶证"," 购车发票","购置税凭证","车辆评估报告","户口本"
+			,"身份证","收入证明","机动车登记证书","征信报告"};
+
+	/**
+	 * 滚动排行榜
+	 * id 项目ID
+	 * @return
+	 * sjc 20180112
+	 */
+
+	@Action(value="/api/richlist/detail")
+	public String apiBorrowRichList(){
+		Map<String,List<RichPeopleBean>> map = new HashMap<String, List<RichPeopleBean>>() ;
+		List<RichPeopleBean> richList = new ArrayList<>();
+		List<User> list = this.borrowService.findRichPeople(Integer.parseInt(id));
+		if(null != list){
+			for(int i = 0;i < list.size();i++){
+				RichPeopleBean richPeopleBean  = new RichPeopleBean();
+				richPeopleBean.setRealName(list.get(i).getRealName());
+				richPeopleBean.setSumAccount(list.get(i).getSumAccount());
+				richList.add(richPeopleBean);
+			}
+		}
+		map.put("richList",richList);
+		return  ajax(JsonUtil.toJson(map));
+	}
+
 	@Action(value="/api/borrow/detail")
 	public String apiBorrowDetail()  {
 			borrow = this.borrowService.getBorrowById(Integer.parseInt(id));
@@ -368,7 +443,7 @@ public class ApiBorrowAction extends ApiBaseAction {
 	}
 	
 	/**
-	 * 车辆心信息
+	 * 车辆信息
 	 * id 项目ID
 	 * @return
 	 */
@@ -393,7 +468,6 @@ public class ApiBorrowAction extends ApiBaseAction {
 			return ajax(JsonUtil.toJson(bean));
 
 	}
-
 
 	
 	/**
@@ -565,6 +639,7 @@ public class ApiBorrowAction extends ApiBaseAction {
 		return 1;
 
 	}
+
 
 	public String[] getVouchers() {
 		return vouchers;
