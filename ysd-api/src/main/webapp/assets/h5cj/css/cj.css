@@ -1,0 +1,518 @@
+body * {
+    -webkit-text-size-adjust: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: auto;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 0.4rem/1.5 '宋体 Arial';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, input, button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input, button {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.wrap {
+    width: 100%;
+    height: 49.88083735rem;
+    padding-top: 15.71658515rem;
+    background: url("../img/body_bg.jpg") no-repeat;
+    background-size: cover;
+}
+
+.dial-wrap, .dial-lamp, .dial-get {
+    width: 13.97745571rem;
+    height: 14.00322061rem;
+    margin: 0 auto;
+}
+
+.dial-wrap {
+    position: relative;
+    background: url("../img/dial_bg.png") no-repeat;
+    background-size: cover;
+}
+
+.dial-lamp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("../img/dial_lamp.gif") no-repeat;
+    background-size: cover;
+    z-index: 4;
+}
+
+.dial-disk {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 11.02737520rem;
+    height: 11.02737520rem;
+    margin: 1.27792270rem 0 0 -5.51368760rem;
+    background: url("../img/dial_disk.png") no-repeat center center;
+    background-size: cover;
+    z-index: 3;
+}
+
+.dial-get {
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 14.00322061rem;
+    text-align: center;
+    z-index: 5;
+}
+
+.dial-get .btn {
+    display: inline-block;
+    width: 4.26409017rem;
+    height: 4.94685990rem;
+    background: url("../img/dial_get.png") no-repeat center center;
+    background-size: cover;
+    vertical-align: middle;
+}
+
+.help-btns {
+    margin-top: 0.8rem;
+    text-align: center;
+}
+
+.help-btns a {
+    display: inline-block;
+    width: 6.75044025rem;
+    height: 2.00966183rem;
+    margin: 0 0.19rem;
+}
+
+.help-btns a:nth-child(1) {
+    background: url("../img/help_btn_01.png") no-repeat center center;
+    background-size: cover;
+}
+
+.help-btns a:nth-child(2) {
+    background: url("../img/help_btn_02.png") no-repeat center center;
+    background-size: cover;
+}
+
+.win-list {
+    width: 16rem;
+    height: 14.45410628rem;
+    margin: 0.8rem auto 0;
+    background: url("../img/win-list_bg.png") no-repeat;
+    background-size: cover;
+}
+
+.win-list .list {
+    width: 12.6rem;
+    margin: 0 auto;
+    padding: 3.2rem 0.45rem 0;
+}
+
+.win-list .list li {
+    height: 1.03rem;
+    line-height: 1.03rem;
+    overflow: hidden;
+}
+
+.win-list .list li span {
+    display: inline-block;
+    font-size: 0.5rem;
+}
+
+.win-list .list li .name {
+    width: 1.94rem;
+}
+
+.win-list .list li .time {
+    float: right;
+}
+
+.win-my {
+    width: 13.60386473rem;
+    height: 14.45410628rem;
+    margin: 0.8rem auto 0;
+    background: url("../img/my/win-my_bg.png") no-repeat;
+    background-size: cover;
+}
+
+.win-my .pic {
+    width: 100%;
+}
+
+.win-my .pic img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.win-my .title {
+    font-size: 0.77294685rem;
+    color: #328aff;
+    text-align: center;
+}
+
+.win-my .hint {
+    width: 100%;
+    margin-top: 0.3rem;
+    padding: 0 0.77294685rem;
+    overflow: hidden;
+}
+
+.win-my .hint span, .win-my .hint p {
+    font-size: 0.51529790rem;
+    color: #5d96ff;
+}
+
+.win-my .hint span {
+    float: left;
+    width: 2.8rem;
+}
+
+.win-my .hint p {
+    padding-left: 2.8rem;
+}
+
+
+/*活动规则页面*/
+.rule-body {
+    background: -webkit-linear-gradient(#01ceff, #7e22ff); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#01ceff, #7e22ff); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#01ceff, #7e22ff); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#01ceff, #7e22ff); /* 标准的语法 */
+}
+
+.rule-main {
+    width: 100%;
+}
+
+.rule-main h1 {
+    margin-bottom: 0.86312399rem;
+    padding-top: 2.06119162rem;
+    text-align: center;
+    color: #fff;
+    font-size: 1.03059581rem;
+    font-weight: 100;
+}
+
+.rule-main dl {
+    width: 14.47987117rem;
+    margin: 0 auto;
+}
+
+.rule-main dl dt {
+    float: left;
+    width: 2.60225442rem;
+    line-height: 0.9rem;
+    font-size: 0.51529790rem;
+    color: #fff;
+}
+
+.rule-main dl dd {
+    margin-bottom: 0.72141706rem;
+    padding-left: 2.60225442rem;
+    font-size: 0.51529790rem;
+    color: #fff;
+}
+
+.rule-main dl dd p {
+    margin-bottom: 0.25rem;
+    line-height: 0.9rem;
+}
+
+/*填写中奖信息页面*/
+.cj-info-body {
+    background: -webkit-linear-gradient(#01ceff, #7e22ff); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#01ceff, #7e22ff); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#01ceff, #7e22ff); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#01ceff, #7e22ff); /* 标准的语法 */
+}
+
+.cj-info-main {
+    width: 100%;
+}
+
+.cj-info-main h1 {
+    margin-bottom: 0.86312399rem;
+    padding-top: 2.06119162rem;
+    text-align: center;
+    color: #fff;
+    font-size: 1.03059581rem;
+    font-weight: 100;
+}
+
+.cj-info-main .form-list {
+    width: 14.45410628rem;
+    margin: 0 auto;
+}
+
+.cj-info-main .form-list .line {
+    width: 100%;
+    margin-bottom: 0.77294685rem;
+    overflow: hidden;
+}
+
+.cj-info-main .form-list .tit {
+    float: left;
+    display: inline-block;
+    width: 3.56843800rem;
+    height: 1.93236714rem;
+    padding-right: 0.4rem;
+    text-align: right;
+    line-height: 1.93236714rem;
+    font-size: 0.77294685rem;
+    color: #fff;
+}
+
+.cj-info-main .form-list .input-text, .cj-info-main .form-list .textarea-text {
+    float: left;
+    width: 10.88566827rem;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 0.3rem;
+    font-size: 0.77294685rem;
+}
+
+.cj-info-main .form-list .input-text {
+    height: 1.93236714rem;
+    line-height: 1.93236714rem;
+    padding: 0 0.4rem;
+}
+
+.cj-info-main .form-list .textarea-text {
+    min-height: 4.63768115rem;
+    padding: 0.4rem;
+}
+
+.cj-info-main .form-list .btn-box {
+    padding-top: 2.06119162rem;
+}
+
+.cj-info-main .form-list .btn-box .btn {
+    display: inline-block;
+    width: 14.66022544rem;
+    height: 2.26731078rem;
+    background: url("../img/form_btn.png") no-repeat;
+    background-size: cover;
+}
+
+
+/*弹框样式*/
+.layer .layer-main, .layer .shade {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.layer .shade {
+    background-color: rgba(0,0,0,.7);
+    pointer-events: auto;
+}
+
+.layer .layer-main {
+    display: table;
+    font-family: Helvetica,arial,sans-serif;
+    pointer-events: none;
+}
+
+.layer .layer-section {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.layer .layer-wrap {
+    position: relative;
+    display: inline-block;
+    pointer-events: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: .2s;
+    animation-duration: .2s;
+}
+
+.layer .layer-close-btn {
+    display: block;
+    width: 1.67471819rem;
+    height: 1.67471819rem;
+    margin: 1.4rem auto 0;
+    background: url("../img/btn_close.png") no-repeat center center;
+    background-size: cover;
+}
+
+.pop-exchange {
+    width: 11.77455716rem;
+    height: 10.22866344rem;
+    background: url("../img/pop_exchange.png") no-repeat;
+    background-size: cover;
+}
+
+.pop-exchange .input-box {
+    width: 8.88888888rem;
+    margin: 0 auto;
+    padding-top: 3.86473429rem;
+}
+
+.pop-exchange .input-box input {
+    width: 8.88888888rem;
+    height: 1.93236714rem;
+    background-color: #fff;
+    border: 1px solid #ff563c;
+    border-radius: 0.3rem;
+    font-size: 0.77294685rem;
+    text-align: center;
+    color: #ccc;
+}
+
+.pop-exchange .input-box input:focus {
+    color: #333;
+}
+
+.pop-exchange .btn-box {
+    width: 9.86795491rem;
+    margin: 1.15942028rem auto 0;
+}
+
+.pop-exchange .btn-box .btn {
+    display: block;
+    width: 9.86795491rem;
+    height: 2.00966183rem;
+    background: url("../img/pop_exchange_btn.png") no-repeat;
+    background-size: cover;
+}
+
+.pop-win {
+    position: relative;
+    width: 11.77455716rem;
+    height: 20.08373590rem;
+    background: url("../img/pop_win_bg.png") no-repeat;
+    background-size: cover;
+}
+
+.pop-win .prize-pic {
+    position: absolute;
+    left: 50%;
+    top: 3.8rem;
+    width: 13.60386473rem;
+    margin-left: -6.80193236rem;
+}
+
+.pop-win .prize-text {
+    padding-top: 14.44979146rem;
+    font-size: 0.77294685rem;
+    color: #ff563c;
+}
+
+.pop-win .pop-win-btn {
+    display: block;
+    width: 9.86795491rem;
+    height: 2.00966183rem;
+    margin: 1.05rem auto 0;
+    background: url("../img/pop_win_btn.png") no-repeat;
+    background-size: cover;
+}
+
+.pop-win .prize-pic img {
+    width: 100%;
+}
+
+.pop-noWin, .pop-wined {
+    width: 11.77455716rem;
+    height: 10.22866634rem;
+}
+
+.pop-noWin {
+    background: url("../img/pop_winNo.png") no-repeat;
+    background-size: cover;
+}
+
+.pop-wined {
+    background: url("../img/pop_wined.png") no-repeat;
+    background-size: cover;
+}
+
+.pop-noWin-btn, .pop-wined-btn {
+    display: inline-block;
+    width: 9.09500805rem;
+    height: 2.00966183rem;
+    margin-top: 6.9rem;
+    background: url("../img/pop_noWin_btn.png") no-repeat;
+    background-size: cover;
+}
+
+
+@media screen and (max-width: 361px) {
+    .rule-main dl dt {
+        width: 3rem;
+    }
+
+    .rule-main dl dd {
+        padding-left: 3rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
