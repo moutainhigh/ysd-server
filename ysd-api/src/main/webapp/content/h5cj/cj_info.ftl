@@ -47,6 +47,7 @@
         </form>
     </article>
     <script src="../../assets/h5cj/js/jquery.min.js"></script>
+    <script src="../../assets/h5cj/js/layer_mobile/layer.js"></script>
     <script src="../../assets/h5cj/js/cjInfo.js"></script>
 </body>
 </html>

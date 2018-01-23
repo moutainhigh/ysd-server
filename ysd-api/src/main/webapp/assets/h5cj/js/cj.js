@@ -53,7 +53,7 @@ $(function () {
         return format;
     }
 
-    var id = 11;
+    var id = 31;
 
     // 我的奖品
     var myWin = [
@@ -73,11 +73,10 @@ $(function () {
         url: '/rest/checkAwardPeople/' + id,
         dataType: 'json',
         success: function (result) {
-            console.log(result);
             // 未抽奖
             if(!result.myAwar) {
                 var $winList = $('#winList');
-                var awarlist = result.awarlist, len = result.awarlist.length;
+                var awarlist = result.awarlist, len = result.awarlist && result.awarlist.length;
 
                 $winList.removeClass('hide');
                 if(len > 0) {
@@ -95,7 +94,11 @@ $(function () {
             }
         },
         error: function (err) {
-            console.log(err);
+            layer.open({
+                content: err
+                ,skin: 'msg'
+                ,time: 2
+            });
         }
     });
 
@@ -152,12 +155,20 @@ $(function () {
                     $btn.click(function () {
                         var text = $text.val();
                         if(!text) {
-                            alert('抽奖码不能为空！');
+                            layer.open({
+                                content: '抽奖码不能为空！'
+                                ,skin: 'msg'
+                                ,time: 2
+                            });
                             $text.focus();
                             return false;
                         }
                         if(!/^[0-9a-zA-Z]+$/.test(text)) {
-                            alert('抽奖码格式不正确！');
+                            layer.open({
+                                content: '抽奖码格式不正确！'
+                                ,skin: 'msg'
+                                ,time: 2
+                            });
                             $text.focus();
                             return false;
                         }
@@ -167,7 +178,11 @@ $(function () {
                             dataType: 'json',
                             success: function (result) {
                                 if(!result || result == 0){
-                                    alert('抽奖码无效！');
+                                    layer.open({
+                                        content: '抽奖码无效！'
+                                        ,skin: 'msg'
+                                        ,time: 2
+                                    });
                                     return false;
                                 }
                                 // 抽奖码有效
@@ -189,10 +204,7 @@ $(function () {
 
     // 转动抽奖
     function rotateCj(params) {
-        console.log(params);
         var code = params.awardNameCode;
-
-
         switch (parseInt(code)) {
             case 0:
                 rotateFn(0, 315, code);

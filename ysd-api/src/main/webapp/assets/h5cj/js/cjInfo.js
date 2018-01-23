@@ -29,19 +29,35 @@ $(function () {
     $('#subBtn').click(function () {
         if(!id) return false;
         if(!$name.val()) {
-            alert('请输入姓名！');
+            layer.open({
+                content: '请输入姓名！'
+                ,skin: 'msg'
+                ,time: 2
+            });
             return false;
         }
         if(!$iphone.val()) {
-            alert('请输入手机号码！');
+            layer.open({
+                content: '请输入手机号码！'
+                ,skin: 'msg'
+                ,time: 2
+            });
             return false;
         }
         if(!isPhoneNum($iphone.val())) {
-            alert('手机号码格式不正确!');
+            layer.open({
+                content: '手机号码格式不正确！'
+                ,skin: 'msg'
+                ,time: 2
+            });
             return false;
         }
         if(!$address.val()) {
-            alert('请输入收件地址!');
+            layer.open({
+                content: '请输入收件地址！'
+                ,skin: 'msg'
+                ,time: 2
+            });
             return false;
         }
 
@@ -51,9 +67,19 @@ $(function () {
             dataType: 'json',
             success: function (result) {
                 if(result == 1) {
-                    alert('填写成功！');
+                    layer.open({
+                        content: '填写保存成功！',
+                        btn: '确定',
+                        shadeClose: false,
+                        yes: function(){
+                            window.location.href = 'cj.ftl';
+                        }
+                    });
                 } else {
-                    alert('信息提交失败，请联系客服！');
+                    layer.open({
+                        content: '信息提交失败，请联系客服！'
+                        ,btn: '我知道了'
+                    });
                 }
             }
         });

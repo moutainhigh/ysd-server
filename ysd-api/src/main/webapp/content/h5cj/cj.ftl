@@ -37,14 +37,7 @@
         </section>
         <section class="win-list hide" id="winList">
             <ul class="list">
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
-                <li><span class="name">张XX</span><span class="txt">抽中舒肤床上四件套一份</span><span class="time">01-20 15:30</span></li>
+
             </ul>
         </section>
         <section class="win-my hide" id="myWin">
@@ -55,8 +48,9 @@
             <div class="hint"><span>温馨提示：</span><p>请您在中奖后3个工作日内保持手机畅通，以便客服专员通过电话与您确认中奖信息。</p></div>
         </section>
     </article>
-<script src="../../assets/h5cj/js/jquery.min.js"></script>
-<script src="../../assets/h5cj/js/jQueryRotate.js"></script>
-<script src="../../assets/h5cj/js/cj.js"></script>
+    <script src="../../assets/h5cj/js/jquery.min.js"></script>
+    <script src="../../assets/h5cj/js/jQueryRotate.js"></script>
+    <script src="../../assets/h5cj/js/layer_mobile/layer.js"></script>
+    <script src="../../assets/h5cj/js/cj.js"></script>
 </body>
 </html>
