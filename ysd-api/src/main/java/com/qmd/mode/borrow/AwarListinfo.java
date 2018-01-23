@@ -1,9 +1,20 @@
 package com.qmd.mode.borrow;
 
+import java.util.Date;
+
 public class AwarListinfo {
     private String name;
     private String awardName;
     private Integer awardNameCode;
+    private Date createDate;
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
     public Integer getAwardNameCode() {
         return awardNameCode;

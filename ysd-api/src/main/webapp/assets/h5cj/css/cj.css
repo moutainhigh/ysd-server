@@ -66,6 +66,10 @@ input, button {
     border-radius: 0;
 }
 
+.hide {
+    display: none;
+}
+
 .wrap {
     width: 100%;
     height: 49.88083735rem;

@@ -83,6 +83,32 @@ public class ActivityAction extends BaseAction {
 	}
 
 	/**
+	 * 活动详情
+	 * @return
+	 */
+	@Action(value = "/activity/cj",results={@Result(name="success", location="/content/h5cj/cj.ftl", type="freemarker")})
+	public String cj(){
+        List<UserAward> list = this.userService.checkAwardPeople(Integer.parseInt(id));
+        int isAwar = list == null ? 0 : 1;
+        List<UserAward> awardList = new ArrayList<>();
+        List<AwarListinfo> awarInfoList = new ArrayList<>();
+
+        awardList = this.userService.getAwardList();
+        for (int i = 0; i < awardList.size(); i++) {
+            AwarListinfo listInfo = new AwarListinfo();
+            listInfo.setAwardNameCode(awardList.get(i).getAwardNameCode());
+            listInfo.setName(awardList.get(i).getName());
+            awarInfoList.add(listInfo);
+        }
+        UserAward awarInfo = this.userService.getAwardInfo(Integer.parseInt(id));
+        AwarInfo info = new AwarInfo();
+        info.setIsAward(isAwar);
+        info.setMyAwar(awarInfo.getAwardNameCode());
+        info.setAwarlist(awarInfoList);
+        return ajax(JsonUtil.toJson(info));
+	}
+
+	/**
 	 * 抽奖校验
 	 * sjc 20180116
 	 *
@@ -100,6 +126,7 @@ public class ActivityAction extends BaseAction {
 			AwarListinfo listInfo = new AwarListinfo();
 			listInfo.setAwardNameCode(awardList.get(i).getAwardNameCode());
 			listInfo.setName(awardList.get(i).getName());
+			listInfo.setCreateDate(awardList.get(i).getCreateDate());
 			awarInfoList.add(listInfo);
 		}
 		UserAward awarInfo = this.userService.getAwardInfo(Integer.parseInt(id));
