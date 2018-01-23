@@ -53,6 +53,8 @@ $(function () {
         return format;
     }
 
+    var id = 11;
+
     // 我的奖品
     var myWin = [
         { imgSrc: '1.png', text: '精美瓷器碗碟一套' },
@@ -68,9 +70,10 @@ $(function () {
     // 判断奖品区显示个人中奖内容还是其他人中奖列表
     $.ajax({
         type: 'GET',
-        url: '/rest/checkAwardPeople/26',
+        url: '/rest/checkAwardPeople/' + id,
         dataType: 'json',
         success: function (result) {
+            console.log(result);
             // 未抽奖
             if(!result.myAwar) {
                 var $winList = $('#winList');
@@ -86,10 +89,13 @@ $(function () {
                 }
             } else {    //  已抽奖
                 var $myWin = $('#myWin');
-                $myWin.find('img').attr('src', '../../assets/h5cj/img/my/'+ myWin[parseInt(result.myAwar)-1].imgSrc);
-                $myWin.find('.title').text(myWin[parseInt(result.myAwar)-1].text);
+                $myWin.find('img').attr('src', '../../assets/h5cj/img/my/'+ myWin[parseInt(result.myAwar)].imgSrc);
+                $myWin.find('.title').text(myWin[parseInt(result.myAwar)].text);
                 $myWin.removeClass('hide');
             }
+        },
+        error: function (err) {
+            console.log(err);
         }
     });
 
@@ -117,18 +123,20 @@ $(function () {
             animateTo: angles + 1800,
             duration: 8000,
             callback: function () {
-                createWinCj(myWin[code].imgSrc, myWin[code].text);  // 显示奖品
+                createWinCj(myWin[code-1].imgSrc, myWin[code-1].text);  // 显示奖品
                 bRotate = !bRotate;
             }
         });
     };
+
+    var cjCode = '';
 
 
     $('#pointer').click(function () {
         if (bRotate) return;
         $.ajax({
             type: 'GET',
-            url: '/rest/checkAwardPeople/26',
+            url: '/rest/checkAwardPeople/' + id,
             dataType: 'json',
             success: function (result) {
                 if(!result.isAward) {
@@ -164,6 +172,7 @@ $(function () {
                                 }
                                 // 抽奖码有效
                                 removeCjCode(); // 移除抽奖码弹框
+                                cjCode = text;
                                 if(result.awardNameCode) {
                                     rotateCj(result);
                                 }
@@ -180,7 +189,10 @@ $(function () {
 
     // 转动抽奖
     function rotateCj(params) {
+        console.log(params);
         var code = params.awardNameCode;
+
+
         switch (parseInt(code)) {
             case 0:
                 rotateFn(0, 315, code);
@@ -248,9 +260,9 @@ $(function () {
     function createWinCj(img, text) {
         var winPopHtml = Layer.templateBefore();
         winPopHtml += '<div class="pop-win">';
-        winPopHtml += '<div class="prize-pic"><img src="../../assets/h5cj/img/my/'+ img +'.png" alt=""></div>';
+        winPopHtml += '<div class="prize-pic"><img src="../../assets/h5cj/img/my/'+ img +'" alt=""></div>';
         winPopHtml += '<div class="prize-text">'+ text +'</div>';
-        winPopHtml += '<a href="javascript:;" class="pop-win-btn"></a>';
+        winPopHtml += '<a href="cj_info.ftl?id='+ id +'&cjCode='+ cjCode +'" class="pop-win-btn"></a>';
         winPopHtml += '</div>';
         winPopHtml += Layer.templateAfter({ btn: true });
         $('body').append(winPopHtml);
@@ -270,7 +282,7 @@ $(function () {
     // 已中奖提示
     function createWinedCj() {
         var winedPopHtml = Layer.templateBefore();
-        winedPopHtml += '<div class="pop-wined"><a href="#" class="pop-wined-btn"></a></div>';
+        winedPopHtml += '<div class="pop-wined"><a href="javascript:;" class="pop-wined-btn"></a></div>';
         winedPopHtml += Layer.templateAfter({ btn: true });
         $('body').append(winedPopHtml);
         Layer.closeEvent();

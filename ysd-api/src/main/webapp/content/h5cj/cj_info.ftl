@@ -33,8 +33,8 @@
                     <input type="text" name="name" class="input-text" placeholder="请输入姓名" />
                 </div>
                 <div class="line">
-                    <label class="tit">联系电话</label>
-                    <input type="number" name="iphone" class="input-text" placeholder="请输入联系电话" />
+                    <label class="tit">手机号码</label>
+                    <input type="number" name="iphone" class="input-text" placeholder="请输入手机号码" />
                 </div>
                 <div class="line">
                     <label class="tit">收件地址</label>
@@ -46,5 +46,7 @@
             </div>
         </form>
     </article>
+    <script src="../../assets/h5cj/js/jquery.min.js"></script>
+    <script src="../../assets/h5cj/js/cjInfo.js"></script>
 </body>
 </html>
