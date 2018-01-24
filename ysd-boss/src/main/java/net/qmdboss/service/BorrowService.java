@@ -4,6 +4,7 @@ package net.qmdboss.service;
 import net.qmdboss.bean.Pager;
 import net.qmdboss.entity.Admin;
 import net.qmdboss.entity.Borrow;
+import net.qmdboss.entity.UserAward;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -74,4 +75,5 @@ public interface BorrowService extends BaseService<Borrow, Integer> {
 	
 	
 	public void updateBorrow(Borrow borrow ,Integer id,Admin admin);
+
 }

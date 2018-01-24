@@ -3,6 +3,7 @@ package net.qmdboss.dao;
 
 import net.qmdboss.bean.Pager;
 import net.qmdboss.entity.Borrow;
+import net.qmdboss.entity.UserAward;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -60,4 +61,5 @@ public interface BorrowDao extends BaseDao<Borrow, Integer> {
 	 * @return
 	 */
 	public BigDecimal getAccountYesTotal(Date startDate,Date endDate);
+
 }

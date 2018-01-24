@@ -120,6 +120,40 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements
 				ConstantUtil.RECOVER_KEY_SEPARATOR));
 		return new Date(time);
 	}
+
+	@Override
+	public  List<UserAward> checkAwardPeople(Integer id) {
+		// TODO Auto-generated method stub
+		List<UserAward> list = this.userDao.checkAwardPeople(id);
+		return list;
+	}
+
+	@Override
+	public  List<UserAward> getAwardList() {
+		// TODO Auto-generated method stub
+		List<UserAward> list = this.userDao.getAwardList();
+		return list;
+	}
+
+	@Override
+	public UserAward getAwardInfo(Integer id) {
+		// TODO Auto-generated method stub
+		UserAward info = this.userDao.getAwardInfo(id);
+		return info;
+	}
+
+	@Override
+	public boolean checkAwardCode(String id) {
+		// TODO Auto-generated method stub
+		boolean check = this.userDao.checkAwardCode(id);
+		return check;
+	}
+
+	@Override
+	public void updateAwardInfo(UserAward userAward) {
+		// TODO Auto-generated method stub
+		this.userDao.updateAwardInfo(userAward);
+	}
 	
 	/**
 	 * 给用户发注册红包

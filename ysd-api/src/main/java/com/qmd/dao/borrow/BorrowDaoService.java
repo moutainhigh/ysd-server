@@ -1,6 +1,8 @@
 package com.qmd.dao.borrow;
 
+import com.qmd.bean.borrow.RichPeopleBean;
 import com.qmd.mode.borrow.Borrow;
+import com.qmd.mode.user.User;
 import com.qmd.util.Pager;
 
 import java.util.List;
@@ -44,4 +46,6 @@ public interface BorrowDaoService {
 	public void updateParent(Borrow borrow);
 	
 	public Pager queryBorrowListCopy(Pager page,Map<String,Object> qMap);
+
+	public  List<User> findRichPeople(Integer id) ;
 }

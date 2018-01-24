@@ -3,6 +3,7 @@ package net.qmdboss.dao.impl;
 import net.qmdboss.bean.Pager;
 import net.qmdboss.dao.BorrowDao;
 import net.qmdboss.entity.Borrow;
+import net.qmdboss.entity.UserAward;
 import net.qmdboss.util.ReflectionUtil;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -111,7 +112,7 @@ public class BorrowDaoImpl extends BaseDaoImpl<Borrow, Integer> implements
 		super.update(borrow);
 //		flush();
 	}
-	
+
 	
 	public BigDecimal getAccountYesTotal(Date startDate,Date endDate){
 		Criteria criteria = getSession().createCriteria(Borrow.class);

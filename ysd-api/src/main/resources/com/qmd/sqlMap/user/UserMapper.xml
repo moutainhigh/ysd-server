@@ -37,6 +37,30 @@
 		from fy_user u
 		where u.id = #{id}
 	</select>
+
+	<select id="queryAwardList" resultType="com.qmd.mode.user.UserAward" >
+		select * from fy_user_award  where user_id != 0 limit 8
+	</select>
+
+	<select id="queryAwardInfo" resultType="com.qmd.mode.user.UserAward" parameterType="java.lang.Integer">
+		select * from fy_user_award where user_id = #{id}
+	</select>
+
+	<update id="updateAwardInfo" parameterType="com.qmd.mode.user.UserAward" >
+		update fy_user_award set
+		status = 1
+		<if test ="awardName != null and awardName != ''">,award_name = #{awardName}</if>
+		<if test ="awardNameCode != null and awardNameCode != ''">,award_name_code = #{awardNameCode}</if>
+		<if test ="userId != null and name != ''">,user_id = #{userId}</if>
+		<if test ="name != null and name != ''">,name = #{name}</if>
+		<if test ="phone != null and phone != ''">,phone = #{phone}</if>
+		<if test ="address != null and address != ''">,address = #{address}</if>
+		where 	award_code = #{awardCode}
+	</update>
+
+	<select id="queryCheckAwardCode" resultType="com.qmd.mode.user.UserAward" parameterType="java.lang.String">
+		select * from fy_user_award where award_code = #{id} and status = 0
+	</select>
 	
 	<select id="queryUser" resultType="com.qmd.mode.user.User" parameterType="java.util.Map">
 		select
@@ -54,6 +78,12 @@
 		select
 		count(*)
 		from fy_user
+	</select>
+
+	<select id="queryBorrowRichList" resultType ="com.qmd.mode.user.User" parameterType = "java.lang.Integer">--  sjc 20180112
+	select  b.real_name, a.sum_account from fy_user b inner join(
+	select user_id ,borrow_id ,sum(cast(account as decimal(7,2))) as sum_account
+	from fy_borrow_detail where borrow_id = #{id} group by user_id)a on b.id = a.user_id order by a.sum_account desc limit 3;
 	</select>
 	
 	<sql id="queryWhere">

@@ -26,7 +26,7 @@ public class ParamIntereptor implements Interceptor {
 		ActionContext actionContext = invocation.getInvocationContext();
 		HttpServletRequest request = (HttpServletRequest) actionContext
 				.get(StrutsStatics.HTTP_REQUEST);
-		//log.info("请求地址:" + request.getRequestURL() + "?" + request.getQueryString());
+		log.info("请求地址:" + request.getRequestURL() + "?" + request.getQueryString());
 		long b = System.currentTimeMillis();
 		log.info("【请求开始】地址:[" + request.getRequestURL()+"]SID=["+request.getSession().getId()+"]");
 		Iterator<?> iter = request.getParameterMap().keySet().iterator();
