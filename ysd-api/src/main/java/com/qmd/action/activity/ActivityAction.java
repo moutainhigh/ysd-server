@@ -132,7 +132,8 @@ public class ActivityAction extends BaseAction {
 		UserAward awarInfo = this.userService.getAwardInfo(Integer.parseInt(id));
 		AwarInfo info = new AwarInfo();
 		info.setIsAward(isAwar);
-		info.setMyAwar(awarInfo.getAwardNameCode());
+		if (awarInfo == null) info.setMyAwar(null);
+		else info.setMyAwar(awarInfo.getAwardNameCode());
 		info.setAwarlist(awarInfoList);
 		return ajax(JsonUtil.toJson(info));
 	}
