@@ -134,6 +134,28 @@ var KP = {
 
 
 $(function(){
+
+    // 咨询弹框
+    function confirm(message, fn1, fn2) {
+        KP.options.drag = true;
+        KP.show("提示", 308, 200);
+        var show_content = '<div style=" padding:5px 0 0 15px;"><div style="color:#666; font-size:14px; padding:20px 0; margin-bottom: 5px;border-bottom:1px solid #e6e6e6;">'+ message +'</div><div style="text-align:center;"><a  href="javascript:;" style="display:inline-block; width:95px; height:30px;  line-height:30px; text-align:center; border-radius:3px; color:#fff; font-size:14px; background:#7c96e8; margin-top:20px;" class="confirm">确定</a><a href="javascript:;" onclick="KP.close()" style="display:inline-block; width:95px; height:30px; line-height:30px; text-align:center; border-radius:3px; margin-left: 10px; color:#fff; font-size:14px; background:#a5a5a5; margin-top:20px;">取消</a></div></div>';
+        $(KP.options.content).html(show_content).find('.confirm').on('click', function () {
+            fn1 && fn1.call(this);
+            KP.close();
+        });
+    }
+
+    // 退出系統
+    $('#logout').click(function () {
+        var _this = this;
+        layer.confirm('是否退出系统？', {
+        	title: '提示',
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            window.location.href = $(_this).data('href');
+        });
+    });
 	
 	// nav hover
 	$(".nav>li")

@@ -10,6 +10,7 @@
 <link type="text/css"  href="${base}/css/global.css" rel="stylesheet"/>
 
 <script type="text/javascript" src="${base}/js/jquery/jquery.js" charset="utf-8"></script>
+<script type="text/javascript" src="${base}/js/layer/layer.js" charset="utf-8"></script>
 <script type="text/javascript" src="${base}/js/common/qmd.js"></script>
 <script type="text/javascript" src="${base}/js/common/base.js"></script>
 <script type="text/javascript" src="${base}/js/jquery/jquery.validate.js"></script>
