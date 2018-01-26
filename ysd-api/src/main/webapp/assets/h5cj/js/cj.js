@@ -53,7 +53,7 @@ $(function () {
         return format;
     }
 
-    var id = 20;
+    var id = 12;
 
     // 我的奖品
     var myWin = [
@@ -66,42 +66,6 @@ $(function () {
         { imgSrc: '7.png', text: '舒肤床上四件套一份' },
         { imgSrc: '8.png', text: '进口有机大米一袋' }
     ];
-
-    // 判断奖品区显示个人中奖内容还是其他人中奖列表
-    $.ajax({
-        type: 'GET',
-        url: '/rest/checkAwardPeople/' + id,
-        dataType: 'json',
-        success: function (result) {
-            // 未抽奖
-            if(!result.myAwar) {
-                var $winList = $('#winList');
-                var awarlist = result.awarlist, len = result.awarlist && result.awarlist.length;
-
-                $winList.removeClass('hide');
-                if(len > 0) {
-                    var html = '';
-                    for(var i = 0; i < len; i++ ) {
-                        html += '<li><span class="name">'+ awarlist[i].name +'</span><span class="txt">'+ awarlist[i].awardName +'</span><span class="time">'+ dateFormat(awarlist[i].createDate, 'MM-dd hh:mm:ss') +'</span></li>';
-                    }
-                    $winList.find('ul').html(html);
-                }
-            } else {    //  已抽奖
-                var $myWin = $('#myWin');
-                $myWin.find('img').attr('src', '../../assets/h5cj/img/my/'+ myWin[parseInt(result.myAwar)].imgSrc);
-                $myWin.find('.title').text(myWin[parseInt(result.myAwar)].text);
-                $myWin.removeClass('hide');
-            }
-        },
-        error: function (err) {
-            layer.open({
-                content: err
-                ,skin: 'msg'
-                ,time: 2
-            });
-        }
-    });
-
 
     // 转盘
     var $rotate = $('#rotate');
@@ -133,72 +97,65 @@ $(function () {
     };
 
     var cjCode = '';
+    var isAward = $('#isAward').val();
+    var myAwar = $('#myAwar').val();
 
 
     $('#pointer').click(function () {
         if (bRotate) return;
-        $.ajax({
-            type: 'GET',
-            url: '/rest/checkAwardPeople/' + id,
-            dataType: 'json',
-            success: function (result) {
-                if(!result.isAward) {
-                    createNoCj();
-                    return false;
-                }
-                if(result.myAwar) {
-                    createWinedCj();
-                    return false;
-                }
-                // 输入抽奖码
-                importCjCode(function ($text, $btn) {
-                    $btn.click(function () {
-                        var text = $text.val();
-                        if(!text) {
-                            layer.open({
-                                content: '抽奖码不能为空！'
-                                ,skin: 'msg'
-                                ,time: 2
-                            });
-                            $text.focus();
-                            return false;
-                        }
-                        if(!/^[0-9a-zA-Z]+$/.test(text)) {
-                            layer.open({
-                                content: '抽奖码格式不正确！'
-                                ,skin: 'msg'
-                                ,time: 2
-                            });
-                            $text.focus();
-                            return false;
-                        }
-                        $.ajax({
-                            type: 'POST',
-                            url: '/rest/checkAwardCode/'+ text,
-                            dataType: 'json',
-                            success: function (result) {
-                                if(!result || result == 0){
-                                    layer.open({
-                                        content: '抽奖码无效！'
-                                        ,skin: 'msg'
-                                        ,time: 2
-                                    });
-                                    return false;
-                                }
-                                // 抽奖码有效
-                                removeCjCode(); // 移除抽奖码弹框
-                                cjCode = text;
-                                if(result.awardNameCode) {
-                                    rotateCj(result);
-                                }
-                            }
-                        });
+        if(isAward == 0){
+            createNoCj();
+            return false;
+        }
+        if(!!myAwar) {
+            createWinedCj();
+            return false;
+        }
+        // 输入抽奖码
+        importCjCode(function ($text, $btn) {
+            $btn.click(function () {
+                var text = $text.val();
+                if(!text) {
+                    layer.open({
+                        content: '抽奖码不能为空！'
+                        ,skin: 'msg'
+                        ,time: 2
                     });
+                    $text.focus();
+                    return false;
+                }
+                if(!/^[0-9a-zA-Z]+$/.test(text)) {
+                    layer.open({
+                        content: '抽奖码格式不正确！'
+                        ,skin: 'msg'
+                        ,time: 2
+                    });
+                    $text.focus();
+                    return false;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/rest/checkAwardCode/'+ text,
+                    dataType: 'json',
+                    success: function (result) {
+                        if(!result || result == 0){
+                            layer.open({
+                                content: '抽奖码无效！'
+                                ,skin: 'msg'
+                                ,time: 2
+                            });
+                            return false;
+                        }
+                        // 抽奖码有效
+                        removeCjCode(); // 移除抽奖码弹框
+                        cjCode = text;
+                        if(result.awardNameCode) {
+                            rotateCj(result);
+                        }
+                    }
                 });
-
-            }
+            });
         });
-
         return false;
     });
 
@@ -299,7 +256,7 @@ $(function () {
         $('body').append(winedPopHtml);
         Layer.closeEvent();
     }
-    
+
     // 输入抽奖码
     function importCjCode(backFn) {
         var codePopHtml = Layer.templateBefore();
