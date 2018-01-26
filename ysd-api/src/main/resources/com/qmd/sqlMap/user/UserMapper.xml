@@ -39,7 +39,7 @@
 	</select>
 
 	<select id="queryAwardList" resultType="com.qmd.mode.user.UserAward" >
-		select * from fy_user_award  where user_id != 0 limit 8
+		select * from fy_user_award  where user_id != 0 order by modify_date desc limit 8
 	</select>
 
 	<select id="queryAwardInfo" resultType="com.qmd.mode.user.UserAward" parameterType="java.lang.Integer">

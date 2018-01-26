@@ -24,6 +24,7 @@
     </script>
 </head>
 <body>
+    <input type="hidden" value="${awarInfo.isAward}" id="isAward">
     <article class="wrap">
         <section class="dial-wrap">
             <div class="dial-lamp"></div>
@@ -35,18 +36,27 @@
         <section class="help-btns">
             <a href="cj_rule.ftl"></a><a href="javascript:;"></a>
         </section>
-        <section class="win-list hide" id="winList">
+        <#if awarInfo.myAwar == null>
+        <section class="win-list" id="winList">
             <ul class="list">
-
+                <#list awardInfoList as ap>
+                    <li>
+                        <span class="name">${ap.name}</span>
+                        <span >${ap.awardName}</span>
+                        <span class="time">${ap.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
+                    </li>
+                </#list>
             </ul>
         </section>
-        <section class="win-my hide" id="myWin">
+        <#else>
+        <section class="win-my " id="myWin">
             <div class="pic">
-                <img src="../../assets/h5cj/img/my/8.png" alt="">
+                <img src="../../assets/h5cj/img/my/${awarInfo.awardCode}.png" alt="">
             </div>
-            <h3 class="title">进口有机大米一袋</h3>
+            <h3 class="title">${awarInfo.myAwar}</h3>
             <div class="hint"><span>温馨提示：</span><p>请您在中奖后3个工作日内保持手机畅通，以便客服专员通过电话与您确认中奖信息。</p></div>
         </section>
+        </#if>
     </article>
     <script src="../../assets/h5cj/js/jquery.min.js"></script>
     <script src="../../assets/h5cj/js/jQueryRotate.js"></script>
