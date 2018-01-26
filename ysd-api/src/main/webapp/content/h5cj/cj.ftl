@@ -25,6 +25,7 @@
 </head>
 <body>
     <input type="hidden" value="${awarInfo.isAward}" id="isAward">
+    <input type="hidden" value="${awarInfo.myAwar}" id="myAwar">
     <article class="wrap">
         <section class="dial-wrap">
             <div class="dial-lamp"></div>
