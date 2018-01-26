@@ -53,7 +53,7 @@ $(function () {
         return format;
     }
 
-    var id = 31;
+    var id = 20;
 
     // 我的奖品
     var myWin = [
