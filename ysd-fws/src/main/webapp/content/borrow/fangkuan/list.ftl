@@ -37,9 +37,9 @@
 	               <option value="sh" <#if searchBy?exists && searchBy == "sh"> selected="selected"</#if> >放款审核时间</option>
 				</select>
 				
-				<input type="text" id = "minDate" name="minDate" onclick="WdatePicker()" value="${(minDate)!}" class="kaqu_w100" style = "width :80px">
+				<input type="text" id = "minDate" name="minDate" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'maxDate\')}'})" value="${(minDate)!}" class="kaqu_w100" style = "width :80px">
 				   &nbsp;&nbsp;到&nbsp;&nbsp;
-				 <input type="text" id = "maxDate" name="maxDate" onclick="WdatePicker()" value="${(maxDate)!}" class="kaqu_w100" style = "width :80px">
+				 <input type="text" id = "maxDate" name="maxDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'minDate\')}'})" value="${(maxDate)!}" class="kaqu_w100" style = "width :80px">
 				<#--排序 -->
 				状态：
 				<select class="text_sketch" id="kq_select_order_id" name = "status" style="">
