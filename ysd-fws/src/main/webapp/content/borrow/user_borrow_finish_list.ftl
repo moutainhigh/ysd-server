@@ -36,10 +36,10 @@
     		
         	 <span class="block">最终还款日：</span>           
             <span class="block">
-           		<input type="text" id = "minDate" name="minDate" onclick="WdatePicker()" value="${(minDate)}" class="searchText" >&nbsp;
+           		<input type="text" id = "minDate" name="minDate" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'maxDate\')}'})" value="${(minDate)}" class="searchText" >&nbsp;
             </span><span class="block">到&nbsp;</span> 
             <span class="block">
-            	<input type="text" id = "maxDate" name="maxDate" onclick="WdatePicker()" value="${(maxDate)}" class="searchText" > &nbsp;
+            	<input type="text" id = "maxDate" name="maxDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'minDate\')}'})" value="${(maxDate)}" class="searchText" > &nbsp;
             </span>
         <input type="button" onclick="gotoPage(1);" class = "kaqu_w120" value = "搜索"/>
         <div class="clear"></div>

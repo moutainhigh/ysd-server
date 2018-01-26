@@ -1,5 +1,6 @@
 package com.qmd.action.activity;
 
+import com.qmd.action.base.ApiBaseAction;
 import com.qmd.action.base.BaseAction;
 import com.qmd.bean.PageBean;
 import com.qmd.bean.activity.ActivityList;
@@ -16,22 +17,17 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service("activityAction")
-public class ActivityAction extends BaseAction {
+public class ActivityAction extends ApiBaseAction {
 
 	private static final long serialVersionUID = -324311598810634127L;
 
 	@Resource
 	private ActivityService activityService;
-
 	private Activity activity;
-	
 	private ActivityList activityList;
-
 	private Integer userId;
 	private String name;
 	private String phone;
@@ -82,61 +78,55 @@ public class ActivityAction extends BaseAction {
 		return SUCCESS;
 	}
 
-	/**
-	 * 活动详情
-	 * @return
-	 */
-	@Action(value = "/activity/cj",results={@Result(name="success", location="/content/h5cj/cj.ftl", type="freemarker")})
-	public String cj(){
-        List<UserAward> list = this.userService.checkAwardPeople(Integer.parseInt(id));
-        int isAwar = list == null ? 0 : 1;
-        List<UserAward> awardList = new ArrayList<>();
-        List<AwarListinfo> awarInfoList = new ArrayList<>();
 
-        awardList = this.userService.getAwardList();
-        for (int i = 0; i < awardList.size(); i++) {
-            AwarListinfo listInfo = new AwarListinfo();
-            listInfo.setAwardNameCode(awardList.get(i).getAwardNameCode());
-            listInfo.setName(awardList.get(i).getName());
-            awarInfoList.add(listInfo);
-        }
-        UserAward awarInfo = this.userService.getAwardInfo(Integer.parseInt(id));
-        AwarInfo info = new AwarInfo();
-        info.setIsAward(isAwar);
-        info.setMyAwar(awarInfo.getAwardNameCode());
-        info.setAwarlist(awarInfoList);
-        return ajax(JsonUtil.toJson(info));
+	List<UserAward> awardInfoList;
+
+	public List<UserAward> getAwardInfoList() {
+		return awardInfoList;
 	}
 
+	public void setAwardInfoList(List<UserAward> awardInfoList) {
+		this.awardInfoList = awardInfoList;
+	}
+
+	private AwarInfo awarInfo;
+
+	public AwarInfo getAwarInfo() {
+		return awarInfo;
+	}
+
+	public void setAwarInfo(AwarInfo awarInfo) {
+		this.awarInfo = awarInfo;
+	}
 	/**
 	 * 抽奖校验
 	 * sjc 20180116
 	 *
 	 * @return
 	 */
-	@Action(value = "/api/checkAwardPeople/detail")
+	@Action(value = "/api/checkAwardPeople/detail",results={@Result(name="success", location="/content/h5cj/cj.ftl", type="freemarker")})
 	public String checkAwardPeople() {
-		List<UserAward> list = this.userService.checkAwardPeople(Integer.parseInt(id));
-		int isAwar = list == null ? 0 : 1;
-		List<UserAward> awardList = new ArrayList<>();
+		awarInfo = new AwarInfo();
 		List<AwarListinfo> awarInfoList = new ArrayList<>();
-
-		awardList = this.userService.getAwardList();
-		for (int i = 0; i < awardList.size(); i++) {
-			AwarListinfo listInfo = new AwarListinfo();
-			listInfo.setAwardNameCode(awardList.get(i).getAwardNameCode());
-			listInfo.setName(awardList.get(i).getName());
-			listInfo.setCreateDate(awardList.get(i).getCreateDate());
-			awarInfoList.add(listInfo);
+		List<UserAward> list = this.userService.checkAwardPeople(Integer.parseInt(id));
+		if(list == null|| list.isEmpty()){
+			awarInfo.setIsAward("0");
+		}else{
+			awarInfo.setIsAward("1");
 		}
-		UserAward awarInfo = this.userService.getAwardInfo(Integer.parseInt(id));
-		AwarInfo info = new AwarInfo();
-		info.setIsAward(isAwar);
-		if (awarInfo == null) info.setMyAwar(null);
-		else info.setMyAwar(awarInfo.getAwardNameCode());
-		info.setAwarlist(awarInfoList);
-		return ajax(JsonUtil.toJson(info));
+		awardInfoList = this.userService.getAwardList();
+
+		UserAward userAward = this.userService.getAwardInfo(Integer.parseInt(id));
+		if (userAward == null){
+			awarInfo.setMyAwar(null);
+			awarInfo.setAwardCode(null);
+		}else{
+			awarInfo.setMyAwar(userAward.getAwardName());
+			awarInfo.setAwardCode(userAward.getAwardNameCode());
+		}
+		return SUCCESS;
 	}
+
 
 	/**
 	 * 抽奖码校验
@@ -155,23 +145,23 @@ public class ActivityAction extends BaseAction {
 			int award = random.nextInt(100);
 			if(award >= 0 && award < 51 ) {
 				userAward.setAwardNameCode(4);
-				userAward.setAwardName("春联");
+				userAward.setAwardName("吉祥春节对联");
 			}
 			else if(award>=51 && award< 58) {
 				userAward.setAwardNameCode(8);
-				userAward.setAwardName("有机大米");
+				userAward.setAwardName("进口有机大米");
 			}
 			else if(award>=58 && award< 65) {
 				userAward.setAwardNameCode(7);
-				userAward.setAwardName("床上四件");
+				userAward.setAwardName("舒肤床上四件套");
 			}
 			else if(award>=65 && award< 72) {
 				userAward.setAwardNameCode(1);
-				userAward.setAwardName("精美瓷器");
+				userAward.setAwardName("精美瓷器碗碟");
 			}
 			else if(award>=72 && award< 79) {
 				userAward.setAwardNameCode(2);
-				userAward.setAwardName("榨汁机");
+				userAward.setAwardName("多功能榨汁机");
 			}
 			else if(award>=79 && award< 86) {
 				userAward.setAwardNameCode(3);
@@ -179,11 +169,11 @@ public class ActivityAction extends BaseAction {
 			}
 			else if(award>=86 && award< 93) {
 				userAward.setAwardNameCode(5);
-				userAward.setAwardName("体重秤");
+				userAward.setAwardName("便携式体重秤");
 			}
 			else if(award>=93 && award< 100) {
 				userAward.setAwardNameCode(6);
-				userAward.setAwardName("充电宝");
+				userAward.setAwardName("大毫安充电宝");
 			}
 			this.userService.updateAwardInfo(userAward);
 			return ajax(JsonUtil.toJson(userAward));
@@ -265,4 +255,5 @@ public class ActivityAction extends BaseAction {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+
 }

@@ -88,9 +88,9 @@
         <input type="hidden" name="bty" id="bty" value="${bty}" />
         	<span class="block">发布时间：</span>
             <span class="block">
-            	<input type="text" id = "minDate" name="minDate" onclick="WdatePicker()" value="${minDate}" class="searchText">
+            	<input type="text" id = "minDate" name="minDate" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'maxDate\')}'})" value="${minDate}" class="searchText">
                <span class="block">&nbsp;&nbsp;到&nbsp;&nbsp;</span> 
-				 <input type="text" id = "maxDate" name="maxDate" onclick="WdatePicker()" value="${maxDate}" class="searchText">  
+				 <input type="text" id = "maxDate" name="maxDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'minDate\')}'})" value="${maxDate}" class="searchText">
 				  <span class="block">&nbsp;&nbsp;</span> 
 			<#if bty==0>
 				<select id="borrStatus" name="borrStatus">

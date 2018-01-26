@@ -57,7 +57,7 @@
 			    </div>
 			
 				<div class="right">
-					<div class="fr"><a href="${base}/userCenter/logout.do" title="退出" /></a></div>
+					<div class="fr"><a href="javascript:;"id="logout" data-href="${base}/userCenter/logout.do" title="退出" /></a></div>
 					<div class="fr logo_info">
 						<p>当前用户：${loginUser.username}</p>
 					</div>
