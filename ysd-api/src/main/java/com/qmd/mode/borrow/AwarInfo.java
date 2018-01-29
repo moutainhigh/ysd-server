@@ -5,9 +5,18 @@ import java.util.List;
 public class AwarInfo {
 
     private String isAward;
+    private String userId;
     private String myAwar;
     private Integer awardCode;
     private List<AwarListinfo> awarlist;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public Integer getAwardCode() {
         return awardCode;

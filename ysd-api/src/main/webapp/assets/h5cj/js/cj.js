@@ -53,7 +53,7 @@ $(function () {
         return format;
     }
 
-    var id = 12;
+    var id = $('#userId').val();
 
     // 我的奖品
     var myWin = [
@@ -231,7 +231,7 @@ $(function () {
         winPopHtml += '<div class="pop-win">';
         winPopHtml += '<div class="prize-pic"><img src="../../assets/h5cj/img/my/'+ img +'" alt=""></div>';
         winPopHtml += '<div class="prize-text">'+ text +'</div>';
-        winPopHtml += '<a href="cj_info.ftl?id='+ id +'&cjCode='+ cjCode +'" class="pop-win-btn"></a>';
+        winPopHtml += '<a href="/rest/infolist?id='+ id +'&cjCode='+ cjCode +'" class="pop-win-btn"></a>';
         winPopHtml += '</div>';
         winPopHtml += Layer.templateAfter({ btn: true });
         $('body').append(winPopHtml);

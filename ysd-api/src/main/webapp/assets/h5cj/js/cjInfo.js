@@ -72,7 +72,7 @@ $(function () {
                         btn: '确定',
                         shadeClose: false,
                         yes: function(){
-                            window.location.href = 'cj.ftl';
+                            window.location.href = '/rest/checkAwardPeople/' + id;
                         }
                     });
                 } else {

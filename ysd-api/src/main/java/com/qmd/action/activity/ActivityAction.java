@@ -124,6 +124,12 @@ public class ActivityAction extends ApiBaseAction {
 			awarInfo.setMyAwar(userAward.getAwardName());
 			awarInfo.setAwardCode(userAward.getAwardNameCode());
 		}
+		awarInfo.setUserId(id);
+		return SUCCESS;
+	}
+
+	@Action(value = "/api/infolist",results={@Result(name="success", location="/content/h5cj/cj_info.ftl", type="freemarker")})
+	public String infoList() {
 		return SUCCESS;
 	}
 
