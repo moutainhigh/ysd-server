@@ -873,19 +873,13 @@ function change_is(type){
               <tr>
                 <td class="text_r org grayBg" width="40"></td>
                 <td class="text_r grayBg" width="86">项目类型：</td>
-                <#--<td><input class="input1" disabled="disabled" type="text" value="<#if borrow.type=14>天标-->
-                					<#--<#elseif borrow.type=15>月标-->
-                					<#--<#elseif borrow.type=16>新手标-->
-									<#--<#elseif borrow.type=17>体验标-->
-									<#--<#elseif borrow.type=8>抵押质押-->
-									<#--<#elseif borrow.type=9>信用-->
-									<#--<#else>-->
-									<#--</#if>" size="35"/></td>-->
-				  <td><select name = "borrow.type">
+				  <td>
+					  <select name = "borrow.type">
 					  <option value=" 14" >普通标</option>
-                      <option value=" 16" >新手标</option>
-                      <option value=" 20" >活动标</option>
-				  </select ></td>
+					  <option value=" 16" >新手标</option>
+					  <option value=" 20" >活动标</option>
+					</select >
+				  </td>
 				  <#--sjc 20180111-->
               </tr>
               <tr>

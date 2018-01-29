@@ -18,8 +18,8 @@
             <div class="nodes noborder">
                 <h6><span class="fl fb">项目管理</span><span class="systole icon"></span></h6>		
                 <ul class="border">
-                    <li><a id = "li_a_jkgl" href="${base}/borrow/inputBorrowRaise.do?btp=14">发布普通项目</a></li>
-                     <li><a id = "li_a_jkgl" href="${base}/borrow/inputBorrowRaise.do?btp=16">发布新手项目</a></li>
+                    <li><a id = "li_a_jkgl" href="${base}/borrow/inputBorrowRaise.do?btp=14">发布项目</a></li><#--
+                     <li><a id = "li_a_jkgl" href="${base}/borrow/inputBorrowRaise.do?btp=16">发布新手项目</a></li>-->
                      <li><a id = "li_a_jkgl" href="${base}/borrow/userBorrowMgmt.do?bty=0">所有项目列表</a></li>
    <!--                 <li><a id = "li_a_jkgl" href="${base}/borrow/userBorrowMgmt.do?bty=1">募集中的项目</a></li>
                     <li><a id = "li_a_jkgl" href="${base}/borrow/userBorrowMgmt.do?bty=2">募集失败的项目</a></li>-->

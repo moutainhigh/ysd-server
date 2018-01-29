@@ -10,8 +10,7 @@
 			        	<li><a class="sssj" href="${base}/borrow/userBorrowMgmt.do"><span>项目管理</span></a>
 							<ul class="shadowMenu">
 				<!--				<li><a href="${base}/borrow/borrowInputRaise.do?btp=7">发布借款</a></li>-->
-								<li><a href="${base}/borrow/inputBorrowRaise.do?btp=14">发布普通借款</a></li>
-								<li><a href="${base}/borrow/inputBorrowRaise.do?btp=16">发布新手借款</a></li>
+								<li><a href="${base}/borrow/inputBorrowRaise.do?btp=14">发布项目</a></li>
 								<li><a href="${base}/borrow/userBorrowMgmt.do?bty=0">项目管理</a></li>
 								<li><a href="${base}/borrow/userBorrowNoDone.do">还款管理</a></li>
 <#--								<li><a href="#">合同管理</a>
