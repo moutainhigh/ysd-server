@@ -36,7 +36,7 @@
             </div>
         </section>
         <section class="help-btns">
-            <a href="cj_rule.ftl"></a><a href="javascript:;"></a>
+            <a href="/rest/rule"></a><#--<a href="javascript:;"></a>-->
         </section>
         <#if awarInfo.myAwar == null>
         <section class="win-list" id="winList">

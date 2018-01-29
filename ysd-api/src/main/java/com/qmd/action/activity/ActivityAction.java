@@ -133,6 +133,11 @@ public class ActivityAction extends ApiBaseAction {
 		return SUCCESS;
 	}
 
+	@Action(value = "/api/rule",results={@Result(name="success", location="/content/h5cj/cj_rule.ftl", type="freemarker")})
+	public String rule() {
+		return SUCCESS;
+	}
+
 
 	/**
 	 * 抽奖码校验
