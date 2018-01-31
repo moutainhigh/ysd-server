@@ -348,7 +348,7 @@ public class BorrowAction extends BaseAdminAction {
 			} else if ("5".equals(borrow.getType())) {// 流转标：直接将标发布成招标中
 				verifyLog.debug("   初审  流转标["+id+"]");
 				flg = borrowFlowServiceImpl.updateBorrowFlow(borrow,id, admin);// 审核流转标
-			} else if ("11".equals(borrow.getType())||"12".equals(borrow.getType())||"14".equals(borrow.getType())||"15".equals(borrow.getType())||"16".equals(borrow.getType())||"17".equals(borrow.getType())) {// 直接将标发布成招标中
+			} else if ("11".equals(borrow.getType())||"12".equals(borrow.getType())||"14".equals(borrow.getType())||"15".equals(borrow.getType())||"16".equals(borrow.getType())||"17".equals(borrow.getType())||"20".equals(borrow.getType())) {// 直接将标发布成招标中
 				verifyLog.debug("   初审  标["+id+"]");
 				
 				if(borrow.getFeeType()!=null && borrow.getFeeType()==0&&StringUtils.isEmpty(borrow.getPartAccount())){

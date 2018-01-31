@@ -546,6 +546,7 @@ function clickborrowFee() {
 						<#elseif borrow.type==15>月标
 						<#elseif borrow.type== 16>新手标
 					    <#elseif borrow.type== 17>体验标
+						<#elseif borrow.type== 20>活动标
 						<#else></#if>
 					</td>
 				</tr>
